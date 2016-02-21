@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Profile</title>
+    <title>Register</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -19,7 +19,7 @@
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/dashboard.css" rel="stylesheet">
+    <link href="../../../css/dashboard.css" rel="stylesheet">
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -31,82 +31,43 @@
 
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="home.view.html">Form Maker</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="profile.view.html">Username</a></li>
-                <li><a href="#">Logout</a></li>
-            </ul>
-
-        </div>
-    </div>
-</nav>
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li><a href="home.view.html">Home</a></li>
-                <li class="active"><a href="profile.view.html">Profile<span class="sr-only">(current)</span></a></li>
-                <li><a href="admin.view.html">Admin</a></li>
-                <li><a href="forms.view.html">Forms</a></li>
-            </ul>
-
-
-        </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Profile</h1>
+            <h1 class="page-header">Register</h1>
             <form class="form-horizontal">
 
                 <div class="form-group">
                     <label for="exampleUsername" class="label-control col-sm-3 col-md-4 text-right">Username</label>
                     <div class="col-sm-6 col-md-6">
-                        <input type="text" class="form-control" id="exampleUsername" placeholder="Username">
+                    <input type="text" class="form-control" id="exampleUsername" placeholder="Username">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputPassword1" class="col-sm-3 col-md-4 text-right">Password</label>
                     <div class="col-sm-6 col-md-6">
-                        <input type="password" class="form-control col-sm-6 col-md-6" id="exampleInputPassword1" placeholder="Password">
+                    <input type="password" class="form-control col-sm-6 col-md-6" id="exampleInputPassword1" placeholder="password">
                     </div>
                 </div>
-
-
                 <div class="form-group">
-                    <label for="exampleFirstname" class="label-control col-sm-3 col-md-4 text-right">First Name</label>
+                    <label for="exampleVerifyInputPassword1" class="col-sm-3 col-md-4 text-right">Verify Password</label>
                     <div class="col-sm-6 col-md-6">
-                        <input type="text" class="form-control" id="exampleFirstname" placeholder="First Name">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleLastname" class="label-control col-sm-3 col-md-4 text-right">Last Name</label>
-                    <div class="col-sm-6 col-md-6">
-                        <input type="text" class="form-control" id="exampleLastname" placeholder="Last Name">
+                    <input type="password" class="form-control col-sm-6 col-md-6" id="exampleVerifyInputPassword1" placeholder="Verify Password">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputEmail1" class="col-sm-3 col-md-4 text-right">Email</label>
+                    <label for="exampleInputEmail1" class="col-sm-3 col-md-4 text-right">Email address</label>
                     <div class="col-sm-6 col-md-6">
-                        <input type="email" class="form-control col-sm-6 col-md-6" id="exampleInputEmail1" placeholder="Email">
+                    <input type="email" class="form-control col-sm-6 col-md-6" id="exampleInputEmail1" placeholder="Email">
                     </div>
                 </div>
 
                 <div>
                     <div class="col-sm-3 col-md-4"></div>
-                    <a href="profile.view.html" class="btn btn-success  col-sm-6  col-md-6">Update</a>
+                <a href="profile.view.html" class="btn btn-success  col-sm-6  col-md-6">Register</a>
                 </div>
             </form>
 
