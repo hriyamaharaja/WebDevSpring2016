@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="FormBuilderApp">
 <head>
     <meta charset="UTF-8">
     <title>Sidebar</title>
 </head>
 <body>
-<div class="col-sm-3 col-md-2 sidebar">
+<div class="col-sm-3 col-md-2 sidebar" ng-controller="SidebarController">
     <ul class="nav nav-sidebar">
-        <li><a href="../home/home.view.html">Home</a></li>
-        <li><a href="../users/profile.view.html">Profile</a></li>
-        <li class="active"><a href="../admin/admin.view.html">Admin</a></li>
-        <li><a href="../forms/forms.view.html">Forms</a></li>
+        <li><a href="#/home"  ng-class="{'active': $location.url() == '/home'}">Home</a></li>
+        <li><a href="#/profile" ng-class="{'active': $location.url() == '/profile'}">Profile</a></li>
+        <li><a href="#/admin"  ng-class="{'active': $location.url() == '/admin'}">Admin</a></li>
+        <li><a href="#/forms"  ng-class="{'active': $location.url() == '/forms'}">Forms</a></li>
     </ul>
 </div>
 </body>
