@@ -17,7 +17,7 @@
 
             UserService.findUserByCredentials(username,password,function(response){
 
-                if(response.username === username) {
+                if(response) {
                     $rootScope.user = response;
                     $location.path("/profile");
                 }
