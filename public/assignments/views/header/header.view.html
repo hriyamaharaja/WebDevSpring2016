@@ -2,7 +2,7 @@
 <html lang="en" ng-app="FormBuilderApp">
 
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -15,7 +15,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/register" ng-class="{'active' : $location.url() == '/register'}">
+                <li><a href="#/register" class="btn" ng-class="{'btn-primary' : $location.url() == '/register'}">
                     Register
                 </a></li>
                 <li><a href="#/login" ng-class="{'active' : $location.url() == '/login'}">
