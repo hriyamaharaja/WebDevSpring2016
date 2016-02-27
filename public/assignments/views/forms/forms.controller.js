@@ -10,7 +10,7 @@
     function FormController($rootScope, $scope, $location, FormService) {
         $scope.$location = $location;
 
-        $scope.forms = FormService.findAllFormsForUser(123);
+        $scope.forms = FormService.findAllFormsForUser($rootScope.user._id);
 
         $scope.addForm = function () {
 
@@ -22,7 +22,7 @@
             FormService.createFormForUser($scope._id, $scope.form,
                 function(response) {
                     console.log(response);
-                    $scope.forms = FormService.findAllFormsForUser(123);
+                    $scope.forms = FormService.findAllFormsForUser($rootScope.user._id);
                 });
 
         };

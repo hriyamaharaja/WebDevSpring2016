@@ -15,7 +15,8 @@
 
                 })
                 .when("/profile", {
-                    templateUrl: "views/users/profile.view.html"
+                    templateUrl: "views/users/profile.view.html",
+                    controller : "ProfileController"
 
                 })
                 .when("/admin", {
@@ -23,16 +24,18 @@
 
                 })
                 .when("/forms", {
-                    templateUrl: "views/forms/forms.view.html"
+                    templateUrl: "views/forms/forms.view.html",
+                    controller : "FormController"
 
                 })
                 .when("/register", {
                     templateUrl: "views/users/register.view.html",
-                    Controller : "RegisterController"
+                    controller : "RegisterController"
 
                 })
                 .when("/login", {
-                    templateUrl: "views/users/login.view.html"
+                    templateUrl: "views/users/login.view.html",
+                    controller : "LoginController"
 
                 })
                 .otherwise({

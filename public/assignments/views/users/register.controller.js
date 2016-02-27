@@ -21,7 +21,7 @@
             $rootScope.user.username = $scope.username;
             $rootScope.user.password = $scope.password;
             $rootScope.user.email = $scope.email;
-            $rootScope.user.id = (new Date).getTime();
+            $rootScope.user._id = (new Date).getTime();
 
             UserService.createUser($rootScope.user,
                 function(response) {
