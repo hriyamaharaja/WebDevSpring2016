@@ -28,6 +28,11 @@
                     controller : "FormController"
 
                 })
+                .when("/form-fields", {
+                    templateUrl: "views/forms/form-fields.view.html",
+                    controller : "FormController"
+
+                })
                 .when("/register", {
                     templateUrl: "views/users/register.view.html",
                     controller : "RegisterController"

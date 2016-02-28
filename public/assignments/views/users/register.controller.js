@@ -6,7 +6,11 @@
 
     function RegisterController($rootScope, $scope, $location, UserService) {
 
-        $scope.users = UserService.findAllUsers();
+        $scope.users = {}
+         UserService.findAllUsers(function(response){
+             "use strict";
+             $scope.users = response;
+         });
 
         $scope.hide = true;
         $scope.dispalert = false;

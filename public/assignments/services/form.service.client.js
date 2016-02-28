@@ -23,10 +23,12 @@
         {
             var userForms = [];
             for(user in forms) {
-                if(forms[user].userId == userId)
+                if(forms[user].userId === userId)
+                {
                     userForms.push(forms[user]);
+                }
             }
-            return (userForms);
+            callback(userForms);
         }
 
         function deleteFormById(formId, callback)

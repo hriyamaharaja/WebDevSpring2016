@@ -15,18 +15,19 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse" ng-controller="HeaderController">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/register" class="btn" ng-show="rootScope.user==null"  ng-class="{'btn-primary' : $location.url() == '/register'}">
+                <li  ng-class="{'active' : $location.url() === '/register'}"><a href="#/register" class="btn" ng-show="rootScope.user==null" >
                     Register
                 </a></li>
-                <li><a href="#/login" ng-show="rootScope.user==null" ng-class="{'active' : $location.url() == '/login'}">
+                <li ng-class="{'active' : $location.url() === '/login'}"><a href="#/login" ng-show="rootScope.user==null" >
                     Login
                 </a></li>
-                <li><a href="#/profile" ng-hide="rootScope.user==null"  ng-class="{'active' : $location.url() == '/profile'}">
-                    {{rootScope.user.username}}
+                <li ng-class="{'active' : $location.url() === '/profile'}"><a href="#/profile" ng-hide="rootScope.user==null"  >
+                   {{rootScope.user.username}}
                 </a></li>
-                <li><a href="#/admin" ng-show="rootScope.user!=null && rootScope.user.roles.indexOf('admin')!=-1"  ng-class="{'active' : $location.url() == '/admin'}">
+                <li ng-class="{'active' : $location.url() === '/admin'}"><a href="#/admin" ng-show="rootScope.user!=null && rootScope.user.roles.indexOf('admin')>=0"  >
                     Admin
                 </a></li>
+                <li class="visible-xs hidden-sm hidden-md hidden-lg" ng-class="{'active': $location.url() === '/forms'}" ng-hide="rootScope.user==null"><a href="#/forms">Forms</a></li>
                 <li><a  ng-hide="rootScope.user==null" ng-click="logout()">
                     Logout
                 </a></li>

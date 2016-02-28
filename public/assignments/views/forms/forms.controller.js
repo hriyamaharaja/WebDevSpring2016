@@ -10,8 +10,13 @@
     function FormController($rootScope, $scope, $location, FormService) {
         $scope.$location = $location;
         $scope.rootScope = $rootScope;
+        $scope.forms = {}
 
-        $scope.forms = FormService.findAllFormsForUser($scope.rootScope.user._id);
+        if($rootScope.user != null){
+         FormService.findAllFormsForUser($scope.rootScope.user._id,function(response){
+            $scope.forms = response;
+        });
+        }
 
         $scope.addForm = function () {
 
@@ -27,7 +32,9 @@
                 function (response) {
                     $scope.formName = "";
                     console.log(response);
-                    $scope.forms = FormService.findAllFormsForUser($scope.rootScope.user._id);
+                    FormService.findAllFormsForUser($scope.rootScope.user._id,function(response){
+                        $scope.forms = response;
+                    });
                 });
 
         };
@@ -46,7 +53,9 @@
 
             FormService.updateFormById($scope.forms[$scope.selectedFormIndex]._id,newForm,function(response){
                 $scope.formName = "";
-                $scope.forms = FormService.findAllFormsForUser($scope.rootScope.user._id);
+                FormService.findAllFormsForUser($scope.rootScope.user._id,function(response){
+                    $scope.forms = response;
+                });
             });
         };
 
@@ -61,7 +70,9 @@
             $scope.selectedFormIndex = index;
 
             FormService.deleteFormById($scope.forms[index]._id, function (response) {
-                $scope.forms = FormService.findAllFormsForUser($scope.rootScope.user._id);
+                FormService.findAllFormsForUser($scope.rootScope.user._id,function(response){
+                    $scope.forms = response;
+                });
             });
         };
 

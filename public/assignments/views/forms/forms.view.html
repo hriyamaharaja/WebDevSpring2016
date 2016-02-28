@@ -17,8 +17,8 @@
 
             <div>
             <ul class="nav nav-tabs nav-justified">
-                <li class="active"><a href="forms.view.html">Forms</a></li>
-                <li><a href="form-fields.view.html">Fields</a></li>
+                <li class="active"><a href="#/forms">Forms</a></li>
+                <li><a href="#/form-fields">Fields</a></li>
             </ul>
             </div>
             <div>
@@ -36,8 +36,7 @@
                         <td><i ng-click="addForm()" class="glyphicon glyphicon-plus"></i> <i ng-click="updateForm()" class="glyphicon glyphicon-ok"></i></td>
 
                     </tr>
-                    <tr ng-repeat="form in forms"
-                        ng-class="{'success' : $index == selectedFormIndex}">
+                    <tr ng-repeat="form in forms">
                         <td>{{form.title}}</td>
                         <td><i ng-click="deleteForm($index)" class="glyphicon glyphicon-remove"></i>
                             <i ng-click="selectForm($index)" class="glyphicon glyphicon-pencil"></i></td>
