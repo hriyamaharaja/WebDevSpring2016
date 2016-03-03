@@ -5,7 +5,7 @@
     angular
         .module("FormBuilderApp")
         .controller("MainController", MainController);
-    function MainController($scope,$rootScope, $location) {
+    function MainController($scope,$location) {
         $scope.$location = $location;
 
     }
