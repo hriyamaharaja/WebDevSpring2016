@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="RecipeWorld">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid col-md-6 profile">
+    <div class="row">
+        <div class="col-sm-9  col-md-10  ">
+            <h1 class="page-header">Profile</h1>
+            <form class="form-horizontal">
+
+                <div class="form-group row">
+                    <label for="exampleUsername" class="label-control col-sm-3 col-md-4 text-right">Username</label>
+                    <div class="col-sm-6 col-md-6">
+                        <input ng-model="username" type="text" class="form-control" id="exampleUsername" placeholder="Username">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1" class="col-sm-3 col-md-4 text-right">Password</label>
+                    <div class="col-sm-6 col-md-6">
+                        <input ng-model="password" type="password" class="form-control col-sm-6 col-md-6" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="exampleFirstname" class="label-control col-sm-3 col-md-4 text-right">First Name</label>
+                    <div class="col-sm-6 col-md-6">
+                        <input  ng-model="firstName" type="text" class="form-control" id="exampleFirstname" placeholder="First Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleLastname" class="label-control col-sm-3 col-md-4 text-right">Last Name</label>
+                    <div class="col-sm-6 col-md-6">
+                        <input type="text" ng-model="lastName" class="form-control" id="exampleLastname" placeholder="Last Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="col-sm-3 col-md-4 text-right">Email</label>
+                    <div class="col-sm-6 col-md-6">
+                        <input type="email" ng-model="email" class="form-control col-sm-6 col-md-6" id="exampleInputEmail1" placeholder="Email">
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-sm-3 col-md-4"></div>
+
+                    <a  class="btn btn-success  col-sm-6  col-md-6">Update</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

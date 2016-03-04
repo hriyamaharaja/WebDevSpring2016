@@ -1,0 +1,10 @@
+body {
+    background-image: url("../images/pink_rice.png");
+}
+
+.profile{
+    text-align: left;
+    margin-top: 100px;
+    color: aliceblue;
+}
+

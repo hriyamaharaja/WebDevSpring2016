@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="RecipeWorld">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+
+    <form class="form-signin form-horizontal">
+        <h2 class="page-header">Register</h2>
+
+        <label for="username" class="label-control text-right">Username</label>
+        <input ng-model="username" type="text" class="form-control" id="username" placeholder="Username">
+
+        <label for="password" class="label-control text-right">Password</label>
+        <input ng-model="password" type="password" class="form-control" id="password" placeholder="password">
+
+        <label for="verifyPassword" class="label-control text-right">Verify Password</label>
+        <input ng-model="verifyPassword" type="password" class="form-control" id="verifyPassword" placeholder="Verify Password">
+
+        <label for="inputEmail" class="label-control text-right">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <div>
+        <button class="btn btn-lg btn-primary btn-block form-control" type="submit">Register</button>
+    </div>
+    </form>
+
+</div>
+</body>
+</html>
