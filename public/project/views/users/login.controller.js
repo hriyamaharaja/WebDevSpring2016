@@ -1,9 +1,6 @@
-/**
- * Created by hriya on 3/3/16.
- */
 (function () {
     angular
-        .module("FormBuilderApp")
+        .module("RecipeWorld")
         .controller("LoginController", LoginController);
 
     function LoginController($rootScope, $scope, $location, UserService) {

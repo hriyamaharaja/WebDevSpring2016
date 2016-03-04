@@ -1,7 +1,11 @@
 body {
     background-image: url("../images/pink_rice.png");
 }
-
+.register{
+    background-image: url("../images/register.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
 .profile{
     text-align: left;
     /*margin-top: 50px;*/
@@ -22,4 +26,8 @@ body {
     float: left;
   width: inherit;
     height: auto;
+}
+
+.table{
+    background-color: ghostwhite;
 }

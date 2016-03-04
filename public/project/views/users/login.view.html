@@ -2,10 +2,10 @@
 <html lang="en" ng-app="RecipeWorld">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login</title>
 </head>
 <body>
-<div class="container">
+<div class="container" ng-controller="LoginController">
 
     <form class="form-signin form-horizontal">
         <h2 class="page-header">Login</h2>
@@ -13,7 +13,7 @@
         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="label-control">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <a style="color: white">Forgot Password?</a> |     <a style="color: white">Sign Up</a>
+        <a style="color: white">Forgot Password?</a> | <a style="color: white">Sign Up</a>
         <div></div>
         <button class="btn btn-info btn-primary btn-block" type="submit">Login</button>
     </form>
