@@ -5,27 +5,48 @@
     <title>Title</title>
 </head>
 <body>
-<div class="container">
 
-    <form class="form-signin form-horizontal">
-        <h2 class="page-header">Register</h2>
+<div class="container-fluid" ng-controller="RegisterController">
+    <div class="row">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Register</h1>
+            <form class="form-horizontal">
 
-        <label for="username" class="label-control text-right">Username</label>
-        <input ng-model="username" type="text" class="form-control" id="username" placeholder="Username">
+                <div class="form-group">
+                    <label for="exampleUsername" class="label-control col-sm-3 col-md-4 text-right">Username</label>
+                    <div class="col-sm-6 col-md-6">
+                        <input ng-model="username" type="text" class="form-control" id="exampleUsername" placeholder="Username">
+                    </div>
+                </div>
 
-        <label for="password" class="label-control text-right">Password</label>
-        <input ng-model="password" type="password" class="form-control" id="password" placeholder="password">
+                <div class="form-group">
+                    <label for="exampleInputPassword1" class="col-sm-3 col-md-4 text-right">Password</label>
+                    <div class="col-sm-6 col-md-6">
+                        <input ng-model="password" type="password" class="form-control col-sm-6 col-md-6" id="exampleInputPassword1" placeholder="password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleVerifyInputPassword1" class="col-sm-3 col-md-4 text-right">Verify Password</label>
+                    <div class="col-sm-6 col-md-6">
+                        <input ng-model="verifyPassword" type="password" class="form-control col-sm-6 col-md-6" id="exampleVerifyInputPassword1" placeholder="Verify Password">
+                    </div>
+                </div>
 
-        <label for="verifyPassword" class="label-control text-right">Verify Password</label>
-        <input ng-model="verifyPassword" type="password" class="form-control" id="verifyPassword" placeholder="Verify Password">
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="col-sm-3 col-md-4 text-right">Email address</label>
+                    <div class="col-sm-6 col-md-6">
+                        <input ng-model="email" type="email" class="form-control col-sm-6 col-md-6" id="exampleInputEmail1" placeholder="Email">
+                    </div>
+                </div>
 
-        <label for="inputEmail" class="label-control text-right">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <div>
-        <button class="btn btn-lg btn-primary btn-block form-control" type="submit">Register</button>
+                <div>
+                    <div class="col-sm-3 col-md-4"></div>
+                    <a ng-click="register()" class="btn btn-success  col-sm-6  col-md-6">Register</a>
+                </div>
+            </form>
+
+        </div>
     </div>
-    </form>
-
 </div>
 </body>
 </html>

@@ -4,7 +4,22 @@ body {
 
 .profile{
     text-align: left;
-    margin-top: 100px;
+    /*margin-top: 50px;*/
     color: aliceblue;
 }
+.home-images li{
+    display: inline;
 
+    width: 33%;
+}
+.home-images img{
+    float:left;
+    width: 33%;
+
+}
+.jkl img
+{
+    float: left;
+  width: inherit;
+    height: auto;
+}
