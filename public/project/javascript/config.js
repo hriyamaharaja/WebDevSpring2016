@@ -44,12 +44,6 @@
 
 
                 })
-                .when("/savedrecipes", {
-                    templateUrl: "views/recipes/saved-recipes.view.html",
-                    controller: "SavedRecipesController"
-
-
-                })
                 .when("/addrecipes", {
                     templateUrl: "views/recipes/add-recipe.view.html"
 

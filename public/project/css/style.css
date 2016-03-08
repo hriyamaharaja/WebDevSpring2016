@@ -34,3 +34,7 @@ body {
 #search-addon{
   background-color : deepskyblue;
 }
+.recipe-details ul{
+display: inline;
+    style:none;
+}

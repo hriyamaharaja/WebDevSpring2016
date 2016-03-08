@@ -1,22 +1,56 @@
-<div class="jumbotron">
+<div class="container-fluid">
+<div class="jumbotron" >
 
     <h1>{{recipe.name}}</h1>
-    <p></p>
-    <p></p>
+    <div class="row">
+        <div class="text-muted text-right">
+            {{recipe.yield}}
+            {{recipe.totalTime}}
+            {{recipe.numberOfServings}}
+
+        </div>
+
+    </div>
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img class="media-object"  ng-src="{{recipe.images[0].hostedLargeUrl}}" alt="...">
+            </a>
+        </div>
+        <div class="media-body">
+            <h3>Ingredients</h3>
+            <p>
+            <ul>
+
+                <li  ng-repeat="ingredient in recipe.ingredientLines">
+                     {{ingredient}}
+                </li>
+            </ul>
+            </p>
+        </div>
+    </div>
+    <div class="media">
+        <div class="media-right">
+
+        </div>
+        <div class="media-body">
+            <p>
+                Read full directions : <a href="{{recipe.source.sourceRecipeUrl}}">{{recipe.source.sourceDisplayName}}</a>
+            </p>
+            <ul>
+
+            </ul>
+        </div>
 
 
 
-    <img ng-src="{{recipe.images[0].hostedLargeUrl}}" height="300px" class="pull-left"/>
-&nbsp;&nbsp;
-    <h3>Ingredients</h3>
-    <p>
-    <ul>
-    &nbsp;
-    <li  ng-repeat="ingredient in recipe.ingredientLines">
-       &nbsp; {{ingredient}}
-    </li>
-    </ul>
-    </p>
+    </div>
 
 
+
+
+
+
+
+</div>
 </div>

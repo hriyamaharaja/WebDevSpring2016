@@ -4,70 +4,70 @@
         .module("RecipeWorld")
         .controller("MyRecipesController", MyRecipesController);
 
-    function MyRecipesController($rootScope, $scope, $location, FormService) {
+    function MyRecipesController($rootScope, $scope, $location, RecipeService) {
         $scope.$location = $location;
         $scope.rootScope = $rootScope;
-        $scope.forms = {}
+        $scope.recipes = {}
 
         if ($rootScope.user != null) {
-            FormService.findAllFormsForUser($scope.rootScope.user._id, function (response) {
-                $scope.forms = response;
+            RecipeService.findAllRecipesForUser($scope.rootScope.user._id, function (response) {
+                $scope.recipes = response;
             });
         }
 
-        $scope.addForm = function () {
+        $scope.addRecipe = function () {
 
-            var newForm = {
+            var newRecipe = {
 
                 _id: (new Date()).getTime(),
-                recipe: $scope.formName,
+                recipe: $scope.recipeName,
                 userId: $scope.rootScope.user._id
             }
 
 
-            FormService.createFormForUser($scope.rootScope.user._id, newForm,
+            RecipeService.createRecipeForUser($scope.rootScope.user._id, newRecipe,
                 function (response) {
-                    $scope.formName = "";
+                    $scope.recipeName = "";
                     console.log(response);
-                    FormService.findAllFormsForUser($scope.rootScope.user._id, function (response) {
-                        $scope.forms = response;
+                    RecipeService.findAllRecipesForUser($scope.rootScope.user._id, function (response) {
+                        $scope.recipes = response;
                     });
                 });
 
         };
 
-        $scope.updateForm = function () {
+        $scope.updateRecipe = function () {
 
-            var newForm = {
+            var newRecipe = {
 
-                _id: $scope.forms[$scope.selectedFormIndex]._id,
-                recipe: $scope.formName,
+                _id: $scope.recipes[$scope.selectedRecipeIndex]._id,
+                recipe: $scope.recipeName,
                 userId: $scope.rootScope.user._id
 
 
             }
 
 
-            FormService.updateFormById($scope.forms[$scope.selectedFormIndex]._id, newForm, function (response) {
-                $scope.formName = "";
-                FormService.findAllFormsForUser($scope.rootScope.user._id, function (response) {
-                    $scope.forms = response;
+            RecipeService.updateRecipeById($scope.recipes[$scope.selectedRecipeIndex]._id, newRecipe, function (response) {
+                $scope.recipeName = "";
+                RecipeService.findAllRecipesForUser($scope.rootScope.user._id, function (response) {
+                    $scope.recipes = response;
                 });
             });
         };
 
 
         $scope.selectForm = function (index) {
-            $scope.selectedFormIndex = index;
-            $scope.formName = $scope.forms[index].recipe;
+            $scope.selectedRecipeIndex = index;
+            $scope.recipeName = $scope.recipes[index].recipe;
         };
 
         $scope.deleteForm = function (index) {
-            $scope.selectedFormIndex = index;
+            $scope.selectedRecipeIndex = index;
 
-            FormService.deleteFormById($scope.forms[index]._id, function (response) {
-                FormService.findAllFormsForUser($scope.rootScope.user._id, function (response) {
-                    $scope.forms = response;
+            RecipeService.deleteFormById($scope.forms[index]._id, function (response) {
+                RecipeService.findAllRecipesForUser($scope.rootScope.user._id, function (response) {
+                    $scope.recipes = response;
                 });
             });
         };

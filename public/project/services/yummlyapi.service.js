@@ -17,7 +17,12 @@
         var apiID = "89be9cee";
         var apiKey = "2c618bbaa7d11fd628e3583700f68c6b";
 
-        function findRecipes(recipe, callback) {
+        function findRecipes(recipe,params, callback) {
+
+            var ingredient = params.ingredients;
+            var diet = params.diet;
+            var cuisine = params.cuisine;
+
 
             $http(
                 {
@@ -26,7 +31,11 @@
                     params: {
                         "_app_id": "89be9cee",
                         "_app_key": "2c618bbaa7d11fd628e3583700f68c6b",
+                        "allowedIngredient[]" : ingredient,
+                        "allowedDiet[]":diet,
+                        "allowedCuisine[]" : cuisine,
                         "q": recipe
+
                     }
                 }).success(callback);
 

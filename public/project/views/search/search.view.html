@@ -9,10 +9,50 @@
 
 </fieldset>
 
+<fieldset class="form-inline">
+
+    <label><h3>Filters :</h3></label>
+    <div class="input-group">
+        <input type="text" ng-model="ingredient" class="form-control" id="ingredient" placeholder="Contains Ingredient">
+    </div>
+
+    <div class="input-group">
+        <select ng-model="diet" class="form-control" title="Diet">
+            <option value="" disabled selected>Dietary Specification</option>
+            <option value="388^Lacto vegetarian">Lacto Vegetarian</option>
+            <option value="389^Ovo vegetarian">Ovo Vegetarian</option>
+            <option value="387^Lacto-ovo vegetarian">Vegetarian</option>
+            <option value="386^Vegan">Vegan</option>
+            <option value="390^Pescetarian">Pescetarian</option>
+        </select>
+    </div>
+
+    <div class="input-group">
+        <select ng-model="cuisine" class="form-control" title="cuisine">
+            <option value="" disabled selected>Cuisine</option>
+            <option value="cuisine^cuisine-american">American</option>
+            <option value="cuisine^cuisine-asian">Asian</option>
+            <option value="cuisine^cuisine-mexican">Mexican</option>
+            <option value="cuisine^cuisine-indian">Indian</option>
+            <option value="cuisine^cuisine-spanish">Spanish</option>
+        </select>
+    </div>
+
+
+</fieldset>
+
 <h3>Search Results</h3>
+{{message}}
 <div class="table-responsive">
     <table class="table table-striped">
-
+<thead>
+<tr>
+    <th></th>
+    <th><i class="glyphicon glyphicon-triangle-bottom"></i>Name</th>
+    <th><i class="glyphicon glyphicon-triangle-bottom"></i>Rating</th>
+    <th><i class="glyphicon glyphicon-triangle-bottom"></i>Cooking Time</th>
+</tr>
+</thead>
         <tbody>
 
         <tr ng-repeat="recipes in data.matches">
@@ -22,6 +62,12 @@
                 <a href="#/recipe/{{recipes.id}}">
                     {{recipes.recipeName}}
                 </a>
+            </td>
+            <td>
+                {{recipes.rating}}
+            </td>
+            <td>
+                {{recipes.totalTimeInSeconds}}/3600
             </td>
             <td>{{recipe.attributes.cuisine[0]}}</td>
         </tr>
