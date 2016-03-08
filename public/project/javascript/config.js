@@ -55,15 +55,19 @@
 
 
                 })
-                .when("/recipe-details", {
-                    templateUrl: "views/recipes/recipe-details.view.html"
+                .when("/recipe/:recipeID", {
+                    templateUrl: "views/recipes/recipe-details.view.html",
+                    controller: "DetailController"
 
 
                 })
                 .when("/search", {
-                    templateUrl: "views/recipes/search.view.html"
-
-
+                    templateUrl: "views/search/search.view.html",
+                    controller: "SearchController"
+                })
+                .when("/search/:recipe", {
+                    templateUrl: "views/search/search.view.html",
+                    controller: "SearchController"
                 })
                 .otherwise({
                     redirectTo: "/"

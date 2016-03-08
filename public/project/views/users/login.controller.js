@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("RecipeWorld")
-        .controller("LoginController", LoginController);
+        .controller("LoginController",LoginController);
 
-    function LoginController($rootScope, $scope, $location, UserService) {
+    function LoginController($rootScope, $scope, $location, UserService, $http) {
         "use strict";
 
 
@@ -19,6 +19,8 @@
                     $location.path("/profile");
                 }
             });
+
+
         };
 
     }

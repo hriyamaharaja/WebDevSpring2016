@@ -23,7 +23,7 @@
             var newForm = {
 
                 _id :  (new Date()).getTime(),
-                title : $scope.formName,
+                recipe : $scope.formName,
                 userId : $scope.rootScope.user._id
             }
 
@@ -44,7 +44,7 @@
             var newForm = {
 
                 _id :  $scope.forms[$scope.selectedFormIndex]._id,
-                title : $scope.formName,
+                recipe : $scope.formName,
                 userId : $scope.rootScope.user._id
 
 
@@ -63,7 +63,7 @@
 
         $scope.selectForm = function (index) {
             $scope.selectedFormIndex = index;
-            $scope.formName = $scope.forms[index].title;
+            $scope.formName = $scope.forms[index].recipe;
         };
 
         $scope.deleteForm = function (index) {

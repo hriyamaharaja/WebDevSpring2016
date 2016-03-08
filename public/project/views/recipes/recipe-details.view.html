@@ -1,17 +1,22 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="RecipeWorld">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 <div class="jumbotron">
 
-    <h1>Navbar example</h1>
-    <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+    <h1>{{recipe.name}}</h1>
+    <p></p>
+    <p></p>
+
+
+
+    <img ng-src="{{recipe.images[0].hostedLargeUrl}}" height="300px" class="pull-left"/>
+&nbsp;&nbsp;
+    <h3>Ingredients</h3>
     <p>
-        
+    <ul>
+    &nbsp;
+    <li  ng-repeat="ingredient in recipe.ingredientLines">
+       &nbsp; {{ingredient}}
+    </li>
+    </ul>
     </p>
+
+
 </div>
-</body>
-</html>

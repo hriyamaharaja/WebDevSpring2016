@@ -1,44 +1,30 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="RecipeWorld">
-<head>
-    <meta charset="UTF-8">
-    <title>Search</title>
-</head>
-<body>
+<h2 class="page-header">Search Recipes</h2>
 
-<h2>Search</h2>
+<fieldset class="form-group">
 
-<input  ng-model="title"
-        class="form-control"/>
-<button ng-click="search(title)"
-        class="btn btn-primary btn-block">
-    Search
-</button>
+    <div class="input-group">
+        <input type="text" ng-model="recipe" class="form-control" id="exampleSelect2" placeholder="Search">
+        <span class="input-group-addon" ng-click="search(recipe)" id="search-addon"><i class=" glyphicon glyphicon-search "></i></span>
+    </div>
+
+</fieldset>
 
 <h3>Search Results</h3>
-
 <div class="table-responsive">
     <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Poster</th>
-            <th>Title</th>
-            <th>ImdbID</th>
-        </tr>
-        </thead>
+
         <tbody>
-        <tr ng-repeat="movie in data.Search">
-            <td><img height="100px" ng-src="{{movie.Poster}}"/></td>
+
+        <tr ng-repeat="recipes in data.matches">
+
+            <td><img ng-src="{{recipes.smallImageUrls[0]}}" alt="image"></td>
             <td>
-                <a href="#/detail/{{movie.imdbID}}">
-                    {{movie.Title}}
+                <a href="#/recipe/{{recipes.id}}">
+                    {{recipes.recipeName}}
                 </a>
             </td>
-            <td>{{movie.imdbID}}</td>
+            <td>{{recipe.attributes.cuisine[0]}}</td>
         </tr>
         </tbody>
     </table>
 </div>
-
-</body>
-</html>

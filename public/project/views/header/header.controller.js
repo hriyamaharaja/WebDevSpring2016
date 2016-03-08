@@ -1,12 +1,12 @@
-(function(){
+(function () {
     angular
         .module("RecipeWorld")
         .controller("HeaderController", HeaderController);
-    function HeaderController($scope,$rootScope, $location) {
+    function HeaderController($scope, $rootScope, $location) {
         $scope.location = $location;
         $scope.rootScope = $rootScope;
 
-        $scope.logout = function(){
+        $scope.logout = function () {
             "use strict";
             $rootScope.user = null;
             $location.path("/home");

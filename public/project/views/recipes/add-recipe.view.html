@@ -1,96 +1,86 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="RecipeWorld">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 <div class="container-fluid">
-<div class="container-fluid col-md-6">
-<form class="">
-    <fieldset class="form-group">
-        <label for="recipeName">Title</label>
-        <input type="text" class="form-control" id="recipeName" placeholder="Recipe Name">
+    <div class="container-fluid col-md-6">
+        <form class="">
+            <fieldset class="form-group">
+                <label for="recipeName">Title</label>
+                <input type="text" class="form-control" id="recipeName" placeholder="Recipe Name">
 
-    </fieldset>
-    <fieldset class="form-group">
-        <label class="label-control" for="ingredients">Ingredients :</label>
-        <div class="input-group">
-        <input type="text" class="form-control" id="ingredients" placeholder="Add Ingredient">
-        <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-plus"></i></span>
+            </fieldset>
+            <fieldset class="form-group">
+                <label class="label-control" for="ingredients">Ingredients :</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="ingredients" placeholder="Add Ingredient">
+                    <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-plus"></i></span>
+                </div>
+
+            </fieldset>
+            <fieldset class="form-inline">
+                <label for="slide">Preparation time : </label>
+                <div class="input-group">
+                    <input id="slide" type="number" min="0" max="50" step="1" value="0">
+                    <label for="slide">Hrs.</label>
+                    <input id="slide" type="number" min="0" max="59" step="1" value="0">
+                    <label for="slide">Mins.</label>
+
+                </div>
+                <div></div>
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="exampleSelect2">Directions :</label>
+
+                <div class="input-group">
+                    <input type="text" class="form-control" id="exampleSelect2" placeholder="Add Step">
+                    <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-plus"></i></span>
+                </div>
+
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="exampleTextarea">Serving Suggestions :</label>
+                <textarea class="form-control" id="exampleTextarea" rows="8"></textarea>
+            </fieldset>
+
+
+        </form>
+    </div>
+    <div class="container col-md-6">
+
+        <fieldset class="form-group">
+            <label for="exampleInputFile">Add Images</label>
+            <input type="file" class="form-control-file" id="exampleInputFile">
+
+        </fieldset>
+        <div class="row">
+            <div class="col-xs-6 col-md-6">
+                <a href="#" class="thumbnail">
+                    <img src="images/profile.jpg" alt="">
+                </a>
+
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <a href="#" class="thumbnail">
+                    <img src="images/profile.jpg" alt="">
+                </a>
+
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <a href="#" class="thumbnail">
+                    <img src="images/profile.jpg" alt="">
+                </a>
+
+            </div>
+
+            <div class="col-xs-6 col-md-6">
+                <a href="#" class="thumbnail">
+                    <img src="images/profile.jpg" alt="">
+                </a>
+
+            </div>
+
         </div>
+    </div>
+    <div class="container-fluid text-center col-md-12">
 
-    </fieldset>
-    <fieldset class="form-inline">
-        <label for="slide">Preparation time : </label>
-        <div class="input-group">
-        <input id="slide" type="number" min="0" max="50" step="1" value="0">
-            <label for="slide">Hrs.</label>
-            <input id="slide" type="number" min="0" max="59" step="1" value="0">
-            <label for="slide">Mins.</label>
-
-        </div>
-        <div></div>
-    </fieldset>
-    <fieldset class="form-group">
-        <label for="exampleSelect2">Directions :</label>
-
-        <div class="input-group">
-            <input type="text" class="form-control" id="exampleSelect2" placeholder="Add Step">
-            <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-plus"></i></span>
-        </div>
-
-    </fieldset>
-    <fieldset class="form-group">
-        <label for="exampleTextarea">Serving Suggestions :</label>
-        <textarea class="form-control" id="exampleTextarea" rows="8"></textarea>
-    </fieldset>
-
-
-
-</form>
-</div>
-<div class="container col-md-6">
-
-    <fieldset class="form-group">
-        <label for="exampleInputFile">Add Images</label>
-        <input type="file" class="form-control-file" id="exampleInputFile">
-
-    </fieldset>
-    <div class="row">
-        <div class="col-xs-6 col-md-6">
-            <a href="#" class="thumbnail">
-                <img src="images/profile.jpg" alt="">
-            </a>
-
-        </div>
-        <div class="col-xs-6 col-md-6">
-            <a href="#" class="thumbnail">
-                <img src="images/profile.jpg" alt="">
-            </a>
-
-        </div>
-        <div class="col-xs-6 col-md-6">
-            <a href="#" class="thumbnail">
-                <img src="images/profile.jpg" alt="">
-            </a>
-
-        </div>
-
-        <div class="col-xs-6 col-md-6">
-            <a href="#" class="thumbnail">
-                <img src="images/profile.jpg" alt="">
-            </a>
-
-        </div>
+        <button type="submit" class="btn btn-success">Publish !</button>
 
     </div>
 </div>
-<div class="container-fluid text-center col-md-12">
-
-    <button type="submit" class="btn btn-success">Publish !</button>
-
-</div>
-</div>
-</body>
-</html>
