@@ -1,10 +1,11 @@
 body {
     background-image: url("../images/pink_rice.png");
 }
-.register{
+.home{
     background-image: url("../images/register.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    color: #2e2e2e;
 }
 .profile{
     text-align: left;
@@ -16,17 +17,8 @@ body {
 
     width: 33%;
 }
-.home-images img{
-    float:left;
-    width: 33%;
 
-}
-.jkl img
-{
-    float: left;
-  width: inherit;
-    height: auto;
-}
+
 
 .table{
     background-color: ghostwhite;
@@ -34,7 +26,7 @@ body {
 #search-addon{
   background-color : deepskyblue;
 }
-.recipe-details ul{
-display: inline;
-    style:none;
+.recipe-cover{
+    background-image: url("../images/register.jpg");
+    background-size: 100% 100%;
 }

@@ -8,7 +8,7 @@
         .config(function ($routeProvider) {
             $routeProvider
                 .when("/", {
-                    templateUrl: "views/home/home.view.html"
+                    redirectTo: "/home"
                 })
                 .when("/home", {
                     templateUrl: "views/home/home.view.html"
@@ -28,7 +28,8 @@
 
                 })
                 .when("/admin", {
-                    templateUrl: "views/admin/admin.view.html"
+                    templateUrl: "views/admin/admin.view.html",
+                    controller: "AdminController"
 
 
                 })

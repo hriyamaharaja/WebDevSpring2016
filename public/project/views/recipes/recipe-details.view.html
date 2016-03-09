@@ -1,12 +1,18 @@
 <div class="container-fluid">
 <div class="jumbotron" >
-
+<div class="recipe-cover" ng-style="{'background-image':'url({{recipe.images[0].hostedLargeUrl}})'}">
     <h1>{{recipe.name}}</h1>
+
+</div>
     <div class="row">
         <div class="text-muted text-right">
-            {{recipe.yield}}
-            {{recipe.totalTime}}
-            {{recipe.numberOfServings}}
+            <p>Preparation Time : {{recipe.totalTime}}</p>
+            <p>Serves : {{recipe.numberOfServings}}</p>
+            <p><a href="#/myrecipes" ng-hide="rootScope.user==null" class="btn btn-lg btn-danger">
+                Save <i class="glyphicon glyphicon-heart-empty"></i></a></p>
+
+
+
 
         </div>
 
@@ -14,7 +20,7 @@
     <div class="media">
         <div class="media-left">
             <a href="#">
-                <img class="media-object"  ng-src="{{recipe.images[0].hostedLargeUrl}}" alt="...">
+                <img class="media-object"  ng-src="{{recipe.images[0].hostedLargeUrl}}" alt="">
             </a>
         </div>
         <div class="media-body">
@@ -45,7 +51,33 @@
 
 
     </div>
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img class="media-object" width="80px" src="images/profile.png">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading"><img class="media-object" width="80px" src="images/rating.png"></h4>
+            Love this recipe !
+        </div>
+    </div>
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img class="media-object" width="80px" src="images/profile.png">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading"><img class="media-object" width="80px" src="images/rating.png"></h4>
+            Simple and easy to follow.
+        </div>
 
+    </div>
+    <div class="text-center">
+    <p><a href="#/myrecipes" ng-hide="rootScope.user==null" class="btn btn-lg btn-success">
+       Write Review <i class="glyphicon glyphicon-plus-sign"></i></a></p>
+    </div>
 
 
 

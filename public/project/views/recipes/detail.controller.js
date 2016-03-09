@@ -6,7 +6,9 @@
         .module("RecipeWorld")
         .controller("DetailController", detailController);
 
-    function detailController($scope, $routeParams, YummlyService) {
+    function detailController($scope, $routeParams,$rootScope, YummlyService) {
+        $scope.rootScope = $rootScope;
+
         $scope.recipeID = $routeParams.recipeID;
 
         YummlyService.findRecipeByID(

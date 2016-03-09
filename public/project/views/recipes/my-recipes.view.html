@@ -6,7 +6,6 @@
             <div>
                 <ul class="nav nav-tabs nav-justified">
                     <li class="active"><a href="#/myrecipes">My Recipes</a></li>
-                    <li><a href="#/savedrecipes">Saved Recipes</a></li>
                 </ul>
             </div>
             <div>
@@ -21,13 +20,13 @@
 
                     <tr>
                         <td><input ng-model="recipeName" type="text" placeholder="name"></td>
-                        <td><i ng-click="addRecipe()" class="glyphicon glyphicon-plus"></i> <i ng-click="updateForm()" class="glyphicon glyphicon-ok"></i></td>
+                        <td><i ng-click="addRecipe()" class="glyphicon glyphicon-plus-sign"></i> <i ng-click="updateRecipe()" class="glyphicon glyphicon-ok-sign"></i></td>
 
                     </tr>
                     <tr ng-repeat="recipe in recipes">
-                        <td>{{recipes.recipe}}</td>
-                        <td><i ng-click="deleteForm($index)" class="glyphicon glyphicon-remove"></i>
-                            <i ng-click="selectForm($index)" class="glyphicon glyphicon-pencil"></i></td>
+                        <td>{{recipe.recipe}}</td>
+                        <td><i ng-click="deleteRecipe($index)" class="glyphicon glyphicon-remove-sign"></i>
+                            <i ng-click="selectRecipe($index)" class="glyphicon glyphicon-pencil"></i></td>
 
                     </tr>
 

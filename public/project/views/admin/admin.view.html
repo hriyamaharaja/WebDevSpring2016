@@ -1,15 +1,16 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
             <h1>Admin</h1>
 
             <h2 class="sub-header">Users</h2>
 
             <div>
-                <table class="table table-hover table-bordered table-responsive">
+                <table class="table table-hover table-bordered table-striped table-responsive">
                     <thead>
                     <tr>
-
+                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>FirstName</th>
+                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>LastName</th>
                         <th><i class="glyphicon glyphicon-triangle-bottom"></i>Username</th>
                         <th><i class="glyphicon glyphicon-triangle-bottom"></i>Password</th>
                         <th><i class="glyphicon glyphicon-triangle-bottom"></i>Role</th>
@@ -17,37 +18,33 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     <tr>
-                        <td><input type="text" placeholder="username"></td>
-                        <td><input type="text" placeholder="password"></td>
-                        <td><input type="text" placeholder="roles"></td>
-                        <td><i class="glyphicon glyphicon-plus"></i> <i class="glyphicon glyphicon-ok"></i></td>
+                        <td><input ng-model="firstname" type="text" placeholder="first name"></td>
+                        <td><input ng-model="lastname" type="text" placeholder="last name"></td>
+                        <td><input ng-model="username" type="text" placeholder="username"></td>
+                        <td><input ng-model="password" type="text" placeholder="password"></td>
+                        <td><input ng-model="roles" type="text" placeholder="roles"></td>
+                        <td><i ng-click="addUser()" class="glyphicon glyphicon-plus"></i> <i ng-click="updateUser()" class="glyphicon glyphicon-ok"></i></td>
 
                     </tr>
-                    <tr>
-                        <td>Alice</td>
-                        <td></td>
-                        <td>user</td>
-                        <td><i class="glyphicon glyphicon-remove"></i> <i class="glyphicon glyphicon-pencil"></i></td>
+
+                    <tr ng-repeat="user in users">
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.password}}</td>
+                        <td>{{user.roles}}</td>
+                        <td><i ng-click="deleteUser($index)" class="glyphicon glyphicon-remove"></i>
+                            <i ng-click="selectUser($index)" class="glyphicon glyphicon-pencil"></i></td>
 
                     </tr>
-                    <tr>
-                        <td>Bob</td>
-                        <td></td>
-                        <td>User | Admin</td>
-                        <td><i class="glyphicon glyphicon-remove"></i> <i class="glyphicon glyphicon-pencil"></i></td>
 
-                    </tr>
-                    <tr>
-                        <td>Charlie</td>
-                        <td></td>
-                        <td></td>
-                        <td><i class="glyphicon glyphicon-remove"></i> <i class="glyphicon glyphicon-pencil"></i></td>
-
-                    </tr>
                     </tbody>
                 </table>
             </div>
-        </div>
+
+
+
     </div>
 </div>

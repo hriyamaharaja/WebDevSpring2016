@@ -13,7 +13,7 @@
         var users = [
             {
                 "_id": 123, "firstName": "Alice", "lastName": "Wonderland",
-                "username": "alice", "password": "alice", "roles": ["student"]
+                "username": "alice", "password": "alice", "roles": ["user"]
             },
 
             {
@@ -23,7 +23,7 @@
 
             {
                 "_id": 345, "firstName": "Charlie", "lastName": "Brown",
-                "username": "charlie", "password": "charlie", "roles": ["faculty"]
+                "username": "charlie", "password": "charlie", "roles": ["user"]
             },
 
             {
@@ -32,12 +32,12 @@
                 "lastName": "Craig",
                 "username": "dan",
                 "password": "dan",
-                "roles": ["faculty", "admin"]
+                "roles": ["user", "admin"]
             },
 
             {
                 "_id": 567, "firstName": "Edward", "lastName": "Norton",
-                "username": "ed", "password": "ed", "roles": ["student"]
+                "username": "ed", "password": "ed", "roles": ["user"]
             }
         ];
 

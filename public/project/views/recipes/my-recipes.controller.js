@@ -7,7 +7,7 @@
     function MyRecipesController($rootScope, $scope, $location, RecipeService) {
         $scope.$location = $location;
         $scope.rootScope = $rootScope;
-        $scope.recipes = {}
+        $scope.recipes = {};
 
         if ($rootScope.user != null) {
             RecipeService.findAllRecipesForUser($scope.rootScope.user._id, function (response) {
@@ -57,15 +57,15 @@
         };
 
 
-        $scope.selectForm = function (index) {
+        $scope.selectRecipe = function (index) {
             $scope.selectedRecipeIndex = index;
             $scope.recipeName = $scope.recipes[index].recipe;
         };
 
-        $scope.deleteForm = function (index) {
+        $scope.deleteRecipe = function (index) {
             $scope.selectedRecipeIndex = index;
 
-            RecipeService.deleteFormById($scope.forms[index]._id, function (response) {
+            RecipeService.deleteRecipeById($scope.recipes[index]._id, function (response) {
                 RecipeService.findAllRecipesForUser($scope.rootScope.user._id, function (response) {
                     $scope.recipes = response;
                 });
