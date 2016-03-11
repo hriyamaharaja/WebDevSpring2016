@@ -28,6 +28,7 @@ html,
 body {
   height: 100%;
   background-image: url("symphony.png");
+  line-height: 0%;
 }
 body {
   color: black;
@@ -57,7 +58,7 @@ body {
 /* Padding for spacing */
 .inner {
   padding: 30px;
-  padding-top: 10%;
+
 }
 
 
@@ -65,7 +66,7 @@ body {
  * Header
  */
 .masthead-brand {
-  margin-top: 10px;
+
   margin-bottom: 10px;
 }
 
@@ -112,12 +113,13 @@ body {
  */
 
 .cover {
-  padding: 0 20px;
+
 
 }
 .cover .btn-lg {
   padding: 10px 20px;
   font-weight: bold;
+  box-shadow:  0 1px 3px rgba(0,0,0,.5);;
 }
 
 
@@ -148,6 +150,7 @@ body {
   /* Start the vertical centering */
   .site-wrapper-inner {
     vertical-align: middle;
+    top:0;
   }
   /* Handle the widths */
   .masthead,

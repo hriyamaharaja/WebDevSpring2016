@@ -24,7 +24,7 @@
 
                     </tr>
                     <tr ng-repeat="recipe in recipes">
-                        <td>{{recipe.recipe}}</td>
+                        <td><a href="#/recipe/{{recipe.recipeId}}">{{recipe.recipe}}</a></td>
                         <td><i ng-click="deleteRecipe($index)" class="glyphicon glyphicon-remove-sign"></i>
                             <i ng-click="selectRecipe($index)" class="glyphicon glyphicon-pencil"></i></td>
 

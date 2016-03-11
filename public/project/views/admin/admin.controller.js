@@ -33,6 +33,11 @@
 
 
                     UserService.findAllUsers( function (response) {
+                        $scope.firstname = "";
+                        $scope.lastname = "";
+                        $scope.password = "";
+                        $scope.username = "";
+                        $scope.roles = "";
                         $scope.users = response;
                     });
                 });
@@ -57,6 +62,11 @@
             UserService.updateUser($scope.users[$scope.selectedUserIndex]._id, newUser, function (response) {
 
                 UserService.findAllUsers(function (response) {
+                    $scope.firstname = "";
+                    $scope.lastname = "";
+                    $scope.password = "";
+                    $scope.username = "";
+                    $scope.roles = "";
                     $scope.users = response;
                 });
             });
@@ -76,8 +86,14 @@
             $scope.selectedUserIndex = index;
 
             UserService.deleteUserById($scope.users[index]._id, function (response) {
-
+                UserService.findAllUsers(function (response) {
+                    $scope.firstname = "";
+                    $scope.lastname = "";
+                    $scope.password = "";
+                    $scope.username = "";
+                    $scope.roles = "";
                     $scope.users = response;
+                });
 
             });
         };

@@ -9,8 +9,6 @@
                 <table class="table table-hover table-bordered table-striped table-responsive">
                     <thead>
                     <tr>
-                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>FirstName</th>
-                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>LastName</th>
                         <th><i class="glyphicon glyphicon-triangle-bottom"></i>Username</th>
                         <th><i class="glyphicon glyphicon-triangle-bottom"></i>Password</th>
                         <th><i class="glyphicon glyphicon-triangle-bottom"></i>Role</th>
@@ -20,8 +18,6 @@
                     <tbody>
 
                     <tr>
-                        <td><input ng-model="firstname" type="text" placeholder="first name"></td>
-                        <td><input ng-model="lastname" type="text" placeholder="last name"></td>
                         <td><input ng-model="username" type="text" placeholder="username"></td>
                         <td><input ng-model="password" type="text" placeholder="password"></td>
                         <td><input ng-model="roles" type="text" placeholder="roles"></td>
@@ -30,9 +26,7 @@
                     </tr>
 
                     <tr ng-repeat="user in users">
-                        <td>{{user.firstName}}</td>
-                        <td>{{user.lastName}}</td>
-                        <td>{{user.username}}</td>
+                         <td>{{user.username}}</td>
                         <td>{{user.password}}</td>
                         <td>{{user.roles}}</td>
                         <td><i ng-click="deleteUser($index)" class="glyphicon glyphicon-remove"></i>

@@ -35,7 +35,7 @@
         {
             for(form in forms) {
                 if(forms[form]._id == formId) {
-                    forms.splice(form);
+                    forms.splice(form,1);
                     break;
                 }
             }

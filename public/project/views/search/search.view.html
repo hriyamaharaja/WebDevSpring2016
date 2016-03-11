@@ -50,7 +50,7 @@
     <th></th>
     <th><i class="glyphicon glyphicon-triangle-bottom"></i>Name</th>
     <th><i class="glyphicon glyphicon-triangle-bottom"></i>Rating</th>
-    <th><i class="glyphicon glyphicon-triangle-bottom"></i>Cooking Time</th>
+    <th><i class="glyphicon glyphicon-triangle-bottom"></i>Cooking Time(Seconds)</th>
 </tr>
 </thead>
         <tbody>
@@ -67,7 +67,7 @@
                 {{recipes.rating}}
             </td>
             <td>
-                {{recipes.totalTimeInSeconds}}/3600
+                {{recipes.totalTimeInSeconds}}
             </td>
             <td>{{recipe.attributes.cuisine[0]}}</td>
         </tr>

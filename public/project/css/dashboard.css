@@ -107,3 +107,35 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+.navbar-toggle {
+  color: #888888;
+  background-color: transparent;
+  border-color: transparent !important;
+}
+.navbar-toggle:hover,
+.navbar-toggle:focus
+.navbar-toggle:active{
+  background-color: transparent;
+  border-color: transparent !important;
+}
+.navbar-header:focus,
+.navbar-header:hover{
+  background-color: transparent;
+  border-color: transparent !important;
+  color: #2e2e2e;
+}
+ .icon-bar{
+  background-color : #CCC !important;
+}
+.navbar-inverse .navbar-collapse{
+  border-color: transparent;
+}
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+  background-color: transparent; !important;
+}
+.navbar-inverse .navbar-nav>li>a:hover{
+  color:black ;
+}
+.navbar-inverse .navbar-brand:hover{
+  color:black ;
+}

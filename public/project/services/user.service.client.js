@@ -62,17 +62,19 @@
         function deleteUserById(userId, callback) {
 
             for (user in users) {
-                if (user._id == userId) {
-                    users.splice(user);
+                if (users[user]._id == userId) {
+                    users.splice(user, 1);
+                    break;
                 }
-                callback(users);
+
             }
+            callback(users);
         }
 
         function updateUser(userId, user, callback) {
             for (u in users) {
-                if (u._id === userId) {
-                    users[user] = user;
+                if (users[u]._id === userId) {
+                    users[u] = user;
                     break;
                 }
 
