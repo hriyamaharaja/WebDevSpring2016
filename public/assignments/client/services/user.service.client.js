@@ -1,68 +1,11 @@
-(function() {
+(function () {
     "use strict";
     angular
         .module("FormBuilderApp")
         .factory("UserService", userService);
 
     function userService() {
-        var user, u;
 
-        var users = [
-            {"_id": 123, "firstName": "Alice",            "lastName": "Wonderland",
-                "username": "alice",  "password": "alice",   "roles": ["student"] },
-
-            {"_id": 234, "firstName": "Bob",              "lastName": "Hope",
-                "username": "bob",    "password": "bob",     "roles": ["admin"] },
-
-            {"_id": 345, "firstName": "Charlie",          "lastName": "Brown",
-                "username": "charlie", "password": "charlie", "roles": ["faculty"] },
-
-            {"_id": 456, "firstName": "Dan",              "lastName": "Craig",
-                "username": "dan",    "password": "dan",     "roles": ["faculty", "admin"]},
-
-            {"_id": 567, "firstName": "Edward",           "lastName": "Norton",
-                "username": "ed",     "password": "ed",      "roles": ["student"] }
-        ];
-
-        function findAllUsers(callback) {
-            callback(users);
-        }
-
-        function findUserByCredentials(username, password, callback) {
-            for(user in users) {
-
-                if(users[user].username === username && users[user].password === password) {
-                    callback(users[user]);
-                }
-            }
-        }
-
-        function createUser(user, callback) {
-            users.push(user);
-            callback(user);
-        }
-
-        function deleteUserById(userId, callback) {
-
-            for(user in users) {
-                if(users[user]._id == userId) {
-                    users.splice(user,1);
-                }
-            }
-            callback(users);
-        }
-
-        function updateUser(userId, user, callback) {
-            for(u in users) {
-                if (users[u]._id === userId)
-                {
-                    users[u] = user;
-                    break;
-                }
-
-            }
-            callback(user);
-        }
 
         var service = {
             findAllUsers: findAllUsers,
@@ -73,5 +16,36 @@
         };
 
         return service;
+
+        function findAllUsers() {
+            return $http.get('');
+
+        }
+
+        function findUserByCredentials(username, password) {
+            var data = {
+                username: username,
+                password: password
+            };
+
+            return $http.get('', data);
+
+        }
+
+        function createUser(user) {
+            return $http.post('', user);
+
+        }
+
+        function deleteUserById(userId) {
+            return $http.delete('');
+        }
+
+        function updateUser(userId, user) {
+            return $http.put('', user);
+
+        }
+
+
     }
 })();
