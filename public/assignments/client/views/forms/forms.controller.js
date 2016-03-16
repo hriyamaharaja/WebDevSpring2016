@@ -28,7 +28,7 @@
             }
 
 
-            FormService.createFormForUser($scope.rootScope.user._id, newForm,
+            FormService.createFormForUser($scope.rootScope.user._id,newForm).then(
                 function (response) {
                     $scope.formName = "";
                     console.log(response);
@@ -51,7 +51,7 @@
             }
 
 
-            FormService.updateFormById($scope.forms[$scope.selectedFormIndex]._id,newForm,function(response){
+            FormService.updateFormById($scope.forms[$scope.selectedFormIndex]._id,newForm).then(function(response){
                 $scope.formName = "";
                 FormService.findAllFormsForUser($scope.rootScope.user._id,function(response){
                     $scope.forms = response;
@@ -69,7 +69,7 @@
         $scope.deleteForm = function (index) {
             $scope.selectedFormIndex = index;
 
-            FormService.deleteFormById($scope.forms[index]._id, function (response) {
+            FormService.deleteFormById($scope.forms[index]._id).then(function (response) {
                 FormService.findAllFormsForUser($scope.rootScope.user._id,function(response){
                     $scope.forms = response;
                 });

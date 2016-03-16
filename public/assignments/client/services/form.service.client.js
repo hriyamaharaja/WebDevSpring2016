@@ -5,35 +5,34 @@
         .factory("FormService", formService);
 
     function formService() {
-        var form, user;
 
 
         var service = {
             createFormForUser: createFormForUser,
             findAllFormsForUser: findAllFormsForUser,
             deleteFormById: deleteFormById,
-            updateFormById: updateFormById,
+            updateFormById: updateFormById
 
         };
 
         return service;
 
         function createFormForUser(userId, form) {
-            return $http.post('', form);
+            return $http.post('/api/assignment/user/' + userId + '/form', form);
         }
 
         function findAllFormsForUser(userId) {
-            return $http.get('');
+            return $http.get('/api/assignment/user/' + userId + '/form');
         }
 
         function deleteFormById(formId) {
 
-            $http.delete('');
+            $http.delete('/api/assignment/form/' + formId);
         }
 
         function updateFormById(formId, newForm) {
 
-            $http.put('', newForm);
+            $http.put('/api/assignment/form/' + formId, newForm);
         }
 
     }

@@ -12,13 +12,14 @@
             findUserByCredentials: findUserByCredentials,
             createUser: createUser,
             deleteUserById: deleteUserById,
-            updateUser: updateUser
+            updateUser: updateUser,
+            findUserByUsername: findUserByUsername
         };
 
         return service;
 
         function findAllUsers() {
-            return $http.get('');
+            return $http.get('/api/assignment/user');
 
         }
 
@@ -32,17 +33,22 @@
 
         }
 
+        function findUserByUsername(username)
+        {
+            return $http.get('');
+        }
+
         function createUser(user) {
-            return $http.post('', user);
+            return $http.post('/api/assignment/user', user);
 
         }
 
         function deleteUserById(userId) {
-            return $http.delete('');
+            return $http.delete('/api/assignment/user/' + userId);
         }
 
         function updateUser(userId, user) {
-            return $http.put('', user);
+            return $http.put('/api/assignment/user/' + userId, user);
 
         }
 

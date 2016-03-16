@@ -11,10 +11,21 @@ module.exports = function () {
         findUserByCredentials: findUserByCredentials,
         createUser: createUser,
         deleteUserById: deleteUserById,
-        updateUser: updateUser
+        updateUser: updateUser,
+        findUserById : findUserById,
+        findUserByUsername : findUserByUsername
     };
 
     return api;
+
+    function findUserById(userId){
+        for (var u in users){
+            if(users[u]._id == userId)
+            return users[u];
+        }
+        return null;
+
+    }
 
     function findAllUsers() {
         return users;
@@ -27,6 +38,17 @@ module.exports = function () {
                 return users[user];
             }
         }
+        return null;
+    }
+
+    function findUserByUsername(username) {
+        for (var user in users) {
+
+            if (users[user].username === username) {
+                return users[user];
+            }
+        }
+        return null;
     }
 
     function createUser(user) {

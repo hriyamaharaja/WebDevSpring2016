@@ -9,7 +9,9 @@ module.exports = function () {
         createFormForUser: createFormForUser,
         findAllFormsForUser: findAllFormsForUser,
         deleteFormById: deleteFormById,
-        updateFormById: updateFormById
+        updateFormById: updateFormById,
+        findFormById:findFormById,
+        findFormByTitle : findFormByTitle
 
     };
 
@@ -29,6 +31,26 @@ module.exports = function () {
             }
         }
         return userForms;
+    }
+
+    function findFormById(formId) {
+
+        for (var f in forms) {
+            if (forms[f]._id == formId) {
+                return forms[f];
+            }
+        }
+        return null;
+    }
+
+    function findFormByTitle(title) {
+
+        for (var f in forms) {
+            if (forms[f].title == title) {
+                return forms[f];
+            }
+        }
+        return null;
     }
 
     function deleteFormById(formId) {

@@ -10,4 +10,6 @@ app.get('/hello', function (req, res) {
     res.send('hello world');
 });
 
+require('./public/assignments/server/app.js')(app);
+
 app.listen(port, ipaddress);
