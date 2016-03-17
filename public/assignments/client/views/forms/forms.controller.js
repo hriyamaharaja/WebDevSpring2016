@@ -10,7 +10,7 @@
     function FormController($rootScope, $scope, $location, FormService) {
         $scope.$location = $location;
         $scope.rootScope = $rootScope;
-        $scope.forms = {}
+        $scope.forms = {};
 
         if ($rootScope.user != null) {
             FormService.findAllFormsForUser($scope.rootScope.user._id).then(function (response) {

@@ -18,7 +18,7 @@
         return service;
 
         function createFormForUser(userId, form) {
-            return $http.post('/api/assignment/user/' + userId + '/form', {params:form});
+            return $http.post('/api/assignment/user/' + userId + '/form', form);
         }
 
         function findAllFormsForUser(userId) {
@@ -32,7 +32,7 @@
 
         function updateFormById(formId, newForm) {
 
-            $http.put('/api/assignment/form/' + formId, {params:newForm});
+            $http.put('/api/assignment/form/' + formId, newForm);
         }
 
     }

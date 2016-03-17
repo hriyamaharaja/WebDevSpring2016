@@ -18,7 +18,7 @@
             <div>
                 <ul class="nav nav-tabs nav-justified">
                     <li><a href="#/forms">Forms</a></li>
-                    <li class="active"><a href="#/fields">Fields</a></li>
+                    <li class="active"><a href="#">Fields</a></li>
                 </ul>
 
             </div>
@@ -31,7 +31,7 @@
                         <div class="col-xs-offset-1 col-xs-5">
                             <i class="glyphicon glyphicon-pencil"></i>
                             <i class="glyphicon glyphicon-plus"></i>
-                            <i class="glyphicon glyphicon-remove"></i>
+                            <i ng-click="deleteField($index)" class="glyphicon glyphicon-remove"></i>
                             <i class="glyphicon glyphicon-menu-hamburger"></i>
                         </div>
                     </div>
@@ -45,10 +45,10 @@
                             <select class="form-control col-xs-6" ng-switch-when="OPTIONS">
                                 <option ng-repeat="option in field.options" value="{{option.value}}">{{option.label}}</option>
                             </select>
-                            <div class="checkbox" ng-switch-when="CHECKBOX" ng-repeat="option in field.options">
+                            <div class="checkbox" ng-switch-when="CHECKBOXES" ng-repeat="option in field.options">
                                 <label><input type="checkbox" value="{{option.value}}"> {{option.label}}</label>
                             </div>
-                            <div class="radio" ng-switch-when="RADIO" ng-repeat="option in field.options">
+                            <div class="radio" ng-switch-when="RADIOS" ng-repeat="option in field.options">
                                 <label><input type="radio" value="{{option.value}}"> {{option.label}}</label>
                             </div>
 
@@ -73,12 +73,11 @@
                                     <option value="DATE">Date Field</option>
                                     <option value="EMAIL">Email Field</option>
                                     <option value="OPTIONS">Dropdown Field</option>
-                                    <option value="CHECKBOX">Checkboxes Field</option>
-                                    <option value="RADIO">Radio Buttons Field</option>
+                                    <option value="CHECKBOXES">Checkboxes Field</option>
+                                    <option value="RADIOS">Radio Buttons Field</option>
                                 </select>
                                 </div>
                                 <div class="col-xs-offset-1 col-xs-5">
-
                                     <i ng-click="addField(fieldType)" class="glyphicon glyphicon-plus"></i>
                                 </div>
                             </div>

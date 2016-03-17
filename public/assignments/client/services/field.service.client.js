@@ -31,16 +31,16 @@
 
         function getFieldForForm(formId,fieldId) {
 
-            $http.get('/api/assignment/form/' + formId + '/field/' + fieldId);
+           return $http.get('/api/assignment/form/' + formId + '/field/' + fieldId);
         }
 
         function deleteFieldFromForm(formId, fieldId) {
 
-            $http.delete('/api/assignment/form/'+formId+'/field/'+fieldId);
+            return $http.delete('/api/assignment/form/'+formId+'/field/'+fieldId);
         }
 
         function updateField(formId,fieldId,field){
-            $http.put('/api/assignment/form/'+formId+ '/field/' + fieldId ,field);
+            return $http.put('/api/assignment/form/'+formId+ '/field/' + fieldId ,field);
 
         }
 
