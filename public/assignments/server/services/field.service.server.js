@@ -15,7 +15,7 @@ module.exports = function(app,model){
 
 
     function getAllFields(req,res){
-        var formId = req.params.userId;
+        var formId = req.params.formId;
         var form = model.findFormById(formId);
         res.json(form.fields);
     }

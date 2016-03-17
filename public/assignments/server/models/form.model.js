@@ -26,7 +26,7 @@ module.exports = function () {
     function findAllFormsForUser(userId) {
         var userForms = [];
         for (var user in forms) {
-            if (forms[user].userId === userId) {
+            if (forms[user].userId == userId) {
                 userForms.push(forms[user]);
             }
         }

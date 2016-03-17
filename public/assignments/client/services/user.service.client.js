@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .factory("UserService", userService);
 
-    function userService() {
+    function userService($http) {
 
 
         var service = {
@@ -29,13 +29,16 @@
                 password: password
             };
 
-            return $http.get('', data);
+            return $http.get('/api/assignment/user', {params: data});
 
         }
 
-        function findUserByUsername(username)
-        {
-            return $http.get('');
+        function findUserByUsername(username) {
+            var data = {
+                username: username
+            };
+
+            return $http.get('/api/assignment/user', {params: data});
         }
 
         function createUser(user) {

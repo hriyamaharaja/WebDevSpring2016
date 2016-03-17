@@ -6,9 +6,18 @@ module.exports = function (app, model) {
 
     app.post('/api/assignment/user', createUser);
     app.get('/api/assignment/user/:id', getUserById);
+    app.all('/api/assignment/user', function (req, res, next) {
+        if (req.query.username != null && req.query.password != null) {
+            findUserByCredentials(req, res);
+        } else if (req.query.username && !req.query.password) {
+            findUserByUsername(req, res);
+        }
+        else {
+            next();
+        }
+    });
     app.get('/api/assignment/user', getAllUsers);
-    app.get('/api/assignment/user?username=username', findUserByUsername);
-    //api.get('/api/assignment/user?username=alice&password=wonderland', findUserByCredentials)
+
     app.put('/api/assignment/user/:userId', updateUser);
     app.delete('/api/assignment/user/:id', deleteUser);
 
@@ -34,14 +43,28 @@ module.exports = function (app, model) {
     }
 
     function getAllUsers(req, res) {
+        console.log(req.query.username == null);
         var users = model.findAllUsers();
         res.json(users);
     }
 
 
     function findUserByUsername(req, res) {
+
         var username = req.query.username;
         var user = model.findUserByUsername(username);
+        if (user) {
+            res.json(user);
+            return;
+        }
+        res.json({message: "User Not found"});
+    }
+
+    function findUserByCredentials(req, res) {
+        var username = req.query.username;
+        var password = req.query.password;
+
+        var user = model.findUserByCredentials(username, password);
         if (user) {
             res.json(user);
             return;

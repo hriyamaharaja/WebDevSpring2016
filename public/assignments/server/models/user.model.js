@@ -12,16 +12,16 @@ module.exports = function () {
         createUser: createUser,
         deleteUserById: deleteUserById,
         updateUser: updateUser,
-        findUserById : findUserById,
-        findUserByUsername : findUserByUsername
+        findUserById: findUserById,
+        findUserByUsername: findUserByUsername
     };
 
     return api;
 
-    function findUserById(userId){
-        for (var u in users){
-            if(users[u]._id == userId)
-            return users[u];
+    function findUserById(userId) {
+        for (var u in users) {
+            if (users[u]._id == userId)
+                return users[u];
         }
         return null;
 
