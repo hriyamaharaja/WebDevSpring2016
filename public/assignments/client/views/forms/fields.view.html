@@ -9,12 +9,8 @@
                 handle: '.handle',
                 cursor: 'move',
                 stop: function () {
-
                     var order = $(this).sortable('toArray');
-
-                    // here I want a array of values from my attribute, not ID values...
-
-                    angular.element('FieldController').scope().sortOrder(order);
+                    angular.element('sortableFields').scope().sortOrder(order);
                 }
             });
             });
