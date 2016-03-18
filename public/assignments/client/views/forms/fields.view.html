@@ -14,7 +14,7 @@
 
                     // here I want a array of values from my attribute, not ID values...
 
-                    angular.element('#sortableFields').scope().sortOrder(order);
+                    angular.element('FieldController').scope().sortOrder(order);
                 }
             });
             });
@@ -47,7 +47,7 @@
                             <div class="col-xs-offset-1 col-xs-5">
                                 <i class="glyphicon glyphicon-pencil" ng-click="toggleSelect($index)"
                                    data-toggle="modal" data-target="#myModal"></i>
-                                <i class="glyphicon glyphicon-plus"></i>
+                                <i ng-click="cloneField($index)" class="glyphicon glyphicon-plus"></i>
                                 <i ng-click="deleteField($index)" class="glyphicon glyphicon-remove"></i>
                                 <i class="handle glyphicon glyphicon-menu-hamburger"></i>
                             </div>

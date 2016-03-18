@@ -230,13 +230,20 @@
                     );
                 }
             );
+        }
 
+        $scope.cloneField = function(index){
 
+            var newField =  $scope.fields[index];
+            FieldService.createFieldForForm($scope.formId,newField).then(
 
+                FieldService.getFieldsForForm($scope.formId).then(
+                    function (response) {
+                        $scope.fields = response.data;
+                    }
+                )
 
-
-
-
+            );
         }
     }
 })();
