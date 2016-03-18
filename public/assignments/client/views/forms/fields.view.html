@@ -10,7 +10,7 @@
                 cursor: 'move',
                 stop: function () {
                     var order = $(this).sortable('toArray');
-                    angular.element('sortableFields').scope().sortOrder(order);
+                    angular.element('#sortableFields').scope().sortOrder(order);
                 }
             });
             });
