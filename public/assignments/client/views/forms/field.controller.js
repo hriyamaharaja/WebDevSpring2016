@@ -7,7 +7,7 @@
         .module("FormBuilderApp")
         .controller("FieldController", FieldController);
 
-    function FieldController($rootScope, $routeParams, $scope, $location, FieldService) {
+    function FieldController($rootScope, $routeParams, $scope, $location, FieldService, FormService) {
         $scope.$location = $location;
         $scope.userId = $rootScope.user._id;
         $scope.formId = $routeParams.formId;
@@ -21,25 +21,25 @@
 
         $scope.addField = function (fieldType) {
 
-            var id = Math.floor((Math.random() * 500) + 1);
+
             var field = {};
             if (fieldType == "TEXT") {
                 field =
-                {"_id": id, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
+                { "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
 
             }
             else if (fieldType == "DATE") {
-                field = {"_id": id, "label": "New Date Field", "type": "DATE"};
+                field = { "label": "New Date Field", "type": "DATE"};
             }
             else if (fieldType == "EMAIL") {
-                field = {"_id": id, "label": "New Email Field", "type": "EMAIL"};
+                field = { "label": "New Email Field", "type": "EMAIL"};
             }
             else if (fieldType == "TEXTAREA") {
-                field = {"_id": id, "label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"};
+                field = { "label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"};
             }
             else if (fieldType == "OPTIONS") {
                 field = {
-                    "_id": id, "label": "New Dropdown", "type": "OPTIONS", "options": [
+                     "label": "New Dropdown", "type": "OPTIONS", "options": [
                         {"label": "Option 1", "value": "OPTION_1"},
                         {"label": "Option 2", "value": "OPTION_2"},
                         {"label": "Option 3", "value": "OPTION_3"}
@@ -49,7 +49,7 @@
             }
             else if (fieldType == "CHECKBOXES") {
                 field = {
-                    "_id": id, "label": "New Checkboxes", "type": "CHECKBOXES", "options": [
+                     "label": "New Checkboxes", "type": "CHECKBOXES", "options": [
                         {"label": "Option A", "value": "OPTION_A"},
                         {"label": "Option B", "value": "OPTION_B"},
                         {"label": "Option C", "value": "OPTION_C"}
@@ -58,7 +58,7 @@
             }
             else if (fieldType == "RADIOS") {
                 field = {
-                    "_id": id, "label": "New Radio Buttons", "type": "RADIOS", "options": [
+                     "label": "New Radio Buttons", "type": "RADIOS", "options": [
                         {"label": "Option X", "value": "OPTION_X"},
                         {"label": "Option Y", "value": "OPTION_Y"},
                         {"label": "Option Z", "value": "OPTION_Z"}
@@ -189,6 +189,53 @@
 
                 }
             );
+
+        }
+
+        $scope.sortOrder = function(order){
+            console.log(order);
+            $scope.fieldOrder = [];
+
+
+            $scope.newform = {};
+
+
+            for (var i in order)
+            {
+                for(var j in $scope.fields){
+                    if(order[i]==$scope.fields[j]._id)
+                    {
+                        $scope.fieldOrder.push($scope.fields[j]);
+                    }
+
+                }
+            }
+
+
+
+            FormService.findFormById($scope.formId).then(
+                function(response){
+                    console.log(response.data);
+                    $scope.newform = response.data;
+                    $scope.newform.fields = $scope.fieldOrder;
+
+                    FormService.updateFormById($scope.formId,$scope.newform).then(
+
+                        FieldService.getFieldsForForm($scope.formId).then(
+                            function (response) {
+                                $scope.fields = response.data;
+                            }
+                        )
+
+                    );
+                }
+            );
+
+
+
+
+
+
 
         }
     }

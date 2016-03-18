@@ -24,6 +24,8 @@ module.exports = function (app, model) {
 
     function createUser(req, res) {
         var user = req.body;
+        var id =  uuid.v4();
+        user._id = id;
         user = model.createUser(user);
         if (user) {
             res.send(200);

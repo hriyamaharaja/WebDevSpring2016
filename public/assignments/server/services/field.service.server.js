@@ -7,7 +7,7 @@
 module.exports = function(app,model){
     "use strict";
 
-
+    var uuid = require('node-uuid');
     app.get('/api/assignment/form/:formId/field',getAllFields);
     app.get('/api/assignment/form/:formId/field/:fieldId',getFieldById);
     app.delete('/api/assignment/form/:formId/field/:fieldId',deleteField);
@@ -57,8 +57,13 @@ module.exports = function(app,model){
         var formId = req.params.formId;
         var field = req.body;
 
+        var id =  uuid.v4();
+        field._id = id;
+
         var form = model.findFormById(formId);
 
+
+        console.log(form.fields);
         form.fields.push(field);
         if(model.updateFormById(formId,form)){
             res.send(200);

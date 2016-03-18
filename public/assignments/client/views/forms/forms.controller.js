@@ -21,9 +21,7 @@
         $scope.addForm = function () {
 
             var newForm = {
-
-                _id: (new Date()).getTime(),
-                recipe: $scope.formName,
+                title: $scope.formName,
                 userId: $scope.rootScope.user._id
             }
 

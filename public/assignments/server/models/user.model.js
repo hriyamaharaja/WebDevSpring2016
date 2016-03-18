@@ -52,6 +52,7 @@ module.exports = function () {
     }
 
     function createUser(user) {
+
         users.push(user);
 
         return user;

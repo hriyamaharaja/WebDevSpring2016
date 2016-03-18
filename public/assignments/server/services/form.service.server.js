@@ -4,6 +4,7 @@
 module.exports = function(app,model){
     "use strict";
 
+    var uuid = require('node-uuid');
     app.get('/api/assignment/user/:userId/form',getAllForms);
     app.get('/api/assignment/form/:formId',getFormById);
     app.delete('/api/assignment/form/:formId',deleteForm);
@@ -34,9 +35,13 @@ module.exports = function(app,model){
     }
 
     function createForm(req,res){
+
         var form = req.body;
+        var id =  uuid.v4();
+        form._id = id;
+        form.fields = [];
         var userId = req.params.userId;
-        if (model.createFormForUser(userId,user)) {
+        if (model.createFormForUser(userId,form)) {
             res.send(200);
             return;
         }
