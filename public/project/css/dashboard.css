@@ -5,7 +5,13 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 50px;
-  font-family: "Lucida Calligraphy";
+  /*font-family: "Lucida Calligraphy";*/
+  /*font-family: 'Museo Sans',Helvetica,Arial,sans-serif;*/
+
+  font-family: "oswald";
+  font-weight: normal;
+  letter-spacing: 2px;
+  font-size: 15px;
 
 }
 
@@ -25,7 +31,7 @@ body {
  */
 .navbar-fixed-top {
   border: 0;
-  background-color:  #f5f5f5;
+  background-color:  white;
 
 }
 
@@ -124,6 +130,9 @@ body {
   border-color: transparent !important;
   color: #2e2e2e;
 }
+.nav-header > .active > a{
+  color: #2e2e2e;
+}
  .icon-bar{
   background-color : #CCC !important;
 }
@@ -136,6 +145,14 @@ body {
 .navbar-inverse .navbar-nav>li>a:hover{
   color:black ;
 }
+.navbar-inverse .navbar-nav>li:active{
+  color:black ;
+}
 .navbar-inverse .navbar-brand:hover{
   color:black ;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >
+a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: black; /*BACKGROUND color for active*/
+
 }

@@ -73,8 +73,16 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
 </head>
-<body ng-controller="MainController" ng-class="{'home' : $location.url() === '/home'}">
+<body ng-controller="MainController">
+<div class="wrap">
 <div class="container" ng-view></div>
 <div class="container" ng-include="'views/header/header.view.html'"></div>
+</div>
 </body>
+<footer class="footer text-center">
+    <div class="container">
+        <p class="text-muted">(c)2016 | Contact Us | About</p>
+    </div>
+</footer>
+
 </html>
