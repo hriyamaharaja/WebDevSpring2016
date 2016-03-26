@@ -10,7 +10,7 @@
         $scope.users = {};
 
         if ($rootScope.user.roles.indexOf('admin') >= 0) {
-            UserService.findAllUsers( function (response) {
+            UserService.findAllUsers().then(function (response) {
                 $scope.users = response;
             });
         }
@@ -22,17 +22,17 @@
                 _id: (new Date()).getTime(),
                 firstName: $scope.firstname,
                 lastName: $scope.lastname,
-                username:$scope.username,
-                password:$scope.password,
-                roles:$scope.roles
+                username: $scope.username,
+                password: $scope.password,
+                roles: $scope.roles
             }
 
 
-            UserService.createUser(newUser,
+            UserService.createUser(newUser).then(
                 function (response) {
 
 
-                    UserService.findAllUsers( function (response) {
+                    UserService.findAllUsers().then(function (response) {
                         $scope.firstname = "";
                         $scope.lastname = "";
                         $scope.password = "";
@@ -51,17 +51,17 @@
                 _id: $scope.users[$scope.selectedUserIndex]._id,
                 firstName: $scope.firstname,
                 lastName: $scope.lastname,
-                username:$scope.username,
-                password:$scope.password,
-                roles:$scope.roles
+                username: $scope.username,
+                password: $scope.password,
+                roles: $scope.roles
 
 
             }
 
 
-            UserService.updateUser($scope.users[$scope.selectedUserIndex]._id, newUser, function (response) {
+            UserService.updateUser($scope.users[$scope.selectedUserIndex]._id, newUser).then(function (response) {
 
-                UserService.findAllUsers(function (response) {
+                UserService.findAllUsers().then(function (response) {
                     $scope.firstname = "";
                     $scope.lastname = "";
                     $scope.password = "";
@@ -85,8 +85,8 @@
         $scope.deleteUser = function (index) {
             $scope.selectedUserIndex = index;
 
-            UserService.deleteUserById($scope.users[index]._id, function (response) {
-                UserService.findAllUsers(function (response) {
+            UserService.deleteUserById($scope.users[index]._id).then(function (response) {
+                UserService.findAllUsers().then(function (response) {
                     $scope.firstname = "";
                     $scope.lastname = "";
                     $scope.password = "";

@@ -4,14 +4,14 @@
         .module("RecipeWorld")
         .controller("MyRecipesController", MyRecipesController);
 
-    function MyRecipesController($rootScope, $scope, $location, RecipeService) {
+    function MyRecipesController($rootScope, $scope, $location, UserRecipeService) {
         $scope.$location = $location;
         $scope.rootScope = $rootScope;
         $scope.recipes = {};
 
         if ($rootScope.user != null) {
-            RecipeService.findAllRecipesForUser($scope.rootScope.user._id, function (response) {
-                $scope.recipes = response;
+            UserRecipeService.findAllRecipesForUser($scope.rootScope.user._id).then( function (response) {
+                $scope.recipes = response.data;
             });
         }
 
@@ -19,18 +19,17 @@
 
             var newRecipe = {
 
-                _id: (new Date()).getTime(),
                 recipe: $scope.recipeName,
                 userId: $scope.rootScope.user._id
             }
 
 
-            RecipeService.createRecipeForUser($scope.rootScope.user._id, newRecipe,
+            UserRecipeService.createRecipeForUser($scope.rootScope.user._id, newRecipe).then(
                 function (response) {
                     $scope.recipeName = "";
                     console.log(response);
-                    RecipeService.findAllRecipesForUser($scope.rootScope.user._id, function (response) {
-                        $scope.recipes = response;
+                    UserRecipeService.findAllRecipesForUser($scope.rootScope.user._id).then( function (response) {
+                        $scope.recipes = response.data;
                     });
                 });
 
@@ -48,10 +47,10 @@
             }
 
 
-            RecipeService.updateRecipeById($scope.recipes[$scope.selectedRecipeIndex]._id, newRecipe, function (response) {
+            UserRecipeService.updateRecipeById($scope.recipes[$scope.selectedRecipeIndex]._id, newRecipe).then( function (response) {
                 $scope.recipeName = "";
-                RecipeService.findAllRecipesForUser($scope.rootScope.user._id, function (response) {
-                    $scope.recipes = response;
+                UserRecipeService.findAllRecipesForUser($scope.rootScope.user._id, function (response) {
+                    $scope.recipes = response.data;
                 });
             });
         };
@@ -65,9 +64,9 @@
         $scope.deleteRecipe = function (index) {
             $scope.selectedRecipeIndex = index;
 
-            RecipeService.deleteRecipeById($scope.recipes[index]._id, function (response) {
-                RecipeService.findAllRecipesForUser($scope.rootScope.user._id, function (response) {
-                    $scope.recipes = response;
+            UserRecipeService.deleteRecipeById($scope.recipes[index]._id).then( function (response) {
+                UserRecipeService.findAllRecipesForUser($scope.rootScope.user._id).then( function (response) {
+                    $scope.recipes = response.data;
                 });
             });
         };

@@ -3,28 +3,27 @@
         .module("RecipeWorld")
         .controller("SearchController", searchController);
 
-    function searchController($scope, $location,$routeParams,YummlyService) {
+    function searchController($scope, $location, $routeParams, RecipeService) {
 
         function search(recipe) {
 
 
             $location.url("/search/" + $scope.recipe);
             var params = {
-                ingredients : $scope.ingredient,
+                ingredients: $scope.ingredient,
                 diet: $scope.diet,
-                cuisine : $scope.cuisine
+                cuisine: $scope.cuisine
 
             }
 
-            YummlyService.findRecipes(
+            RecipeService.findRecipes(
                 recipe,
-                params,
+                params).then(
                 function (response) {
 
                     console.log(response);
-                    $scope.data = response;
-                    if($scope.data.totalMatchCount===0)
-                    {
+                    $scope.data = response.data;
+                    if ($scope.data.totalMatchCount === 0) {
                         $scope.message = "Oops! No recipes found.";
                     }
                     console.log($scope.data);
@@ -36,13 +35,8 @@
         $scope.message = "";
 
 
-
-
-
         if ($scope.recipe) {
             search($scope.recipe);
         }
-
-
     }
 })();

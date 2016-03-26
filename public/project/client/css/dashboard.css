@@ -8,13 +8,19 @@ body {
   /*font-family: "Lucida Calligraphy";*/
   /*font-family: 'Museo Sans',Helvetica,Arial,sans-serif;*/
 
-  font-family: "oswald";
+  font-family: "oswald",sans-serif;
   font-weight: normal;
   letter-spacing: 2px;
   font-size: 15px;
 
+
 }
 
+html{
+
+  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+  box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+}
 
 /*
  * Global add-ons

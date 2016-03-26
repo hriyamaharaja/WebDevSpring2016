@@ -5,9 +5,9 @@ module.exports = function (app, model) {
     "use strict";
 
     var uuid = require('node-uuid');
-    app.post('/api/assignment/user', createUser);
-    app.get('/api/assignment/user/:id', getUserById);
-    app.all('/api/assignment/user', function (req, res, next) {
+    app.post('/api/project/user', createUser);
+    app.get('/api/project/user/:id', getUserById);
+    app.all('/api/project/user', function (req, res, next) {
         if (req.query.username != null && req.query.password != null) {
             findUserByCredentials(req, res);
         } else if (req.query.username && !req.query.password) {
@@ -17,10 +17,10 @@ module.exports = function (app, model) {
             next();
         }
     });
-    app.get('/api/assignment/user', getAllUsers);
+    app.get('/api/project/user', getAllUsers);
 
-    app.put('/api/assignment/user/:userId', updateUser);
-    app.delete('/api/assignment/user/:id', deleteUser);
+    app.put('/api/project/user/:userId', updateUser);
+    app.delete('/api/project/user/:id', deleteUser);
 
 
     function createUser(req, res) {

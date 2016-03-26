@@ -6,7 +6,7 @@
     function RegisterController($rootScope, $scope, $location, UserService) {
 
         $scope.users = {}
-        UserService.findAllUsers(function (response) {
+        UserService.findAllUsers().then(function (response) {
             "use strict";
             $scope.users = response;
         });
@@ -19,16 +19,19 @@
             if ($scope.password != $scope.verifyPassword)
                 dispalert = true;
 
-            $rootScope.user = {};
-            $scope.dispalert = false;
-            $rootScope.user.username = $scope.username;
-            $rootScope.user.password = $scope.password;
-            $rootScope.user.email = $scope.email;
-            $rootScope.user._id = (new Date).getTime();
 
-            UserService.createUser($rootScope.user,
+            $scope.dispalert = false;
+
+
+            UserService.createUser($rootScope.user).then(
                 function (response) {
-                    console.log(response);
+                    UserService.findUserByCredentials($scope.username,$scope.password).then(
+                        function(response){
+                            "use strict";
+                            $rootScope.user = response.data;
+                        }
+                    );
+
                 });
 
             $location.path("/profile");

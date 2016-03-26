@@ -1,9 +1,9 @@
-(function () {
+(function(){
     angular
         .module("RecipeWorld")
-        .controller("ProfileController", ProfileController);
+        .controller("ProfileController",ProfileController);
 
-    function ProfileController($rootScope, $scope, $location, UserService) {
+    function ProfileController($rootScope,$scope, $location, UserService) {
         "use strict";
 
         $scope.user = $rootScope.user;
@@ -14,7 +14,7 @@
         $scope.password = $scope.user.password;
         $scope.email = $scope.user.email;
 
-        $scope.update = function () {
+        $scope.update = function(){
 
             var user = {};
             user._id = this.user._id;
@@ -24,14 +24,16 @@
             user.password = this.password;
             user.roles = this.user.roles;
 
-            UserService.updateUser(user._id, user, function (response) {
-                console.log(response);
+            UserService.updateUser(user._id,user).then(function(response){
+                console.log(response.data);
             });
 
             $location.path("/profile");
         };
 
 
+
     }
 
 })();
+
