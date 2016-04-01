@@ -1,81 +1,114 @@
 /**
  * Created by hriya on 3/15/16.
  */
-var forms = require("./form.mock.json");
 
-module.exports = function () {
+var q = require("q");
 
-    var service = {
+module.exports = function (db, mongoose) {
+    var FormSchema = require("./form.schema.server.js")(mongoose);
+    var FormModel = mongoose.model('Form', FormSchema);
+
+    var api = {
+
         createFormForUser: createFormForUser,
         findAllFormsForUser: findAllFormsForUser,
         deleteFormById: deleteFormById,
         updateFormById: updateFormById,
-        findFormById:findFormById,
-        findFormByTitle : findFormByTitle
-
+        findFromById: findFromById,
+        findFormByTitle: findFormByTitle
     };
 
-    return service;
+    return api;
+
 
     function createFormForUser(userId, form) {
+        var deferred = q.defer();
+
         form.userId = userId;
-        forms.push(form);
-        return forms;
+        form.fields = [];
+        FormModel.create(form, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            }
+            else {
+                deferred.resolve(doc);
+            }
+        });
+
+        return deferred.promise;
     }
 
     function findAllFormsForUser(userId) {
-        var userForms = [];
-        for (var user in forms) {
-            if (forms[user].userId == userId) {
-                userForms.push(forms[user]);
+        var deferred = q.defer();
+
+        FormModel.find({userId: userId}, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
             }
-        }
-        return userForms;
-    }
-
-    function findFormById(formId) {
-
-        for (var f in forms) {
-            if (forms[f]._id == formId) {
-                return forms[f];
+            else {
+                deferred.resolve(doc);
             }
-        }
-        return null;
-    }
-
-    function findFormByTitle(title) {
-
-        for (var f in forms) {
-            if (forms[f].title == title) {
-                return forms[f];
-            }
-        }
-        return null;
+        });
+        return deferred.promise;
     }
 
     function deleteFormById(formId) {
-        for (var form in forms) {
-            if (forms[form]._id == formId) {
-                forms.splice(form, 1);
-                break;
+        var deferred = q.defer();
+
+        FormModel.remove({_id: formId}, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
             }
-        }
-        return forms;
+            else {
+                deferred.resolve(doc);
+            }
+        });
+
+        return deferred.promise;
     }
 
     function updateFormById(formId, newForm) {
+        var deferred = q.defer();
 
-        for (var form in forms) {
-            if (forms[form]._id == formId) {
-                forms[form] = newForm;
-                break;
+        FormModel.findById({_id: formId}, function (err, updatedForm) {
+            if (err) {
+                deferred.reject(err);
             }
+            else {
+                updatedForm.title = newForm.title;
+                updatedForm.save(function (err, doc) {
+                    deferred.resolve(doc);
+                });
+            }
+        });
 
-        }
-        return forms;
+        return deferred.promise;
     }
 
+    function findFromById(formId) {
+        var deferred = q.defer();
 
-}
+        FormModel.findById({_id: formId}, function (err, doc) {
+            if (err)
+                deferred.reject(err);
+            else
+                deferred.resolve(doc);
+        });
+
+        return deferred.promise;
+    }
+
+    function findFormByTitle(title) {
+        var deferred = q.defer();
 
 
+        FormModel.findOne({title: title}, function (err, doc) {
+            if (err)
+                deferred.reject(err);
+            else
+                deferred.resolve(doc);
+        });
+
+        return deferred.promise;
+    }
+};

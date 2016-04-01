@@ -1,10 +1,12 @@
 /**
  * Created by hriya on 3/15/16.
  */
-var users = require("./user.mock.json");
+var q = require("q");
 
-module.exports = function () {
-    "use strict";
+module.exports = function (db, mongoose) {
+
+    var UserSchema = require("./user.schema.server.js")(mongoose);
+    var UserModel = mongoose.model('User', UserSchema);
 
     var api = {
         findAllUsers: findAllUsers,
@@ -19,63 +21,115 @@ module.exports = function () {
     return api;
 
     function findUserById(userId) {
-        for (var u in users) {
-            if (users[u]._id == userId)
-                return users[u];
-        }
-        return null;
 
+        var deferred = q.defer();
+        UserModel.findById({_id: userId}, function (err, doc) {
+            if (err)
+                deferred.reject(err);
+            else
+                deferred.resolve(doc);
+        });
+
+        return deferred.promise;
     }
 
-    function findAllUsers() {
-        return users;
+
+        function findUserByUsername(username) {
+        var deferred = q.defer();
+        FormModel.findOne({username: username}, function (err, doc) {
+            if (err)
+                deferred.reject(err);
+            else
+                deferred.resolve(doc);
+        });
+
+        return deferred.promise;
     }
 
     function findUserByCredentials(username, password) {
-        for (var user in users) {
+        var deferred = q.defer();
 
-            if (users[user].username === username && users[user].password === password) {
-                return users[user];
+        UserModel.findOne({username: username, password: password}, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
             }
-        }
-        return null;
+            else {
+                deferred.resolve(doc);
+            }
+        });
+
+        return deferred.promise;
     }
 
-    function findUserByUsername(username) {
-        for (var user in users) {
+    function findAllUsers() {
 
-            if (users[user].username === username) {
-                return users[user];
+        var deferred = q.defer();
+
+        UserModel.find({}, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
             }
-        }
-        return null;
+            else {
+                deferred.resolve(doc);
+            }
+        });
+
+        return deferred.promise;
     }
 
     function createUser(user) {
+        var deferred = q.defer();
 
-        users.push(user);
+        UserModel.create(user, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            }
+            else {
+                deferred.resolve(doc);
+            }
+        });
 
-        return user;
+        return deferred.promise;
     }
 
     function deleteUserById(userId) {
+        var deferred = q.defer();
 
-        for (var user in users) {
-            if (users[user]._id == userId) {
-                users.splice(user, 1);
+        UserModel.remove({_id: userId}, function (err, doc) {
+            if (err)
+                deferred.reject(err);
+            else {
+                deferred.resolve(doc);
             }
-        }
-        return users;
+        });
+
+        return deferred.promise;
     }
 
     function updateUser(userId, user) {
-        for (var u in users) {
-            if (users[u]._id === userId) {
-                users[u] = user;
-                break;
-            }
+        var deferred = q.defer();
 
-        }
-        return user;
+        UserModel.findById(userId, function (err, userToUpdate) {
+            if (err)
+                deferred.reject(err);
+            else {
+                userToUpdate.firstName = user.firstName;
+                userToUpdate.lastName = user.lastName;
+                userToUpdate.password = user.password;
+                userToUpdate.username = user.username;
+                userToUpdate.emails = user.emails;
+                userToUpdate.phones = user.phones;
+                userToUpdate.save(function (err, doc) {
+                    if (err)
+                        deferred.reject(err);
+                    else {
+                        deferred.resolve(doc);
+                    }
+                });
+            }
+        });
+
+        return deferred.promise;
     }
-}
+
+};

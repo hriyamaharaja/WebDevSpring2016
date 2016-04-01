@@ -5,11 +5,7 @@
 
     function RegisterController($rootScope, $scope, $location, UserService) {
 
-        $scope.users = {}
-        UserService.findAllUsers().then(function (response) {
-            "use strict";
-            $scope.users = response;
-        });
+
 
         $scope.hide = true;
         $scope.dispalert = false;
@@ -22,19 +18,24 @@
 
             $scope.dispalert = false;
 
+            var newuser={
+                username : $scope.username,
+                password : $scope.password,
+                emails : $scope.email
+            }
 
-            UserService.createUser($rootScope.user).then(
+
+            UserService.createUser(newuser).then(
                 function (response) {
-                    UserService.findUserByCredentials($scope.username,$scope.password).then(
-                        function(response){
-                            "use strict";
+
                             $rootScope.user = response.data;
-                        }
-                    );
+                            $location.path("/profile");
+
+
 
                 });
 
-            $location.path("/profile");
+
         };
 
 
