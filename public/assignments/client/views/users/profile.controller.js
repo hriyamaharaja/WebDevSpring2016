@@ -22,6 +22,8 @@
             user.firstName = this.firstName;
             user.lastName = this.lastName;
             user.password = this.password;
+            user.emails = this.email;
+            user.phones = this.phone;
             user.roles = this.user.roles;
 
             UserService.updateUser(user._id,user).then(function(response){

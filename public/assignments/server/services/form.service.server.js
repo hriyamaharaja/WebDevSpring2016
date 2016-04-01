@@ -52,7 +52,7 @@ module.exports = function (app, model) {
         var form = req.body;
         form.fields = [];
         var userId = req.params.userId;
-        formModel.createFormForUser(userId, form).then(
+        model.createFormForUser(userId, form).then(
             function (doc) {
                 res.json(doc);
             },
@@ -65,7 +65,7 @@ module.exports = function (app, model) {
     function updateForm(req, res) {
         var newForm = req.body;
         var formId = req.params.formId;
-        formModel.updateFormById(formId, newForm).then(
+        model.updateFormById(formId, newForm).then(
             function (doc) {
                 res.json(doc);
             },
