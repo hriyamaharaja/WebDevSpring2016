@@ -171,11 +171,7 @@
 
             FieldService.updateField($scope.formId, _id, updatedField).then(
                 function (response) {
-                    FieldService.getFieldsForForm($scope.formId).then(
-                        function (response) {
-                            $scope.fields = response.data;
-                        }
-                    );
+                    $scope.fields = response.data.fields;
 
                 }
             );
@@ -198,6 +194,9 @@
             }
 
 
+            /*
+            * */
+            /*
             FormService.findFormById($scope.formId).then(
                 function (response) {
 
@@ -207,15 +206,12 @@
                     FormService.updateFormById($scope.formId, $scope.newform).then(
                         function (response) {
 
-                            FieldService.getFieldsForForm($scope.formId).then(
-                                function (response) {
-                                    $scope.fields = response.data;
-                                }
-                            );
+                            $scope.fields = response.data.fields;
+
                         }
                     );
                 }
-            );
+            );*/
         }
 
         $scope.cloneField = function (index) {
