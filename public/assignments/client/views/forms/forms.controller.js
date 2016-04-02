@@ -42,7 +42,7 @@
             var newForm = {
 
                 _id: $scope.forms[$scope.selectedFormIndex]._id,
-                recipe: $scope.formName,
+                title: $scope.formName,
                 userId: $scope.rootScope.user._id
 
 
@@ -50,6 +50,7 @@
 
 
             FormService.updateFormById($scope.forms[$scope.selectedFormIndex]._id, newForm).then(function (response) {
+                console.log(response);
                 $scope.formName = "";
                 FormService.findAllFormsForUser($scope.rootScope.user._id).then(function (response) {
                     $scope.forms = response.data;
@@ -60,7 +61,7 @@
 
         $scope.selectForm = function (index) {
             $scope.selectedFormIndex = index;
-            $scope.formName = $scope.forms[index].recipe;
+            $scope.formName = $scope.forms[index].title;
         };
 
         $scope.deleteForm = function (index) {

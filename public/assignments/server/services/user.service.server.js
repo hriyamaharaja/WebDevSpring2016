@@ -72,7 +72,7 @@ module.exports = function (app, model) {
     }
 
     function updateUser(req, res) {
-        var id = req.params.id;
+        var id = req.params.userId;
         var user = req.body;
 
         model.updateUser(id, user).then(

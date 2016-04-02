@@ -4,7 +4,7 @@
 module.exports = function (mongoose) {
     var field = mongoose.Schema({
         label: String,
-        type: {type: String, enum: ["TEXT", "TEXTAREA", "DATE", "OPTIONS", "RADIOS", "CHECKBOXES"]},
+        type: {type: String, enum: ["TEXT", "TEXTAREA", "DATE", "EMAIL", "OPTIONS", "RADIOS", "CHECKBOXES"]},
         placeholder: String,
         options: [{label: String, value: String}]
     });

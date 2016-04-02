@@ -12,7 +12,8 @@
         $scope.firstName = $scope.user.firstName;
         $scope.lastName = $scope.user.lastName;
         $scope.password = $scope.user.password;
-        $scope.email = $scope.user.email;
+        $scope.email = $scope.user.emails;
+        $scope.phone = $scope.user.phones;
 
         $scope.update = function(){
 
@@ -27,7 +28,9 @@
             user.roles = this.user.roles;
 
             UserService.updateUser(user._id,user).then(function(response){
-                console.log(response.data);
+
+                $rootScope.user = response.data;
+
             });
 
             $location.path("/profile");

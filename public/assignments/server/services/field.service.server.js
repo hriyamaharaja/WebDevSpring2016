@@ -27,7 +27,7 @@ module.exports = function (app, model) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
 
-        var field = model.findFieldById(formId)
+        var field = model.findFieldById(fieldId,formId)
             .then(
                 function (doc) {
                     res.json(doc);
@@ -57,7 +57,7 @@ module.exports = function (app, model) {
         var formId = req.params.formId;
         var field = req.body;
 
-        model.createFieldForForm(formId, newField).then(
+        model.createFieldForForm(formId, field).then(
             function (doc) {
                 res.json(doc);
             },
