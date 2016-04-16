@@ -7,16 +7,15 @@
     function userService($http) {
 
 
-        var service = {
-            findAllUsers: findAllUsers,
+        var api = {
+
             findUserByCredentials: findUserByCredentials,
             createUser: createUser,
-            deleteUserById: deleteUserById,
             updateUser: updateUser,
             findUserByUsername: findUserByUsername
         };
 
-        return service;
+        return api;
 
         function findAllUsers() {
             return $http.get('/api/project/user');
@@ -40,12 +39,8 @@
         }
 
         function createUser(user) {
-            return $http.post('/api/project/user', user);
+            return $http.post('/api/project/register', user);
 
-        }
-
-        function deleteUserById(userId) {
-            return $http.delete('/api/project/user/' + userId);
         }
 
         function updateUser(userId, user) {

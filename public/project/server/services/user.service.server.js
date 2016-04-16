@@ -1,11 +1,14 @@
 /**
  * Created by hriya on 3/15/16.
  */
+var passport         = require('passport');
+var LocalStrategy    = require('passport-local').Strategy;
+
 module.exports = function (app, model) {
     "use strict";
+    var auth = authorized;
 
-    var uuid = require('node-uuid');
-    app.post('/api/project/user', createUser);
+
     app.get('/api/project/user/:id', getUserById);
     app.all('/api/project/user', function (req, res, next) {
         if (req.query.username != null && req.query.password != null) {
@@ -17,83 +20,163 @@ module.exports = function (app, model) {
             next();
         }
     });
-    app.get('/api/project/user', getAllUsers);
-    app.put('/api/project/user/:userId', updateUser);
-    app.delete('/api/project/user/:id', deleteUser);
+
+    app.put('/api/project/user/:userId',auth, updateUser);
+
+    app.post('/api/project/login',passport.authenticate('local'), login);
+    app.post('/api/project/logout',         logout);
+    app.post('/api/project/register',       register);
+
+    app.get ('/api/project/loggedin',       loggedin);
+
+    passport.use(new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
 
 
-    function createUser(req, res) {
-        var user = req.body;
-        var id =  uuid.v4();
-        user._id = id;
-        user = model.createUser(user);
-        if (user) {
-            res.send(200);
-            return;
-        }
-        res.json({message: "User not created"});
+    function localStrategy(username, password, done) {
+        model
+            .findUserByCredentials(username, password)
+            .then(
+                function(user) {
+                    if (!user) { return done(null, false); }
+                    return done(null, user);
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            );
     }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        model
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
+
+    function loggedin(req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
+    }
+
+    function logout(req, res) {
+        req.logOut();
+        res.send(200);
+    }
+
+    function register(req, res) {
+        var newUser = req.body;
+        newUser.roles = ['user'];
+
+        model
+            .findUserByUsername(newUser.username)
+            .then(
+                function(user){
+                    if(user) {
+                        res.json(null);
+                    } else {
+                        model.createUser(newUser).then(
+                            function(user){
+                                if(user){
+                                    req.login(user, function(err) {
+                                        if(err) {
+                                            res.status(400).send(err);
+                                        } else {
+                                            res.json(user);
+                                        }
+                                    });
+                                }
+                            },
+                            function(err){
+                                res.status(400).send(err);
+                            }
+                        );
+                    }
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
+
+    }
+
+
 
     function getUserById(req, res) {
         var id = req.params.id;
-        var user = model.findUserById(id);
-        if (user) {
-            res.json(user);
-            return;
-        }
-        res.json({message: "User not found"});
-    }
-
-    function getAllUsers(req, res) {
-        console.log(req.query.username == null);
-        var users = model.findAllUsers();
-        res.json(users);
+        res.json(model.findUserById(id));
     }
 
 
     function findUserByUsername(req, res) {
 
         var username = req.query.username;
-        var user = model.findUserByUsername(username);
-        if (user) {
-            res.json(user);
-            return;
-        }
-        res.json({message: "User Not found"});
+        res.json(model.findUserByUsername(username));
     }
 
     function findUserByCredentials(req, res) {
         var username = req.query.username;
         var password = req.query.password;
 
-        var user = model.findUserByCredentials(username, password);
-        if (user) {
-            res.json(user);
-            return;
-        }
-        res.json({message: "User Not found"});
+        model.findUserByCredentials(username, password).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function updateUser(req, res) {
-        var id = req.params.id;
+        var id = req.params.userId;
         var user = req.body;
-
-        var user = model.updateUser(user);
-        if (user) {
-            res.send(200);
-            return;
+        if(!isAdmin(req.user)) {
+            delete user.roles;
         }
-        res.send(404);
+        if(typeof user.roles == "string") {
+            user.roles = user.roles.split(",");
+        }
+
+        model.updateUser(id, user).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
-    function deleteUser(req, res) {
-        var id = req.params.id;
-        if (model.deleteUserById(id)) {
-            res.send(200);
-            return;
+
+
+    function isAdmin(user) {
+        if(user.roles.indexOf("admin") > -1) {
+            return true
         }
-        res.json({message: "User not found"});
+        return false;
     }
 
-
+    function authorized (req, res, next) {
+        if (!req.isAuthenticated()) {
+            res.send(401);
+        } else {
+            next();
+        }
+    };
 }

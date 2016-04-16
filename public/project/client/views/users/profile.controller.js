@@ -12,7 +12,7 @@
         $scope.firstName = $scope.user.firstName;
         $scope.lastName = $scope.user.lastName;
         $scope.password = $scope.user.password;
-        $scope.email = $scope.user.email;
+        $scope.email = $scope.user.emails;
 
         $scope.update = function(){
 
@@ -22,6 +22,7 @@
             user.firstName = this.firstName;
             user.lastName = this.lastName;
             user.password = this.password;
+            user.emails = this.email;
             user.roles = this.user.roles;
 
             UserService.updateUser(user._id,user).then(function(response){
@@ -31,9 +32,6 @@
             $location.path("/profile");
         };
 
-
-
     }
 
 })();
-

@@ -1,102 +1,69 @@
-(function () {
-    "use strict";
+/**
+ * Created by hriya on 2/20/16.
+ */
+"use strict";
+
+(function()
+{
     angular
         .module("RecipeWorld")
         .controller("AdminController", AdminController);
 
-    function AdminController($rootScope, $scope, $location, UserService) {
-        $scope.$location = $location;
-        $scope.rootScope = $rootScope;
-        $scope.users = {};
+    function AdminController($scope, AdminService)
+    {
+        $scope.remove = remove;
+        $scope.update = update;
+        $scope.add    = add;
+        $scope.select = select;
+        $scope.reverse = false;
+        $scope.predicate = 'username';
+        $scope.selectedFormIndex = null;
+        $scope.disable = true;
 
-        if ($rootScope.user.roles.indexOf('admin') >= 0) {
-            UserService.findAllUsers().then(function (response) {
-                $scope.users = response;
-            });
+        function init() {
+            UseAdminServicerService
+                .findAllUsers()
+                .then(handleSuccess, handleError);
+        }
+        init();
+
+        function remove(user)
+        {
+            AdminService
+                .deleteUserById(user._id)
+                .then(init());
         }
 
-        $scope.addUser = function () {
+        function update(user)
+        {
+            AdminService
+                .updateUser(user._id, user)
+                .then(init());
+        }
 
-            var newUser = {
+        function add(user)
+        {
+            AdminService
+                .createUser(user)
+                .then(init());
+        }
 
-                _id: (new Date()).getTime(),
-                firstName: $scope.firstname,
-                lastName: $scope.lastname,
-                username: $scope.username,
-                password: $scope.password,
-                roles: $scope.roles
-            }
+        function select(user)
+        {
+            $scope.user = angular.copy(user);
+        }
 
+        function handleSuccess(response) {
+            $scope.users = response.data;
+        }
 
-            UserService.createUser(newUser).then(
-                function (response) {
+        function handleError(error) {
+            $scope.error = error;
+        }
 
-
-                    UserService.findAllUsers().then(function (response) {
-                        $scope.firstname = "";
-                        $scope.lastname = "";
-                        $scope.password = "";
-                        $scope.username = "";
-                        $scope.roles = "";
-                        $scope.users = response;
-                    });
-                });
-
+        $scope.sort = function(predicate) {
+            $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+            $scope.predicate = predicate;
         };
-
-        $scope.updateUser = function () {
-
-            var newUser = {
-
-                _id: $scope.users[$scope.selectedUserIndex]._id,
-                firstName: $scope.firstname,
-                lastName: $scope.lastname,
-                username: $scope.username,
-                password: $scope.password,
-                roles: $scope.roles
-
-
-            }
-
-
-            UserService.updateUser($scope.users[$scope.selectedUserIndex]._id, newUser).then(function (response) {
-
-                UserService.findAllUsers().then(function (response) {
-                    $scope.firstname = "";
-                    $scope.lastname = "";
-                    $scope.password = "";
-                    $scope.username = "";
-                    $scope.roles = "";
-                    $scope.users = response;
-                });
-            });
-        };
-
-
-        $scope.selectUser = function (index) {
-            $scope.selectedUserIndex = index;
-            $scope.firstname = $scope.users[index].firstName;
-            $scope.lastname = $scope.users[index].lastName;
-            $scope.password = $scope.users[index].password;
-            $scope.username = $scope.users[index].username;
-            $scope.roles = $scope.users[index].roles;
-        };
-
-        $scope.deleteUser = function (index) {
-            $scope.selectedUserIndex = index;
-
-            UserService.deleteUserById($scope.users[index]._id).then(function (response) {
-                UserService.findAllUsers().then(function (response) {
-                    $scope.firstname = "";
-                    $scope.lastname = "";
-                    $scope.password = "";
-                    $scope.username = "";
-                    $scope.roles = "";
-                    $scope.users = response;
-                });
-
-            });
-        };
-
     }
 })();
