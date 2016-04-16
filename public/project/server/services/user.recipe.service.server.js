@@ -1,7 +1,7 @@
 module.exports = function(app,model) {
     "use strict";
 
-    var uuid = require('node-uuid');
+
     app.get('/api/project/user/:userId/recipe/', findAllRecipesForUser);
     app.delete('/api/project/recipe/:recipeId', deleteRecipeByIdForUser);
     app.post('/api/project/user/:userId/recipe/', createrecipeForUser);
@@ -10,35 +10,54 @@ module.exports = function(app,model) {
 
     function findAllRecipesForUser(req,res){
         var userId = req.params.userId;
-        var recipes = model.findAllRecipesForUser(userId);
-        res.json(recipes);
+        model.findAllRecipesForUser(userId).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function deleteRecipeByIdForUser(req,res){
         var userId = req.params.userId;
         var recipeId = req.params.recipeId;
-        var recipes = model.deleteRecipeById(recipeId);
-        res.json(recipes);
+        model.deleteRecipeById(recipeId).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function createrecipeForUser(req,res){
         var userId = req.params.userId;
         var recipe = req.body;
-        if (model.createRecipeForUser(userId,recipe)) {
-            res.send(200);
-            return;
-        }
-        res.json({message: "Recipe not created"});
+        model.createRecipeForUser(userId,recipe).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function updateRecipeByIdForUser(req,res){
         var userId = req.params.userId;
         var recipeId = req.params.recipeId;
         var newRecipe = req.body;
-        if (model.updateRecipeById(recipeId,newRecipe)) {
-            res.send(200);
-            return;
-        }
-        res.send(404);
+        newRecipe.userId = userId;
+        model.updateRecipeById(recipeId,newRecipe).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 }

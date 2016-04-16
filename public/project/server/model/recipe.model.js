@@ -1,15 +1,12 @@
-/**
- * Created by hriya on 3/25/16.
- */
-/**
- * Created by hriya on 3/19/16.
- */
 
+var q = require("q");
 
-var recipes = require("./recipe.mock.json");
 module.exports = function () {
 
-    var uuid = require('node-uuid');
+    var RecipeSchema = require("./recipe.schema.server.js")(mongoose);
+    var RecipeModel = mongoose.model('Recipe', RecipeSchema);
+
+
     var api = {
         createRecipeForUser: createrecipeForUser,
         findAllRecipesForUser: findAllRecipesForUser,
@@ -21,41 +18,65 @@ module.exports = function () {
     return api;
 
     function createrecipeForUser(userId, recipe) {
-        recipe._id = uuid.v4();
+        var deferred = q.defer();
+
+
         recipe.userId = userId;
-        recipes.push(recipe);
-        return recipes;
+
+        RecipeModel.create(recipe, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
+            }
+            else {
+                deferred.resolve(doc);
+            }
+        });
+
+        return deferred.promise;
     }
 
     function findAllRecipesForUser(userId) {
-        var userRecipes = [];
-        for (var recipe in recipes) {
-            if (recipes[recipe].userId == userId) {
-                userRecipes.push(recipes[recipe]);
+        var deferred = q.defer();
+
+        RecipeModel.find({userId: userId}, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
             }
-        }
-        return userRecipes;
+            else {
+                deferred.resolve(doc);
+            }
+        });
+        return deferred.promise;
+
     }
 
     function deleteRecipeById(recipeId) {
-        for (var recipe in recipes) {
-            if (recipes[recipe]._id === recipeId) {
-                recipes.splice(recipe, 1);
-                break;
+
+        var deferred = q.defer();
+
+        RecipeModel.remove({_id: recipeId}, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
             }
-        }
-        return recipes;
+            else {
+                deferred.resolve(doc);
+            }
+        });
+
+        return deferred.promise;
     }
 
     function updateRecipeById(recipeId, newRecipe) {
+        var deferred = q.defer();
 
-        for (var recipe in recipes) {
-            if (recipes[recipe]._id === recipeId) {
-                recipes[recipe] = newRecipe;
-                break;
+         RecipeModel.update({_id: recipeId}, {$set: newRecipe}, function (err, doc) {
+            if (err) {
+                deferred.reject(err);
             }
-
-        }
-        return recipes;
+            else {
+                deferred.resolve(doc);
+            }
+        });
+        return deferred.promise;
     }
 }

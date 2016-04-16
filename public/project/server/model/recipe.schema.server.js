@@ -7,7 +7,7 @@ module.exports = function (mongoose) {
     var RecipeSchema = mongoose.Schema({
         recipe: String,
         recipeId: String,
-        userIds: [String]
+        userId: String
         }, {collection: 'project.recipe'});
     return RecipeSchema;
 };
