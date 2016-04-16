@@ -1,6 +1,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var multer        = require('multer');
 var mongoose = require("mongoose");
+var passport      = require('passport');
+var cookieParser  = require('cookie-parser');
+var session       = require('express-session');
 
 var connectionString = 'mongodb://127.0.0.1:27017/cs5610spring2016';
 
@@ -16,6 +20,15 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 var db = mongoose.connect(connectionString);
 
 var app = express();
+
+app.use(session({
+    secret:"secret",
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));

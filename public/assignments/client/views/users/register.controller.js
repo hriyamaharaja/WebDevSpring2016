@@ -25,7 +25,7 @@
             }
 
 
-            UserService.createUser(newuser).then(
+            UserService.register(newuser).then(
                 function (response) {
 
                             $rootScope.user = response.data;

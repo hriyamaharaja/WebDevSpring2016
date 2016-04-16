@@ -20,40 +20,43 @@
                     <thead>
                     <tr>
 
+                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>ID</th>
                         <th><i class="glyphicon glyphicon-triangle-bottom"></i>Username</th>
                         <th><i class="glyphicon glyphicon-triangle-bottom"></i>Password</th>
-                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>Role</th>
-                        <th>Action</th>
+                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>First Name</th>
+                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>Last Name</th>
+                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>Emails</th>
+                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>Phones</th>
+                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>Roles</th>
+                        <th colspan="2">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td><input type="text" placeholder="username"></td>
-                        <td><input type="text" placeholder="password"></td>
-                        <td><input type="text" placeholder="role1,role2"></td>
-                        <td><i class="glyphicon glyphicon-plus"></i> <i class="glyphicon glyphicon-ok"></i></td>
+                        <td>{{user._id}}</td>
+                        <td><input ng-model="user.username" class="form-control" placeholder="username"/></td>
+                        <td><input ng-model="user.jkfklslkl" class="form-control" type="password" placeholder="password"/></td>
+                        <td><input ng-model="user.firstName" class="form-control" placeholder="first"/></td>
+                        <td><input ng-model="user.lastName" class="form-control" placeholder="last"/></td>
+                        <td><input ng-model="user.emails" ng-list="," class="form-control" type="text" placeholder="email"/></td>
+                        <td><input ng-model="user.phones" ng-list="," class="form-control" type="text" placeholder="phone"/></td>
+                        <td><input ng-model="user.roles"  ng-list="," class="form-control" type="text" placeholder="roles"/></td>
+                        <td><button ng-click="add(user)" class="btn btn-primary">&plus;</button>
+                        <td><button ng-click="update(user)" class="btn btn-success">&check;</button>
+                    </tr>
 
                     </tr>
-                    <tr>
-                        <td>Alice</td>
-                        <td> </td>
-                        <td>student</td>
-                        <td><i class="glyphicon glyphicon-remove"></i> <i class="glyphicon glyphicon-pencil"></i></td>
-
-                    </tr>
-                    <tr>
-                        <td>Bob</td>
-                        <td></td>
-                        <td>Faculty | Admin</td>
-                        <td><i class="glyphicon glyphicon-remove"></i> <i class="glyphicon glyphicon-pencil"></i></td>
-
-                    </tr>
-                    <tr>
-                        <td>Charlie</td>
-                        <td></td>
-                        <td></td>
-                        <td><i class="glyphicon glyphicon-remove"></i> <i class="glyphicon glyphicon-pencil"></i></td>
-
+                    <tr ng-repeat="user in users">
+                        <td>{{user._id}}</td>
+                        <td>{{user.username}}</td>
+                        <td>&nbsp;</td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+                        <td>{{user.emails}}</td>
+                        <td>{{user.phones}}</td>
+                        <td>{{user.roles}}</td>
+                        <td><button ng-click="remove(user)" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+                        <td><button ng-click="select(user)" class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i></button>
                     </tr>
                     </tbody>
                 </table>

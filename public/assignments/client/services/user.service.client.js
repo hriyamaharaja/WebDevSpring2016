@@ -13,7 +13,9 @@
             createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser,
-            findUserByUsername: findUserByUsername
+            findUserByUsername: findUserByUsername,
+            login : login,
+            register:register
         };
 
         return service;
@@ -23,14 +25,21 @@
 
         }
 
-        function findUserByCredentials(username, password) {
-            var data = {
-                username: username,
-                password: password
-            };
+        function findUserByCredentials(user) {
+            return $http.get('/api/assignment/login', user);
 
-            return $http.get('/api/assignment/user', {params: data});
+        }
 
+        function logout() {
+            return $http.post("/api/logout");
+        }
+
+        function register(user) {
+            return $http.post("/api/register", user);
+        }
+
+        function login(user) {
+            return $http.post("/api/login", user);
         }
 
         function findUserByUsername(username) {
@@ -42,7 +51,7 @@
         }
 
         function createUser(user) {
-            return $http.post('/api/assignment/user', user);
+            return $http.post('/api/user', user);
 
         }
 

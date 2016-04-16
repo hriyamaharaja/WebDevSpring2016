@@ -18,7 +18,6 @@ module.exports = function (app, model) {
         }
     });
     app.get('/api/project/user', getAllUsers);
-
     app.put('/api/project/user/:userId', updateUser);
     app.delete('/api/project/user/:id', deleteUser);
 

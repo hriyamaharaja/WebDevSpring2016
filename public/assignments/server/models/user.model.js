@@ -36,7 +36,7 @@ module.exports = function (db, mongoose) {
 
         function findUserByUsername(username) {
         var deferred = q.defer();
-        FormModel.findOne({username: username}, function (err, doc) {
+            UserModel.findOne({username: username}, function (err, doc) {
             if (err)
                 deferred.reject(err);
             else
@@ -82,6 +82,7 @@ module.exports = function (db, mongoose) {
 
         UserModel.create(user, function (err, doc) {
             if (err) {
+                console.log(err);
                 deferred.reject(err);
             }
             else {
@@ -113,12 +114,14 @@ module.exports = function (db, mongoose) {
             if (err)
                 deferred.reject(err);
             else {
+                //$set
                 userToUpdate.firstName = user.firstName;
                 userToUpdate.lastName = user.lastName;
                 userToUpdate.password = user.password;
                 userToUpdate.username = user.username;
                 userToUpdate.emails = user.emails;
                 userToUpdate.phones = user.phones;
+                userToUpdate.roles = user.roles;
                 userToUpdate.save(function (err, doc) {
                     if (err)
                         deferred.reject(err);
