@@ -38,8 +38,6 @@
         $scope.updateRecipe = function () {
 
             var newRecipe = {
-
-                _id: $scope.recipes[$scope.selectedRecipeIndex]._id,
                 recipe: $scope.recipeName,
                 userId: $scope.rootScope.user._id
 

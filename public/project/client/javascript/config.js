@@ -23,13 +23,19 @@
                 })
                 .when("/profile", {
                     templateUrl: "views/users/profile.view.html",
-                    controller: "ProfileController"
+                    controller: "ProfileController",
+                    resolve: {
+                        //loggedin: checkLoggedin
+                    }
 
 
                 })
                 .when("/admin", {
                     templateUrl: "views/admin/admin.view.html",
-                    controller: "AdminController"
+                    controller: "AdminController",
+                    resolve: {
+                        //loggedin: checkAdmin
+                    }
 
 
                 })
@@ -41,12 +47,18 @@
                 })
                 .when("/myrecipes", {
                     templateUrl: "views/recipes/my-recipes.view.html",
-                    controller: "MyRecipesController"
+                    controller: "MyRecipesController",
+                    resolve: {
+                        //loggedin: checkLoggedin
+                    }
 
 
                 })
                 .when("/addrecipes", {
-                    templateUrl: "views/recipes/add-recipe.view.html"
+                    templateUrl: "views/recipes/add-recipe.view.html",
+                    resolve: {
+                        //loggedin: checkLoggedin
+                    }
 
 
                 })
@@ -73,7 +85,7 @@
     {
         var deferred = $q.defer();
 
-        $http.get('/api/loggedin').success(function(user)
+        $http.get('/api/project/loggedin').success(function(user)
         {
             $rootScope.errorMessage = null;
             // User is Authenticated
@@ -92,7 +104,7 @@
     {
         var deferred = $q.defer();
 
-        $http.get('/api/loggedin').success(function(user)
+        $http.get('/api/project/loggedin').success(function(user)
         {
             $rootScope.errorMessage = null;
             // User is Authenticated
@@ -117,7 +129,7 @@
     {
         var deferred = $q.defer();
 
-        $http.get('/api/loggedin').success(function(user)
+        $http.get('/api/project/loggedin').success(function(user)
         {
             $rootScope.errorMessage = null;
             // User is Authenticated

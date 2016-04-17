@@ -5,8 +5,8 @@ var q = require("q");
 
 module.exports = function (db, mongoose) {
 
-    var UserSchema = require("./user.schema.server.js")(mongoose);
-    var UserModel = mongoose.model('User', ProjectUserSchema);
+    var ProjectUserSchema = require("./user.schema.server.js")(mongoose);
+    var UserModel = mongoose.model('ProjectUser', ProjectUserSchema);
 
     var api = {
         findAllUsers: findAllUsers,
@@ -135,5 +135,7 @@ module.exports = function (db, mongoose) {
 
         return deferred.promise;
     }
+
+
 
 };

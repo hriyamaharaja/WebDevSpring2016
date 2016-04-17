@@ -8,7 +8,9 @@ module.exports = function (mongoose) {
     var ReviewSchema = mongoose.Schema({
         recipeId: String,
         userId: String,
-        text: String
+        username: String,
+        text: String,
+        rating: Number
     }, {collection: 'project.review'});
     return ReviewSchema;
 };

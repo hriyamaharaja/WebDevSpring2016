@@ -8,12 +8,8 @@
         <div class="text-muted text-right">
             <p>Preparation Time : {{recipe.totalTime}}</p>
             <p>Serves : {{recipe.numberOfServings}}</p>
-            <p><a href="#/myrecipes" ng-hide="rootScope.user==null" class="btn btn-lg btn-danger">
+            <p><a ng-click="saveRecipe()" ng-hide="rootScope.user==null" class="btn btn-lg btn-danger">
                 Save <i class="glyphicon glyphicon-heart-empty"></i></a></p>
-
-
-
-
         </div>
 
     </div>
@@ -51,37 +47,40 @@
 
 
     </div>
-    <div class="media">
+    <div class="media" ng-repeat="review in reviews">
         <div class="media-left">
             <a href="#">
-                <img class="media-object" width="80px" src="images/profile.png">
+                {{review.username}}
             </a>
         </div>
         <div class="media-body">
-            <h4 class="media-heading"><img class="media-object" width="80px" src="images/rating.png"></h4>
-            Love this recipe !
+            <h4 class="media-heading">Rating: {{review.rating}} stars</h4>
+           {{review.text}}
         </div>
     </div>
-    <div class="media">
-        <div class="media-left">
-            <a href="#">
-                <img class="media-object" width="80px" src="images/profile.png">
-            </a>
-        </div>
-        <div class="media-body">
-            <h4 class="media-heading"><img class="media-object" width="80px" src="images/rating.png"></h4>
-            Simple and easy to follow.
-        </div>
 
-    </div>
-    <div class="text-center">
-    <p><a href="#"  ng-hide="rootScope.user==null" class="btn btn-lg btn-success">
+    <div class="media text-center">
+        <div ng-show="showReview">
+            <div class="media-left">
+            <select class="form-control-lg" ng-model="review.stars">
+                <option value="1">1 star</option> 
+                <option value="2">2 stars</option> 
+                <option value="3">3 stars</option> 
+                <option value="4">4 stars</option> 
+                <option value="5" selected>5 stars</option> 
+            </select>
+            </div>
+            <div class="media-body">
+            <textarea rows="5" cols="50" ng-model="review.body"/>
+            <a ng-click="toggleReview() && addReview()"  class="btn btn-lg btn-info">
+                Submit Review <i class="glyphicon glyphicon-ok-sign"></i></a>
+            <a ng-click="toggleReview()"  class="btn btn-lg btn-danger">
+                Cancel <i class="glyphicon glyphicon-remove-sign"></i></a>
+            </div>
+        </div>
+    <p><a ng-click="toggleReview()" ng-hide="showReview" class="btn btn-lg btn-success">
        Write Review <i class="glyphicon glyphicon-plus-sign"></i></a></p>
     </div>
-
-
-
-
 
 
 </div>

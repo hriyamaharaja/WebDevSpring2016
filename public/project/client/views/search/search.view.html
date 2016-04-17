@@ -17,7 +17,7 @@
     </div>
 
     <div class="input-group">
-        <select ng-model="diet" class="form-control" title="Diet">
+        <select style="border:none" ng-model="diet" class="form-control" title="Diet">
             <option value="" disabled selected>Dietary Specification</option>
             <option value="388^Lacto vegetarian">Lacto Vegetarian</option>
             <option value="389^Ovo vegetarian">Ovo Vegetarian</option>
@@ -41,7 +41,7 @@
 
 </fieldset>
 
-<h3>Search Results</h3>
+<h3 ng-if="data.totalMatchCount">Search Results</h3>
 {{message}}
 <div class="table-responsive">
     <table class="table table-striped">

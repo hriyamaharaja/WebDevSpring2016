@@ -1,7 +1,7 @@
 
 var q = require("q");
 
-module.exports = function () {
+module.exports = function (db,mongoose) {
 
     var RecipeSchema = require("./recipe.schema.server.js")(mongoose);
     var RecipeModel = mongoose.model('Recipe', RecipeSchema);

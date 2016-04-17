@@ -10,20 +10,20 @@
         $scope.hide = true;
         $scope.dispalert = false;
 
+        $scope.user={};
+        $scope.user.email = "";
 
         $scope.register = function () {
-            if ($scope.password != $scope.verifyPassword)
+            if ($scope.user.password != $scope.verifyPassword)
                 dispalert = true;
-
-
             $scope.dispalert = false;
 
+            $scope.user.email = $scope.email;
 
-            UserService.createUser($rootScope.user).then(
+            UserService.createUser($scope.user).then(
                 function (response) {
-                    UserService.findUserByCredentials($scope.username,$scope.password).then(
+                    UserService.findUserByCredentials($scope.user.username,$scope.user.password).then(
                         function(response){
-                            "use strict";
                             $rootScope.user = response.data;
                         }
                     );

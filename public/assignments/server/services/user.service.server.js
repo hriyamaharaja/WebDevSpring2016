@@ -1,8 +1,8 @@
 /**
  * Created by hriya on 3/15/16.
  */
-var passport         = require('passport');
-var LocalStrategy    = require('passport-local').Strategy;
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function (app, model) {
     "use strict";
@@ -20,15 +20,15 @@ module.exports = function (app, model) {
             next();
         }
     });
-    app.get('/api/assignment/user', auth,getAllUsers);
+    app.get('/api/assignment/user', auth, getAllUsers);
 
-    app.put('/api/assignment/user/:userId',auth, updateUser);
-    app.delete('/api/assignment/user/:id',auth, deleteUser);
-    app.post('/api/login',passport.authenticate('local'), login);
-    app.post('/api/logout',         logout);
-    app.post('/api/register',       register);
-    app.post('/api/user',     auth, createUser);
-    app.get ('/api/loggedin',       loggedin);
+    app.put('/api/assignment/user/:userId', auth, updateUser);
+    app.delete('/api/assignment/user/:id', auth, deleteUser);
+    app.post('/api/login', passport.authenticate('local'), login);
+    app.post('/api/logout', logout);
+    app.post('/api/register', register);
+    app.post('/api/user', auth, createUser);
+    app.get('/api/loggedin', loggedin);
 
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
@@ -39,12 +39,16 @@ module.exports = function (app, model) {
         model
             .findUserByCredentials(username, password)
             .then(
-                function(user) {
-                    if (!user) { return done(null, false); }
+                function (user) {
+                    if (!user) {
+                        return done(null, false);
+                    }
                     return done(null, user);
                 },
-                function(err) {
-                    if (err) { return done(err); }
+                function (err) {
+                    if (err) {
+                        return done(err);
+                    }
                 }
             );
     }
@@ -57,10 +61,10 @@ module.exports = function (app, model) {
         model
             .findUserById(user._id)
             .then(
-                function(user){
+                function (user) {
                     done(null, user);
                 },
-                function(err){
+                function (err) {
                     done(err, null);
                 }
             );
@@ -81,21 +85,23 @@ module.exports = function (app, model) {
     }
 
     function register(req, res) {
+
         var newUser = req.body;
         newUser.roles = ['user'];
 
         model
             .findUserByUsername(newUser.username)
             .then(
-                function(user){
-                    if(user) {
+                function (user) {
+                    if (user) {
                         res.json(null);
-                    } else {
+                    }
+                    else {
                         model.createUser(newUser).then(
-                            function(user){
-                                if(user){
-                                    req.login(user, function(err) {
-                                        if(err) {
+                            function (user) {
+                                if (user) {
+                                    req.login(user, function (err) {
+                                        if (err) {
                                             res.status(400).send(err);
                                         } else {
                                             res.json(user);
@@ -103,13 +109,13 @@ module.exports = function (app, model) {
                                     });
                                 }
                             },
-                            function(err){
+                            function (err) {
                                 res.status(400).send(err);
                             }
                         );
                     }
                 },
-                function(err){
+                function (err) {
                     res.status(400).send(err);
                 }
             );
@@ -120,7 +126,7 @@ module.exports = function (app, model) {
     function createUser(req, res) {
         var newUser = req.body;
         delete newUser['_id'];
-        if(newUser.roles && newUser.roles.length > 1) {
+        if (newUser.roles && newUser.roles.length > 1) {
             newUser.roles = newUser.roles.split(",");
         } else {
 
@@ -145,16 +151,16 @@ module.exports = function (app, model) {
     }
 
     function getAllUsers(req, res) {
-        if(isAdmin(req.user)) {
+        if (isAdmin(req.user)) {
 
             model.findAllUsers().then(
-            function (doc) {
-                res.json(doc);
-            },
-            function (err) {
-                res.status(400).send(err);
-            }
-        );
+                function (doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
         } else {
             res.status(403);
         }
@@ -184,10 +190,10 @@ module.exports = function (app, model) {
     function updateUser(req, res) {
         var id = req.params.userId;
         var user = req.body;
-        if(!isAdmin(req.user)) {
+        if (!isAdmin(req.user)) {
             delete user.roles;
         }
-        if(typeof user.roles == "string") {
+        if (typeof user.roles == "string") {
             user.roles = user.roles.split(",");
         }
 
@@ -204,29 +210,29 @@ module.exports = function (app, model) {
     function deleteUser(req, res) {
         var id = req.params.id;
         //if same user as logged in do not delete
-        if(isAdmin(req.user)) {
+        if (isAdmin(req.user)) {
 
             model.deleteUserById(id).then(
-            function (doc) {
-                res.json(doc);
-            },
-            function (err) {
-                res.status(400).send(err);
-            }
-        );
+                function (doc) {
+                    res.json(doc);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
         } else {
             res.status(403);
         }
     }
 
     function isAdmin(user) {
-        if(user.roles.indexOf("admin") > -1) {
+        if (user.roles.indexOf("admin") > -1) {
             return true
         }
         return false;
     }
 
-    function authorized (req, res, next) {
+    function authorized(req, res, next) {
         if (!req.isAuthenticated()) {
             res.send(401);
         } else {

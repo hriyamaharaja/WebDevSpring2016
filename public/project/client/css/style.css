@@ -11,6 +11,10 @@ body {
     -webkit-border-radius: 0 !important; -moz-border-radius: 0 !important; border-radius: 0 !important;
 }
 
+select{
+    -webkit-border-radius: 0 !important; -moz-border-radius: 0 !important; border-radius: 0 !important;
+}
+
 .home{
     background-image: url("../images/register.jpg");
     background-repeat: no-repeat;
