@@ -54,17 +54,21 @@
 
 
                 })
-                .when("/addrecipes", {
-                    templateUrl: "views/recipes/add-recipe.view.html",
-                    resolve: {
-                        //loggedin: checkLoggedin
-                    }
-
-
-                })
                 .when("/recipe/:recipeID", {
                     templateUrl: "views/recipes/recipe-details.view.html",
                     controller: "DetailController"
+
+
+                })
+                .when("/follow/:username", {
+                    templateUrl: "views/users/user-details.view.html",
+                    controller: "UserDetailController"
+
+
+                })
+                .when("/follow/review/:username", {
+                    templateUrl: "views/users/user-reviews.view.html",
+                    controller: "UserDetailController"
 
 
                 })

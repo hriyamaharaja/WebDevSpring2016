@@ -17,9 +17,6 @@
 
         return api;
 
-        function findAllUsers() {
-            return $http.get('/api/project/user');
-        }
 
         function findUserByCredentials(username, password) {
             var data = {

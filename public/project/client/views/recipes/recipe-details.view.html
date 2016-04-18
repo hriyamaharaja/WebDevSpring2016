@@ -8,8 +8,9 @@
         <div class="text-muted text-right">
             <p>Preparation Time : {{recipe.totalTime}}</p>
             <p>Serves : {{recipe.numberOfServings}}</p>
-            <p><a ng-click="saveRecipe()" ng-hide="rootScope.user==null" class="btn btn-lg btn-danger">
+            <p><a ng-click="saveRecipe()" ng-hide="rootScope.user==null || saved" class="btn btn-lg btn-danger">
                 Save <i class="glyphicon glyphicon-heart-empty"></i></a></p>
+            <p ng-show="saved">Saved <i class="glyphicon glyphicon-heart"></i></a></p>
         </div>
 
     </div>
@@ -44,12 +45,10 @@
             </ul>
         </div>
 
-
-
     </div>
     <div class="media" ng-repeat="review in reviews">
         <div class="media-left">
-            <a href="#">
+            <a href="#/follow/{{review.username}}">
                 {{review.username}}
             </a>
         </div>
@@ -59,24 +58,30 @@
         </div>
     </div>
 
-    <div class="media text-center">
-        <div ng-show="showReview">
-            <div class="media-left">
+
+        <div ng-show="showReview" class="text-center">
+            <div class=" input-group">
+
+                <label>Rate this recipe: </label>
             <select class="form-control-lg" ng-model="review.stars">
                 <option value="1">1 star</option> 
                 <option value="2">2 stars</option> 
                 <option value="3">3 stars</option> 
                 <option value="4">4 stars</option> 
-                <option value="5" selected>5 stars</option> 
+                <option value="5" aria-selected="true" selected>5 stars</option> 
             </select>
-            </div>
-            <div class="media-body">
-            <textarea rows="5" cols="50" ng-model="review.body"/>
+                </div>
+            <div class="input-group">
+                <textarea  ng-model="review.body"/>
+                </div>
+            <div class="input-group text-center">
+
+
             <a ng-click="toggleReview() && addReview()"  class="btn btn-lg btn-info">
                 Submit Review <i class="glyphicon glyphicon-ok-sign"></i></a>
             <a ng-click="toggleReview()"  class="btn btn-lg btn-danger">
                 Cancel <i class="glyphicon glyphicon-remove-sign"></i></a>
-            </div>
+           </div>
         </div>
     <p><a ng-click="toggleReview()" ng-hide="showReview" class="btn btn-lg btn-success">
        Write Review <i class="glyphicon glyphicon-plus-sign"></i></a></p>

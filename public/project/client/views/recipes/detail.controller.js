@@ -12,9 +12,22 @@
         $scope.showReview = false;
 
         $scope.toggleReview = function(){
-            "use strict";
             $scope.showReview = !$scope.showReview;
         }
+
+        $scope.saved = false;
+
+        UserRecipeService.findAllRecipesForUser($rootScope.user._id).then(function(response){
+            var userRecipes = response.data;
+
+            for(var rec in userRecipes)
+            {
+                if(userRecipes[rec].recipeId == $scope.recipeID)
+                {
+                    $scope.saved = true;
+                }
+            }
+        });
 
         $scope.recipeID = $routeParams.recipeID;
 
@@ -43,6 +56,26 @@
 
             UserRecipeService.createRecipeForUser(userId, newRecipe).then(function (response) {
 
+                $scope.saved = true;
+            });
+
+        };
+
+        $scope.addReview = function () {
+            "use strict";
+            var newReview =
+            {
+                recipeId: $scope.recipeID,
+                userId: $rootScope.user._id,
+                username: $rootScope.user.username,
+                text: $scope.review.body,
+                rating: $scope.review.stars
+            }
+
+            var userId = $rootScope.user._id;
+
+            ReviewService.createReview(newReview).then(function (response) {
+                $scope.reviews = response.data;
             });
 
         };

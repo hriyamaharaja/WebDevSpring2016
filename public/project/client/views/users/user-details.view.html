@@ -1,10 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="container-fluid">
+    <div class="jumbotron" >
+            <h1>{{profile.username}}</h1>
 
-</body>
-</html>
+        <div class="row">
+            <div class="text-muted text-right">
+
+                <p><a ng-click="follow()" ng-hide="rootScope.user==null" class="btn btn-lg btn-success">
+                    Follow <i class="glyphicon glyphicon-plus-sign"></i></a></p>
+            </div>
+
+        </div>
+
+
+        <div>
+            <ul class="nav nav-tabs nav-justified">
+                <li class="active"><a href="#">{{profile.username}}'s Recipes</a></li>
+                <li><a href="#/follow/review/{{profile.username}}">{{profile.username}}'s Reviews</a></li>
+            </ul>
+        </div>
+        <div>
+            <table class="table table-bordered table-striped table-responsive">
+                <thead>
+                <tr>
+                    <td><i class="glyphicon glyphicon-triangle-bottom"></i>Name</td>
+
+                </tr>
+                </thead>
+                <tbody>
+
+
+                <tr ng-repeat="recipe in recipes">
+                    <td><a href="#/recipe/{{recipe.recipeId}}">{{recipe.recipe}}</a></td>
+
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>
