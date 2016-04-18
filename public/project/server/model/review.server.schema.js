@@ -6,6 +6,7 @@ module.exports = function (mongoose) {
 
 
     var ReviewSchema = mongoose.Schema({
+        recipe:String,
         recipeId: String,
         userId: String,
         username: String,

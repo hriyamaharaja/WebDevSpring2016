@@ -65,3 +65,9 @@ li:active{
 a.active{
     color: darkgrey !important;
 }
+
+select {
+    border: 0 ;
+    outline: 1px inset;
+    outline-offset:-1px
+}

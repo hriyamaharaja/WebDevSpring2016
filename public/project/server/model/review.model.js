@@ -21,7 +21,7 @@ module.exports = function (db,mongoose) {
 
     function createReview(review) {
         var deferred = q.defer();
-        review.userId = userId;
+
 
         ReviewModel.create(review, function (err, doc) {
             if (err) {

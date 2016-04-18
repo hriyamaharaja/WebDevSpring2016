@@ -4,22 +4,21 @@
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
-  padding-top: 50px;
-  /*font-family: "Lucida Calligraphy";*/
-  /*font-family: 'Museo Sans',Helvetica,Arial,sans-serif;*/
+    padding-top: 50px;
+    /*font-family: "Lucida Calligraphy";*/
+    /*font-family: 'Museo Sans',Helvetica,Arial,sans-serif;*/
 
-  font-family: "oswald",sans-serif;
-  font-weight: normal;
-  letter-spacing: 2px;
-  font-size: 15px;
-
+    font-family: "oswald", sans-serif;
+    font-weight: normal;
+    letter-spacing: 2px;
+    font-size: 15px;
 
 }
 
-html{
+html {
 
-  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
-  box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+    -webkit-box-shadow: inset 0 0 100px rgba(0, 0, 0, .5);
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, .5);
 }
 
 /*
@@ -27,8 +26,8 @@ html{
  */
 
 .sub-header {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
 }
 
 /*
@@ -36,8 +35,8 @@ html{
  * Hide default border to remove 1px line.
  */
 .navbar-fixed-top {
-  border: 0;
-  background-color:  white;
+    border: 0;
+    background-color: white;
 
 }
 
@@ -47,118 +46,136 @@ html{
 
 /* Hide for mobile, show later */
 .sidebar {
-  display: none;
+    display: none;
 }
+
 @media (min-width: 768px) {
-  .sidebar {
-    position: fixed;
-    top: 51px;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    display: block;
-    padding: 20px;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: lavenderblush;
-    border-right: 1px solid #eee;
-  }
+    .sidebar {
+        position: fixed;
+        top: 51px;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+        display: block;
+        padding: 20px;
+        overflow-x: hidden;
+        overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        background-color: lavenderblush;
+        border-right: 1px solid #eee;
+    }
 }
 
 /* Sidebar navigation */
 .nav-sidebar {
-  margin-right: -21px; /* 20px padding + 1px border */
-  margin-bottom: 20px;
-  margin-left: -20px;
+    margin-right: -21px; /* 20px padding + 1px border */
+    margin-bottom: 20px;
+    margin-left: -20px;
 }
+
 .nav-sidebar > li > a {
-  padding-right: 20px;
-  padding-left: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
 }
+
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
-  color: #888888;
-  background-color: #428bca;
+    color: #888888;
+    background-color: #428bca;
 }
-
 
 /*
  * Main content
  */
 
 .main {
-  padding: 20px;
-}
-@media (min-width: 768px) {
-  .main {
-    padding-right: 40px;
-    padding-left: 40px;
-  }
-}
-.main .page-header {
-  margin-top: 0;
+    padding: 20px;
 }
 
+@media (min-width: 768px) {
+    .main {
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+}
+
+.main .page-header {
+    margin-top: 0;
+}
 
 /*
  * Placeholder dashboard ideas
  */
 
 .placeholders {
-  margin-bottom: 30px;
-  text-align: center;
+    margin-bottom: 30px;
+    text-align: center;
 }
+
 .placeholders h4 {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
+
 .placeholder {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
+
 .placeholder img {
-  display: inline-block;
-  border-radius: 50%;
+    display: inline-block;
+    border-radius: 50%;
 }
+
 .navbar-toggle {
-  color: #888888;
-  background-color: transparent;
-  border-color: transparent !important;
+    color: #888888;
+    background-color: transparent;
+    border-color: transparent !important;
 }
+
 .navbar-toggle:hover,
 .navbar-toggle:focus
-.navbar-toggle:active{
-  background-color: transparent;
-  border-color: transparent !important;
+.navbar-toggle:active {
+    background-color: transparent;
+    border-color: transparent !important;
 }
+
 .navbar-header:focus,
-.navbar-header:hover{
-  background-color: transparent;
-  border-color: transparent !important;
-  color: #2e2e2e;
+.navbar-header:hover {
+    background-color: transparent;
+    border-color: transparent !important;
+    color: #2e2e2e;
 }
-.nav-header > .active > a{
-  color: #2e2e2e;
+
+.nav-header > .active > a {
+    color: #2e2e2e;
 }
- .icon-bar{
-  background-color : #CCC !important;
+
+.icon-bar {
+    background-color: #CCC !important;
 }
-.navbar-inverse .navbar-collapse{
-  border-color: transparent;
+
+.navbar-inverse .navbar-collapse {
+    border-color: transparent;
 }
+
 .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
-  background-color: transparent; !important;
+    background-color: transparent;
+!important;
 }
-.navbar-inverse .navbar-nav>li>a:hover{
-  color:black ;
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: black;
 }
-.navbar-inverse .navbar-nav>li:active{
-  color:black ;
+
+.navbar-inverse .navbar-nav > li:active {
+    color: black;
 }
-.navbar-inverse .navbar-brand:hover{
-  color:black ;
+
+.navbar-inverse .navbar-brand:hover {
+    color: black;
 }
+
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >
 a:hover, .navbar-default .navbar-nav > .active > a:focus {
-  color: black; /*BACKGROUND color for active*/
+    color: black; /*BACKGROUND color for active*/
 
 }

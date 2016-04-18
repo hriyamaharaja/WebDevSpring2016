@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="jumbotron" >
+    <div class="jumbotron">
         <h1>{{profile.username}}</h1>
 
         <div class="row">
@@ -19,18 +19,26 @@
             </ul>
         </div>
 
-            <div class="media" ng-repeat="review in reviews">
-                <div class="media-left">
-                    <a href="#/recipe/{{review.recipeId}}">
-                        {{review.recipe}}
-                    </a>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">Rating: {{review.rating}} stars</h4>
-                    {{review.text}}
+        <div class="panel panel-default" ng-repeat="review in reviews">
+            <div class="panel-body">
+                <div class="media review">
+                    <div class="media-heading">
+                        <p>
+                            <a href="#/recipe/{{review.recipeId}}">
+                                {{review.recipe}}
+                            </a>
+                        </p>
+
+                    </div>
+                    <div class="media-body">
+                        <p>Rating: {{review.rating}} stars</p>
+                        {{review.text}}
+                    </div>
+
+
                 </div>
             </div>
-
+        </div>
 
 
     </div>

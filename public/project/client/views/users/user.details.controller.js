@@ -18,17 +18,19 @@
 
         UserService.findUserByUsername($scope.profileUsername).then(function(response){
             $scope.profile = response.data;
+            UserRecipeService.findAllRecipesForUser($scope.profile._id).then(function (response) {
+                $scope.recipes = response.data;
+                ReviewService.findAllReviewsForUser($scope.profile._id).then(
+                    function (response) {
+                        $scope.reviews = response.data;
+                    }
+                );
+            });
         });
 
-        UserRecipeService.findAllRecipesForUser($scope.profile._id).then(function (response) {
-            $scope.recipes = response.data;
-        });
 
-        ReviewService.findAllReviewsForUser($scope.profile._id).then(
-            function (response) {
-                $scope.reviews = response.data;
-            }
-        );
+
+
 
         $scope.follow = function () {
 

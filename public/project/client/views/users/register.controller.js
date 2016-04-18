@@ -13,10 +13,11 @@
         $scope.user={};
         $scope.user.email = "";
 
-        $scope.register = function () {
-            if ($scope.user.password != $scope.verifyPassword)
-                dispalert = true;
-            $scope.dispalert = false;
+        $scope.register = function (isValid) {
+
+            if(isValid){
+
+
 
             $scope.user.email = $scope.email;
 
@@ -31,6 +32,8 @@
                 });
 
             $location.path("/profile");
+        }
+
         };
 
 

@@ -126,7 +126,14 @@ module.exports = function (app, model) {
     function findUserByUsername(req, res) {
 
         var username = req.query.username;
-        res.json(model.findUserByUsername(username));
+        model.findUserByUsername(username).then(
+            function (doc) {
+                res.json(doc);
+            },
+            function (err) {
+                res.status(400).send(err);
+            }
+        );
     }
 
     function findUserByCredentials(req, res) {

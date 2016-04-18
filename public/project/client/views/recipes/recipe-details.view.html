@@ -46,17 +46,37 @@
         </div>
 
     </div>
-    <div class="media" ng-repeat="review in reviews">
-        <div class="media-left">
-            <a href="#/follow/{{review.username}}">
-                {{review.username}}
-            </a>
+    <div class="media">
+        <div class="media-right">
+
         </div>
         <div class="media-body">
-            <h4 class="media-heading">Rating: {{review.rating}} stars</h4>
-           {{review.text}}
+            <p>
+                Reviews :
+            </p>
+            <ul>
+
+            </ul>
         </div>
+
     </div>
+    <p ng-hide="reviews">Be the first to write a review !</p>
+    <div class="panel panel-default" ng-repeat="review in reviews">
+        <div class="panel-body">
+    <div class="media review" >
+        <div class="media-right">
+
+                <p><a href="#/follow/{{review.username}}">{{review.username}}</a>'s rating : {{review.rating}} stars </p>
+            "{{review.text}}"
+
+        </div>
+
+
+
+
+    </div>
+            </div>
+        </div>
 
 
         <div ng-show="showReview" class="text-center">
@@ -64,6 +84,7 @@
 
                 <label>Rate this recipe: </label>
             <select class="form-control-lg" ng-model="review.stars">
+                <option value="0" disabled selected>Rating</option> 
                 <option value="1">1 star</option> 
                 <option value="2">2 stars</option> 
                 <option value="3">3 stars</option> 
@@ -77,14 +98,14 @@
             <div class="input-group text-center">
 
 
-            <a ng-click="toggleReview() && addReview()"  class="btn btn-lg btn-info">
+            <a ng-click="addReview()"  class="btn btn-lg btn-info">
                 Submit Review <i class="glyphicon glyphicon-ok-sign"></i></a>
             <a ng-click="toggleReview()"  class="btn btn-lg btn-danger">
                 Cancel <i class="glyphicon glyphicon-remove-sign"></i></a>
            </div>
         </div>
     <p><a ng-click="toggleReview()" ng-hide="showReview" class="btn btn-lg btn-success">
-       Write Review <i class="glyphicon glyphicon-plus-sign"></i></a></p>
+       Write a review ! <i class="glyphicon glyphicon-plus-sign"></i></a></p>
     </div>
 
 

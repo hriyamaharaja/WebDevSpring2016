@@ -2,7 +2,7 @@ module.exports = function(app,model) {
     "use strict";
 
 
-    app.get('/api/project/review/:userId', findAllReviewsForUser);
+    app.get('/api/project/:userId/review', findAllReviewsForUser);
     app.get('/api/project/review/:recipeId', findAllReviewsForRecipe);
     app.delete('/api/project/review/:reviewId', deleteReviewById);
     app.post('/api/project/review', createReview);

@@ -18,7 +18,7 @@
         return api;
 
         function findAllReviewsForUser(userId){
-           return $http.get('/api/project/review/'+userId);
+           return $http.get('/api/project/'+userId+'/review');
 
         }
 
