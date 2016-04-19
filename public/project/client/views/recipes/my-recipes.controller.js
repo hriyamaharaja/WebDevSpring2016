@@ -9,6 +9,16 @@
         $scope.rootScope = $rootScope;
         $scope.recipes = {};
 
+        $scope.orderFeature = "recipe";
+        $scope.orderDescending = false;
+
+        $scope.sortBy = function(feature){
+            "use strict";
+            $scope.orderFeature=feature ;
+            $scope.orderDescending = !$scope.orderDescending;
+
+        }
+
         if ($rootScope.user != null) {
             UserRecipeService.findAllRecipesForUser($scope.rootScope.user._id).then( function (response) {
                 $scope.recipes = response.data;

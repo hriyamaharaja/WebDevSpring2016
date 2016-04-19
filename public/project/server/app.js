@@ -10,4 +10,7 @@ module.exports = function (app,db,mongoose) {
     var reviewService = require("./services/review.service.server.js")(app,reviewModel);
     var recipeService = require("./services/recipe.service.server.js")(app, recipeModel);
     var userRecipeService = require("./services/user.recipe.service.server.js")(app, recipeModel);
+    var followerModel = require("./model/follower.model.js")(db,mongoose);
+    var followerService = require("./services/follower.service.server.js")(app,followerModel);
+
 };

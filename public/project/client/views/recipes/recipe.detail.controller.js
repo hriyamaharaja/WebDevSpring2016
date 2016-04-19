@@ -84,7 +84,7 @@
                 ReviewService.findAllReviewsForRecipe($scope.recipeID).then(
                     function (response) {
                         $scope.reviews = response.data;
-                        $scope.toggleReview();
+                        $scope.review = {};
                     }
                 );
 

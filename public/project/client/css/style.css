@@ -71,3 +71,10 @@ select {
     outline: 1px inset;
     outline-offset:-1px
 }
+.edit-review{
+    color: black; !important;
+}
+
+.white{
+    color:white; !important
+}

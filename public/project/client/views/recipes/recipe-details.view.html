@@ -78,36 +78,68 @@
             </div>
         </div>
 
+    <p>
+        <a data-toggle="modal" data-target="#myModal" class="btn btn-lg btn-success">
+            <i  class="glyphicon glyphicon-plus-sign"> Write a review !</i></a></p>
 
-        <div ng-show="showReview" class="text-center">
-            <div class=" input-group">
+</div>
 
-                <label>Rate this recipe: </label>
-            <select class="form-control-lg" ng-model="review.stars">
-                <option value="0" disabled selected>Rating</option> 
-                <option value="1">1 star</option> 
-                <option value="2">2 stars</option> 
-                <option value="3">3 stars</option> 
-                <option value="4">4 stars</option> 
-                <option value="5" aria-selected="true" selected>5 stars</option> 
-            </select>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"><div class="edit-review">Add a review !</div></h4>
                 </div>
-            <div class="input-group">
-                <textarea  ng-model="review.body"/>
+                <div class="modal-body">
+                    <div class="form-group text-center">
+
+                        <form class=" form-horizontal">
+
+
+                            <div class="edit-review">
+                                Rating:
+                            </div>
+                            <select class="form-control-lg" ng-model="review.stars">
+                                <option value="0" disabled selected>Rating</option> 
+                                <option value="1">1 star</option> 
+                                <option value="2">2 stars</option> 
+                                <option value="3">3 stars</option> 
+                                <option value="4">4 stars</option> 
+                                <option value="5" aria-selected="true" selected>5 stars</option> 
+                            </select>
+
+
+
+
+                            <div>&nbsp;</div>
+                            <div class="edit-review">
+                                Review:
+                            </div>
+                            <textarea  ng-model="review.body"/>
+                            <div>&nbsp;</div>
+
+
+
+                            <div class="text-center">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="button" ng-click="addReview()" data-dismiss="modal"
+                                        class="btn btn-success">Save changes
+                                </button>
+                            </div>
+                        </form>
+
+
+                    </div>
                 </div>
-            <div class="input-group text-center">
-
-
-            <a ng-click="addReview()"  class="btn btn-lg btn-info">
-                Submit Review <i class="glyphicon glyphicon-ok-sign"></i></a>
-            <a ng-click="toggleReview()"  class="btn btn-lg btn-danger">
-                Cancel <i class="glyphicon glyphicon-remove-sign"></i></a>
-           </div>
+            </div>
         </div>
-    <p><a ng-click="toggleReview()" ng-hide="showReview" class="btn btn-lg btn-success">
-       Write a review ! <i class="glyphicon glyphicon-plus-sign"></i></a></p>
     </div>
 
 
-</div>
+
+
+
+
 </div>

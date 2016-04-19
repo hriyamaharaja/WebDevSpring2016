@@ -54,6 +54,21 @@
 
 
                 })
+                .when("/myreviews", {
+                    templateUrl: "views/recipes/my-reviews.view.html",
+                    controller: "MyReviewsController",
+                    resolve: {
+                        //loggedin: checkLoggedin
+                    }
+                })
+                .when("/following", {
+                    templateUrl: "views/users/following.view.html",
+                    controller: "FollowerController",
+                    resolve: {
+                        //loggedin: checkLoggedin
+                    }
+                })
+
                 .when("/recipe/:recipeID", {
                     templateUrl: "views/recipes/recipe-details.view.html",
                     controller: "DetailController"
@@ -63,6 +78,12 @@
                 .when("/follow/:username", {
                     templateUrl: "views/users/user-details.view.html",
                     controller: "UserDetailController"
+
+
+                })
+                .when("/searchUsers", {
+                    templateUrl: "views/users/searchUsers.view.html",
+                    controller: "SearchUserController"
 
 
                 })

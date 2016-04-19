@@ -4,17 +4,17 @@
             <h1 class="page-header">My Recipes</h1>
 
             <div>
-                <ul class="nav nav-tabs nav-justified">
-                    <li class="active"><a href="#/myrecipes">My Recipes</a></li>
-                    <li><a href="#/myreviews">My Reviews</a></li>
-                    <li><a href="#/following">Following</a></li>
+                <ul class="edit-review nav nav-tabs nav-justified">
+                    <li class="active"><a href="#">My Recipes</a></li>
+                    <li><a href="#/myreviews" class="white">My Reviews</a></li>
+                    <li><a class="white" href="#/following">Following</a></li>
                 </ul>
             </div>
             <div>
                 <table class="table table-bordered table-striped table-responsive">
                     <thead>
                     <tr>
-                        <td><i class="glyphicon glyphicon-triangle-bottom"></i>Name</td>
+                        <td><i ng-click="sortBy('recipe')" class="glyphicon glyphicon-sort"></i>Name</td>
                         <td>Action</td>
                     </tr>
                     </thead>
@@ -25,7 +25,7 @@
                         <td><i ng-click="addRecipe()" class="glyphicon glyphicon-plus-sign"></i> <i ng-click="updateRecipe()" class="glyphicon glyphicon-ok-sign"></i></td>
 
                     </tr>
-                    <tr ng-repeat="recipe in recipes">
+                    <tr ng-repeat="recipe in recipes | orderBy:orderFeature:orderDescending">
                         <td><a href="#/recipe/{{recipe.recipeId}}">{{recipe.recipe}}</a></td>
                         <td><i ng-click="deleteRecipe($index)" class="glyphicon glyphicon-remove-sign"></i>
                             <i ng-click="selectRecipe($index)" class="glyphicon glyphicon-pencil"></i></td>

@@ -1,37 +1,36 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="GameRental">
-<head>
-    <meta charset="UTF-8">
-    <title>Friends</title>
-</head>
-<body>
-<div class="container-fluid" ng-controller="FollowerController">
+<div class="container-fluid">
     <div class="row">
-            <h1 class="page-header">Following</h1>
+        <div class="col-sm-9  col-md-10  main">
+            <h1 class="page-header">My Recipes</h1>
 
-            <a class="btn btn-info pull-right" href="#/searchUsers">Search Users</a>
-            <table class="table table-bordered table-striped table-responsive">
-                <thead>
-                <tr>
-                    <td><i class="glyphicon glyphicon-triangle-bottom"></i> Friends You Follow</td>
-                    <td>Action</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="friend in friends">
-                    <td>{{friend.following_firstname}}</td>
-                    <td>
-                        <button ng-click="removeFriend($index)" class="btn btn-danger">Unfollow</button>
+            <div>
+                <ul class="edit-review nav nav-tabs nav-justified">
+                    <li><a href="#/myrecipes">My Recipes</a></li>
+                    <li><a href="#/myreviews" class="white">My Reviews</a></li>
+                    <li  class="active"><a class="white" href="#">Following</a></li>
+                </ul>
+            </div>
+            <div>
+                <a class="btn btn-info pull-right" href="#/searchUsers">Search Users</a>
+                <table class="table table-bordered table-striped table-responsive">
+                    <thead>
+                    <tr>
+                        <td><i class="glyphicon glyphicon-triangle-bottom"></i> Friends You Follow</td>
+                        <td>Action</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="friend in friends">
+                        <td><a href="#/follow/{{friend.following_username}}">
+                            {{friend.following_username}}</a></td>
+                        <td>
+                            <button ng-click="removeFriend($index)" class="btn btn-danger">Unfollow</button>
+                        </td>
 
-                        <button ng-click="showStats($index)" class="btn btn-info">User Stats</button>
-                    </td>
+                    </tr>
 
-                </tr>
-
-                </tbody>
-            </table>
-
+                    </tbody>
+                </table>
+        </div>
     </div>
 </div>
-</body>
-</html>

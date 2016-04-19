@@ -48,14 +48,14 @@
 <thead ng-if="data.totalMatchCount">
 <tr>
     <th></th>
-    <th><i class="glyphicon glyphicon-triangle-bottom"></i>Name</th>
-    <th><i class="glyphicon glyphicon-triangle-bottom"></i>Rating</th>
-    <th><i class="glyphicon glyphicon-triangle-bottom"></i>Cooking Time(Seconds)</th>
+    <th><i ng-click="sortBy('recipeName')"  class="glyphicon glyphicon-sort">Name</i></th>
+    <th><i ng-click="sortBy('rating')" class="glyphicon glyphicon-sort">Rating</i></th>
+    <th><i ng-click="sortBy('totalTimeInSeconds')" class="glyphicon glyphicon-sort">Cooking Time(Seconds)</i></th>
 </tr>
 </thead>
         <tbody>
 
-        <tr ng-repeat="recipes in data.matches">
+        <tr ng-repeat="recipes in data.matches | orderBy:orderFeature:orderDescending">
 
             <td><img ng-src="{{recipes.smallImageUrls[0]}}" alt="image"></td>
             <td>

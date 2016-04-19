@@ -5,6 +5,16 @@
 
     function searchController($scope, $location, $routeParams, RecipeService) {
 
+        $scope.orderFeature = "recipeName";
+        $scope.orderDescending = false;
+
+        $scope.sortBy = function(feature){
+            "use strict";
+            $scope.orderFeature=feature ;
+            $scope.orderDescending = !$scope.orderDescending;
+
+        }
+
         function search(recipe) {
 
 
@@ -29,6 +39,7 @@
                     console.log($scope.data);
                 });
         }
+
 
         $scope.search = search;
         $scope.recipe = $routeParams.recipe;

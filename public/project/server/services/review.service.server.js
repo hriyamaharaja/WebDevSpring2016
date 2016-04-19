@@ -35,7 +35,7 @@ module.exports = function(app,model) {
 
     function deleteReviewById(req,res){
         var reviewId = req.params.reviewId;
-        model.deleteReviewById(recipeId).then(
+        model.deleteReviewById(reviewId).then(
             function (doc) {
                 res.json(doc);
             },
@@ -60,7 +60,6 @@ module.exports = function(app,model) {
     function updateReview(req,res){
         var reviewId = req.params.reviewId;
         var newReview = req.body;
-        newRecipe.userId = userId;
         model.updateReviewById(reviewId,newReview).then(
             function (doc) {
                 res.json(doc);

@@ -50,7 +50,7 @@ module.exports = function(app,model) {
         var userId = req.params.userId;
         var recipeId = req.params.recipeId;
         var newRecipe = req.body;
-        newRecipe.userId = userId;
+
         model.updateRecipeById(recipeId,newRecipe).then(
             function (doc) {
                 res.json(doc);

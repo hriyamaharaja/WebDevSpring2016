@@ -84,7 +84,7 @@ module.exports = function (db,mongoose) {
     function updateReviewById(review_Id, newReview) {
         var deferred = q.defer();
 
-        RecipeModel.update({_id: review_Id}, {$set: newReview}, function (err, doc) {
+        ReviewModel.update({_id: review_Id}, {$set: newReview}, function (err, doc) {
             if (err) {
                 deferred.reject(err);
             }

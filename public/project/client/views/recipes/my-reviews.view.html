@@ -1,10 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9  col-md-10  main">
+            <h1 class="page-header">My Reviews</h1>
 
-</body>
-</html>
+
+
+
+            <div>
+            <ul class="nav nav-tabs nav-justified">
+                <li><a class="white" href="#/myrecipes">My Recipes</a></li>
+                <li class="active"><a href="#">My Reviews</a></li>
+                <li><a class="white" href="#/following">Following</a></li>
+            </ul>
+        </div>
+
+
+
+
+        <div class="panel panel-default" ng-repeat="review in reviews | orderBy:orderFeature:orderDescending">
+            <div class="panel-body">
+                <div class="media review">
+                    <div class="media-heading">
+                        <p>
+                            <a href="#/recipe/{{review.recipeId}}">
+                                {{review.recipe}}
+                            </a>
+                        </p>
+                        <div class="pull-right">
+                            <i ng-click="deleteReview($index)" class="glyphicon glyphicon-remove-sign"></i>
+                            <i ng-click="selectReview($index)" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal"></i>
+                        </div>
+
+                    </div>
+                    <div class="media-body">
+                        <p>Rating: {{review.rating}} stars</p>
+                        {{review.text}}
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><div class="edit-review">{{newReview.recipe}}</div></h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group text-center">
+
+                    <form class=" form-horizontal">
+
+
+                        <div class="edit-review">
+                            Rating:
+                        </div>
+                            <select class="form-control-lg" ng-model="newReview.rating">
+                                <option value="0" disabled selected>Rating</option> 
+                                <option value="1">1 star</option> 
+                                <option value="2">2 stars</option> 
+                                <option value="3">3 stars</option> 
+                                <option value="4">4 stars</option> 
+                                <option value="5" aria-selected="true" selected>5 stars</option> 
+                            </select>
+
+
+
+
+                        <div>&nbsp;</div>
+                        <div class="edit-review">
+                        Review:
+                        </div>
+                        <textarea  ng-model="newReview.text"/>
+                        <div>&nbsp;</div>
+
+
+
+                        <div class="text-center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" ng-click="editReview(selectedReviewIndex)" data-dismiss="modal"
+                                class="btn btn-success">Save changes
+                        </button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
