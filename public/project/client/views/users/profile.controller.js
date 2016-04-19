@@ -26,7 +26,7 @@
             user.roles = this.user.roles;
 
             UserService.updateUser(user._id,user).then(function(response){
-                console.log(response.data);
+
             });
 
             $location.path("/profile");

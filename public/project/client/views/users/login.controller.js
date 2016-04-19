@@ -9,15 +9,15 @@
 
         $scope.login = function(){
 
-            var username = $scope.username;
-            var password = $scope.password;
+            var user ={
+            username : $scope.username,
+            password : $scope.password
+        }
 
-            UserService.findUserByCredentials(username,password).then(function(response){
+            UserService.login(user).then(function(response){
 
                 if (response) {
-                    console.log(response);
                     $rootScope.user = response.data;
-                    console.log($rootScope.user);
                     $location.path("/profile");
                 }
             });

@@ -12,7 +12,10 @@
             findUserByCredentials: findUserByCredentials,
             createUser: createUser,
             updateUser: updateUser,
-            findUserByUsername: findUserByUsername
+            findUserByUsername: findUserByUsername,
+            login : login,
+            logout : logout
+
         };
 
         return api;
@@ -43,6 +46,14 @@
         function updateUser(userId, user) {
             return $http.put('/api/project/user/' + userId, user);
 
+        }
+
+        function login(user) {
+            return $http.post("/api/project/login", user);
+        }
+
+        function logout(user) {
+            return $http.post("/api/project/logout", user);
         }
 
 

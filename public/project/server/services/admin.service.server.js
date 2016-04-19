@@ -1,5 +1,4 @@
-var passport         = require('passport');
-var LocalStrategy    = require('passport-local').Strategy;
+var bcrypt = require('bcrypt-nodejs');
 
 module.exports = function (app, model) {
     "use strict";
@@ -12,44 +11,12 @@ module.exports = function (app, model) {
     app.delete('/api/project/admin/user/',auth, deleteUser);
     app.post('/api/project/admin/user',     auth, createUser);
 
-    passport.use(new LocalStrategy(localStrategy));
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
 
-
-    function localStrategy(username, password, done) {
-        model
-            .findUserByCredentials(username, password)
-            .then(
-                function(user) {
-                    if (!user) { return done(null, false); }
-                    return done(null, user);
-                },
-                function(err) {
-                    if (err) { return done(err); }
-                }
-            );
-    }
-
-    function serializeUser(user, done) {
-        done(null, user);
-    }
-
-    function deserializeUser(user, done) {
-        model
-            .findUserById(user._id)
-            .then(
-                function(user){
-                    done(null, user);
-                },
-                function(err){
-                    done(err, null);
-                }
-            );
-    }
 
     function createUser(req, res) {
         var newUser = req.body;
+        newUser.type = "project";
+        newUser.password = bcrypt.hashSync(req.body.password);
         delete newUser['_id'];
         if(!isAdmin(req.user)) {
             delete newUser.roles;
@@ -67,7 +34,6 @@ module.exports = function (app, model) {
                 res.json(doc);
             },
             function (err) {
-                console.log(err);
                 res.status(400).send(err);
             }
         );
@@ -97,6 +63,7 @@ module.exports = function (app, model) {
     function updateUser(req, res) {
         var id = req.params.userId;
         var user = req.body;
+        //user.password = bcrypt.hashSync(req.body.password);
         if(!isAdmin(req.user)) {
             delete user.roles;
         }

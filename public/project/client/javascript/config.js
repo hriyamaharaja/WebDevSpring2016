@@ -11,7 +11,10 @@
                     redirectTo: "/home"
                 })
                 .when("/home", {
-                    templateUrl: "views/home/home.view.html"
+                    templateUrl: "views/home/home.view.html",
+                    resolve: {
+                        loggedin: checkCurrentUser
+                    }
 
 
                 })
@@ -116,7 +119,7 @@
             // User is Authenticated
             if (user !== '0' && user.roles.indexOf('admin') != -1)
             {
-                $rootScope.currentUser = user;
+                $rootScope.user = user;
                 deferred.resolve();
             }
         });
@@ -135,7 +138,7 @@
             // User is Authenticated
             if (user !== '0')
             {
-                $rootScope.currentUser = user;
+                $rootScope.user = user;
                 deferred.resolve();
             }
             // User is Not Authenticated
@@ -160,7 +163,7 @@
             // User is Authenticated
             if (user !== '0')
             {
-                $rootScope.currentUser = user;
+                $rootScope.user = user;
             }
             deferred.resolve();
         });

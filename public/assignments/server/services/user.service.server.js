@@ -1,11 +1,9 @@
 /**
  * Created by hriya on 3/15/16.
  */
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
 
+var bcrypt = require('bcrypt-nodejs');
 module.exports = function (app, model) {
-    "use strict";
     var auth = authorized;
 
     app.post('/api/assignment/user', createUser);
@@ -24,17 +22,18 @@ module.exports = function (app, model) {
 
     app.put('/api/assignment/user/:userId', auth, updateUser);
     app.delete('/api/assignment/user/:id', auth, deleteUser);
-    app.post('/api/login', passport.authenticate('local'), login);
+    //app.post('/api/login', passport.authenticate('local'), login);
     app.post('/api/logout', logout);
     app.post('/api/register', register);
     app.post('/api/user', auth, createUser);
     app.get('/api/loggedin', loggedin);
 
-    passport.use(new LocalStrategy(localStrategy));
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
+    //passport.use(new LocalStrategy(localStrategy));
+    //passport.serializeUser(serializeUser);
+    //passport.deserializeUser(deserializeUser);
 
 
+    /*
     function localStrategy(username, password, done) {
         model
             .findUserByCredentials(username, password)
@@ -73,7 +72,7 @@ module.exports = function (app, model) {
     function login(req, res) {
         var user = req.user;
         res.json(user);
-    }
+    }*/
 
     function loggedin(req, res) {
         res.send(req.isAuthenticated() ? req.user : '0');
@@ -88,6 +87,7 @@ module.exports = function (app, model) {
 
         var newUser = req.body;
         newUser.roles = ['user'];
+        newUser.password = bcrypt.hashSync(req.body.password);
 
         model
             .findUserByUsername(newUser.username)
@@ -126,6 +126,7 @@ module.exports = function (app, model) {
     function createUser(req, res) {
         var newUser = req.body;
         delete newUser['_id'];
+        newUser.password = bcrypt.hashSync(req.body.password);
         if (newUser.roles && newUser.roles.length > 1) {
             newUser.roles = newUser.roles.split(",");
         } else {
@@ -139,7 +140,6 @@ module.exports = function (app, model) {
                 res.json(doc);
             },
             function (err) {
-                console.log(err);
                 res.status(400).send(err);
             }
         );
@@ -189,7 +189,9 @@ module.exports = function (app, model) {
 
     function updateUser(req, res) {
         var id = req.params.userId;
+
         var user = req.body;
+        //user.password = bcrypt.hashSync(req.body.password);
         if (!isAdmin(req.user)) {
             delete user.roles;
         }
@@ -209,7 +211,6 @@ module.exports = function (app, model) {
 
     function deleteUser(req, res) {
         var id = req.params.id;
-        //if same user as logged in do not delete
         if (isAdmin(req.user)) {
 
             model.deleteUserById(id).then(

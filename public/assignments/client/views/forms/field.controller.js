@@ -17,7 +17,7 @@
                 $scope.fields = response.data;
             }
         );
-        console.log($scope.fields);
+
 
         $scope.addField = function (fieldType) {
 

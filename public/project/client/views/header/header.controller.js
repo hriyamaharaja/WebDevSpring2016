@@ -6,11 +6,16 @@
         $scope.location = $location;
         $scope.rootScope = $rootScope;
 
+
         $scope.logout = function () {
-            "use strict";
-            $rootScope.user = null;
-            $location.path("/home");
-        }
+            UserService.login(user).then(function (response) {
+
+                if (response) {
+                    $rootScope.user = null;
+                    $location.path("/home");
+                }
+            });
+        };
 
     }
 })();

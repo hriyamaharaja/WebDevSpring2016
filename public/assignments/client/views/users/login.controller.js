@@ -17,9 +17,7 @@
             UserService.login($scope.user).then(function(response){
 
                 if (response) {
-                    console.log(response);
                     $rootScope.user = response.data;
-                    console.log($rootScope.user);
                     $location.path("/profile");
                 }
             });

@@ -3,8 +3,9 @@
  */
 var passport         = require('passport');
 var LocalStrategy    = require('passport-local').Strategy;
+var bcrypt = require('bcrypt-nodejs');
 
-module.exports = function (app, model) {
+module.exports = function (app, assgnmodel, model) {
     "use strict";
     var auth = authorized;
 
@@ -23,46 +24,108 @@ module.exports = function (app, model) {
 
     app.put('/api/project/user/:userId',auth, updateUser);
 
-    app.post('/api/project/login',passport.authenticate('local'), login);
+    app.post('/api/project/login',passport.authenticate('project'), login);
+    app.post('/api/assignment/login',passport.authenticate('assignment'), login);
+
+
     app.post('/api/project/logout',         logout);
     app.post('/api/project/register',       register);
 
     app.get ('/api/project/loggedin',       loggedin);
 
-    passport.use(new LocalStrategy(localStrategy));
+    passport.use('project',new LocalStrategy(projectLocalStrategy));
+    passport.use('assignment',new LocalStrategy(assignLocalStrategy));
+
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
 
-    function localStrategy(username, password, done) {
-        model
-            .findUserByCredentials(username, password)
-            .then(
-                function(user) {
-                    if (!user) { return done(null, false); }
-                    return done(null, user);
-                },
-                function(err) {
-                    if (err) { return done(err); }
+    function assignLocalStrategy(username,password,done)
+    {
+        assgnmodel.findUserByUsername(username).then(
+            function(user)
+            {
+                if(!user)
+                {
+                    return done(null,false);
                 }
-            );
+                else
+                {
+                    if(user && bcrypt.compareSync(password,user.password)) {
+                        return done(null, user);
+                    }
+                }
+            },
+            function(err)
+            {
+                if(err)
+                {
+                    return done(err);
+                }
+            }
+        );
     }
+
+    function projectLocalStrategy(username,password,done)
+    {
+
+        model.findUserByUsername(username).then(
+            function(user)
+            {
+                if(!user)
+                {
+                    return done(null,false);
+                }
+                else
+                {
+                    if(user && bcrypt.compareSync(password,user.password)) {
+                        return done(null, user);
+                    }
+                }
+            },
+            function(err)
+            {
+                if(err)
+                {
+                    return done(err);
+                }
+            }
+        );
+    }
+
+
 
     function serializeUser(user, done) {
         done(null, user);
     }
 
     function deserializeUser(user, done) {
-        model
-            .findUserById(user._id)
-            .then(
-                function(user){
-                    done(null, user);
-                },
-                function(err){
-                    done(err, null);
-                }
-            );
+
+        {
+            if(user.type == 'assignment') {
+
+                assgnmodel.findUserById(user._id).then(
+                    function (user) {
+                        done(null, user);
+                    },
+                    function (err) {
+                        done(err, null);
+                    }
+                );
+            }
+            else if(user.type == 'project') {
+
+                model.findUserById(user._id).then(
+                    function (user) {
+                        done(null, user);
+                    },
+                    function (err) {
+                        done(err, null);
+                    }
+                );
+            }
+        }
+
     }
 
     function login(req, res) {
@@ -81,6 +144,8 @@ module.exports = function (app, model) {
 
     function register(req, res) {
         var newUser = req.body;
+        newUser.password = bcrypt.hashSync(req.body.password);
+        newUser.type = "project";
         newUser.roles = ['user'];
 
         model

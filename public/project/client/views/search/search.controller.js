@@ -31,12 +31,11 @@
                 params).then(
                 function (response) {
 
-                    console.log(response);
                     $scope.data = response.data;
                     if ($scope.data.totalMatchCount === 0) {
                         $scope.message = "Oops! No recipes found.";
                     }
-                    console.log($scope.data);
+
                 });
         }
 

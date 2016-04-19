@@ -142,7 +142,6 @@ module.exports = function (db,mongoose) {
                     if (err)
                         deferred.reject(err);
                     else {
-                        console.log(doc);
                         deferred.resolve(doc);
                     }
                 });
@@ -167,11 +166,9 @@ module.exports = function (db,mongoose) {
                     }
                 }
 
-                console.log(form);
 
                 form.save(function (err, doc) {
                     if (err) {
-                        console.log(err);
                         deferred.reject(err);
                     }
                     else {

@@ -37,7 +37,6 @@
             UserRecipeService.createRecipeForUser($scope.rootScope.user._id, newRecipe).then(
                 function (response) {
                     $scope.recipeName = "";
-                    console.log(response);
                     UserRecipeService.findAllRecipesForUser($scope.rootScope.user._id).then( function (response) {
                         $scope.recipes = response.data;
                     });

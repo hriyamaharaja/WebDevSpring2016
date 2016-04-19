@@ -29,7 +29,7 @@
             FormService.createFormForUser($scope.rootScope.user._id, newForm).then(
                 function (response) {
                     $scope.formName = "";
-                    console.log(response);
+
                     FormService.findAllFormsForUser($scope.rootScope.user._id).then(function (response) {
                         $scope.forms = response.data;
                     });
@@ -50,7 +50,7 @@
 
 
             FormService.updateFormById($scope.forms[$scope.selectedFormIndex]._id, newForm).then(function (response) {
-                console.log(response);
+
                 $scope.formName = "";
                 FormService.findAllFormsForUser($scope.rootScope.user._id).then(function (response) {
                     $scope.forms = response.data;

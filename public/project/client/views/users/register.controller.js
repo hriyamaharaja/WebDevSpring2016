@@ -21,9 +21,10 @@
 
             $scope.user.email = $scope.email;
 
+
             UserService.createUser($scope.user).then(
                 function (response) {
-                    UserService.findUserByCredentials($scope.user.username,$scope.user.password).then(
+                    UserService.login({username:$scope.user.username,password:$scope.user.password}).then(
                         function(response){
                             $rootScope.user = response.data;
                         }

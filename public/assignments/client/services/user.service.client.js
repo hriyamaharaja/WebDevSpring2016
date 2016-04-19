@@ -15,7 +15,8 @@
             updateUser: updateUser,
             findUserByUsername: findUserByUsername,
             login : login,
-            register:register
+            register:register,
+            logout : logout
         };
 
         return service;
@@ -39,7 +40,11 @@
         }
 
         function login(user) {
-            return $http.post("/api/login", user);
+            return $http.post("/api/assignment/login", user);
+        }
+
+        function logout(user) {
+            return $http.post("/api/logout", user);
         }
 
         function findUserByUsername(username) {

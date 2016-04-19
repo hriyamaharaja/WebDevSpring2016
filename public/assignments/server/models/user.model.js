@@ -82,7 +82,6 @@ module.exports = function (db, mongoose) {
 
         UserModel.create(user, function (err, doc) {
             if (err) {
-                console.log(err);
                 deferred.reject(err);
             }
             else {
