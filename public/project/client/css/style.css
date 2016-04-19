@@ -15,12 +15,6 @@ select{
     -webkit-border-radius: 0 !important; -moz-border-radius: 0 !important; border-radius: 0 !important;
 }
 
-.home{
-    background-image: url("../images/register.jpg");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    color: #2e2e2e;
-}
 .profile{
     text-align: left;
     /*margin-top: 50px;*/
@@ -44,10 +38,7 @@ h1,h2,h3,h4,h5,h6,.lead,label,.form-control-file{
 #search-addon{
   background-color : deepskyblue;
 }
-.recipe-cover{
-    background-image: url("../images/register.jpg");
-    background-size: 100% 100%;
-}
+
 .srch-btn{
     background-color: #45c3d2;
     color: #e0e0e0;
