@@ -223,6 +223,12 @@ module.exports = function (app, assgnmodel, model) {
     function updateUser(req, res) {
         var id = req.params.userId;
         var user = req.body;
+
+        if(user.password)
+        {
+            user.password = bcrypt.hashSync(req.body.password);
+        }
+
         delete user['_id'];
         if(!isAdmin(req.user)) {
             delete user.roles;

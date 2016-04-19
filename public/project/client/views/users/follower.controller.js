@@ -9,6 +9,16 @@
         $scope.user = $rootScope.user;
 
 
+        $scope.orderFeature = "following_username";
+        $scope.orderDescending = false;
+
+        $scope.sortBy = function(feature){
+            "use strict";
+            $scope.orderFeature=feature ;
+            $scope.orderDescending = !$scope.orderDescending;
+
+        }
+
         if($rootScope.user != null){
             FollowerService.findAllFollowersForUser($scope.user._id).then(function(response){
                 $scope.friends = response.data;

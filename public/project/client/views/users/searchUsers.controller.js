@@ -10,7 +10,7 @@
     function searchUserController($rootScope,$scope, $location, FollowerService){
 
 
-
+        $scope.user = $rootScope.user;
         $scope.users = {};
 
 

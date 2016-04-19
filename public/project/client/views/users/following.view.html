@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-9  col-md-10  main">
-            <h1 class="page-header">My Recipes</h1>
+            <h1>Following</h1>
 
             <div>
                 <ul class="edit-review nav nav-tabs nav-justified">
@@ -17,12 +17,12 @@
                 <table class="table table-bordered table-striped table-responsive">
                     <thead>
                     <tr>
-                        <td><i class="glyphicon glyphicon-triangle-bottom"></i> Friends You Follow</td>
+                        <td><i ng-click="sortBy('following_username')" class="glyphicon glyphicon-sort"></i> Friends You Follow</td>
                         <td>Action</td>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="friend in friends">
+                    <tr ng-repeat="friend in friends | orderBy:orderFeature:orderDescending">
                         <td><a href="#/follow/{{friend.following_username}}">
                             {{friend.following_username}}</a></td>
                         <td>

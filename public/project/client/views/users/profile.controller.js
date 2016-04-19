@@ -11,7 +11,7 @@
         $scope.username = $scope.user.username;
         $scope.firstName = $scope.user.firstName;
         $scope.lastName = $scope.user.lastName;
-        $scope.password = $scope.user.password;
+
         $scope.email = $scope.user.email;
 
         $scope.update = function(){
@@ -21,6 +21,12 @@
             user.username = this.username;
             user.firstName = this.firstName;
             user.lastName = this.lastName;
+
+            if($scope.password != null)
+            {
+                user.password = $scope.password;
+            }
+
             //user.password = this.password;
             user.emails = this.email;
             //user.roles = this.user.roles;

@@ -56,7 +56,7 @@
 
             UserRecipeService.updateRecipeById($scope.recipes[$scope.selectedRecipeIndex]._id, newRecipe).then( function (response) {
                 $scope.recipeName = "";
-                UserRecipeService.findAllRecipesForUser($scope.rootScope.user._id, function (response) {
+                UserRecipeService.findAllRecipesForUser($scope.rootScope.user._id).then( function (response) {
                     $scope.recipes = response.data;
                 });
             });

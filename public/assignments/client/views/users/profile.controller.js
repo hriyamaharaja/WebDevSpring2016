@@ -11,7 +11,7 @@
         $scope.username = $scope.user.username;
         $scope.firstName = $scope.user.firstName;
         $scope.lastName = $scope.user.lastName;
-        $scope.password = $scope.user.password;
+
         $scope.email = $scope.user.emails;
         $scope.phone = $scope.user.phones;
 
@@ -22,7 +22,11 @@
             user.username = this.username;
             user.firstName = this.firstName;
             user.lastName = this.lastName;
-            user.password = this.password;
+
+            if($scope.password != null)
+            {
+                user.password = $scope.password;
+            }
             user.emails = this.email;
             user.phones = this.phone;
             user.roles = this.user.roles;

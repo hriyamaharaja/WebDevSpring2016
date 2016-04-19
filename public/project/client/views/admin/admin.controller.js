@@ -13,10 +13,18 @@
         $scope.update = update;
         $scope.add = add;
         $scope.select = select;
-        $scope.reverse = false;
-        $scope.predicate = 'username';
         $scope.selectedFormIndex = null;
         $scope.disable = true;
+
+        $scope.orderFeature = "recipe";
+        $scope.orderDescending = false;
+
+        $scope.sortBy = function(feature){
+            "use strict";
+            $scope.orderFeature=feature ;
+            $scope.orderDescending = !$scope.orderDescending;
+
+        }
 
         function init() {
             AdminService
@@ -64,9 +72,6 @@
             $scope.error = error;
         }
 
-        $scope.sort = function (predicate) {
-            $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
-            $scope.predicate = predicate;
-        };
+
     }
 })();

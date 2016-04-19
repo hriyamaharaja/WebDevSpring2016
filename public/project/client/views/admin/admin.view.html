@@ -9,9 +9,9 @@
                 <table class="table table-hover table-bordered table-striped table-responsive">
                     <thead>
                     <tr>
-                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>Username</th>
-                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>Email</th>
-                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>Role</th>
+                        <th><i ng-click="sortBy('username')" class="glyphicon glyphicon-sort"></i>Username</th>
+                        <th><i ng-click="sortBy('email')" class="glyphicon glyphicon-sort"></i>Email</th>
+                        <th>Role</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -25,7 +25,7 @@
 
                     </tr>
 
-                    <tr ng-repeat="user in users">
+                    <tr ng-repeat="user in users | orderBy:orderFeature:orderDescending">
 
                          <td>{{user.username}}</td>
                         <td>{{user.email}}</td>
