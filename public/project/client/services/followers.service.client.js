@@ -25,7 +25,8 @@
         }
 
         function findUserByName(name) {
-            return $http.get('api/project/follower?name=' + name);
+
+            return $http.get('/api/project/follower/'+name);
         }
 
         function addFollower(user, id) {

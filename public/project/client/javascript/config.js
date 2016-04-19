@@ -28,7 +28,7 @@
                     templateUrl: "views/users/profile.view.html",
                     controller: "ProfileController",
                     resolve: {
-                        //loggedin: checkLoggedin
+                        loggedin: checkLoggedin
                     }
 
 
@@ -37,7 +37,7 @@
                     templateUrl: "views/admin/admin.view.html",
                     controller: "AdminController",
                     resolve: {
-                        //loggedin: checkAdmin
+                        loggedin: checkAdmin
                     }
 
 
@@ -52,7 +52,7 @@
                     templateUrl: "views/recipes/my-recipes.view.html",
                     controller: "MyRecipesController",
                     resolve: {
-                        //loggedin: checkLoggedin
+                        loggedin: checkLoggedin
                     }
 
 
@@ -61,48 +61,66 @@
                     templateUrl: "views/recipes/my-reviews.view.html",
                     controller: "MyReviewsController",
                     resolve: {
-                        //loggedin: checkLoggedin
+                        loggedin: checkLoggedin
                     }
                 })
                 .when("/following", {
                     templateUrl: "views/users/following.view.html",
                     controller: "FollowerController",
                     resolve: {
-                        //loggedin: checkLoggedin
+                        loggedin: checkLoggedin
                     }
                 })
 
                 .when("/recipe/:recipeID", {
                     templateUrl: "views/recipes/recipe-details.view.html",
-                    controller: "DetailController"
+                    controller: "DetailController",
+                    resolve: {
+                        loggedin: checkCurrentUser
+                    }
 
 
                 })
                 .when("/follow/:username", {
                     templateUrl: "views/users/user-details.view.html",
-                    controller: "UserDetailController"
+                    controller: "UserDetailController",
+                    resolve: {
+                        loggedin: checkLoggedin
+                    }
 
 
                 })
                 .when("/searchUsers", {
                     templateUrl: "views/users/searchUsers.view.html",
-                    controller: "SearchUserController"
+                    controller: "SearchUserController",
+                    resolve: {
+                        loggedin: checkLoggedin
+                    }
 
 
                 })
                 .when("/follow/review/:username", {
                     templateUrl: "views/users/user-reviews.view.html",
-                    controller: "UserDetailController"
+                    controller: "UserDetailController",
+                    resolve: {
+                        loggedin: checkLoggedin
+                    }
 
 
                 })
                 .when("/search", {
                     templateUrl: "views/search/search.view.html",
-                    controller: "SearchController"
+                    controller: "SearchController",
+                    resolve: {
+                        loggedin: checkCurrentUser
+                    }
                 })
                 .when("/search/:recipe", {
                     templateUrl: "views/search/search.view.html",
-                    controller: "SearchController"
+                    controller: "SearchController",
+                    resolve: {
+                        loggedin: checkCurrentUser
+                    }
                 })
                 .otherwise({
                     redirectTo: "/"
@@ -121,6 +139,12 @@
             {
                 $rootScope.user = user;
                 deferred.resolve();
+            }
+            else
+            {
+                $rootScope.errorMessage = 'You need to log in.';
+                deferred.reject();
+                $location.url('/login');
             }
         });
 

@@ -7,9 +7,9 @@
         .module("RecipeWorld")
         .controller("SearchUserController", searchUserController);
 
-    function searchUserController($scope, $location, FollowerService){
+    function searchUserController($rootScope,$scope, $location, FollowerService){
 
-        $scope.search = searchUsers;
+
 
         $scope.users = {};
 
@@ -25,7 +25,7 @@
         $scope.follow = function (index) {
             $scope.selectedUserIndex = index;
 
-            FollowerService.addFollower($scope.users[index],$scope.user._id).then(function(response) {
+            FollowerService.addFollower($scope.users[index],$rootScope.user._id).then(function(response) {
                 $location.path("/following");
             });
         };

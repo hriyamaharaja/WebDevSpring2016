@@ -32,9 +32,7 @@
             $scope.selectedUserIndex = index;
 
             FollowerService.addFollower($scope.users[index],$scope.user._id).then(function(response) {
-                //UserService.findAllGamesForUser($rootScope.user._id).then(function(response){
-                //  $scope.games = response.data;
-                $location.path("/following");
+                 $location.path("/following");
             });
         };
 

@@ -1,6 +1,3 @@
-/**
- * Created by hriya on 4/18/16.
- */
 module.exports = function (app,db,mongoose) {
 
     //assignment
@@ -18,6 +15,7 @@ module.exports = function (app,db,mongoose) {
     var recipeModel = require("./project/server/model/recipe.model.js")(db,mongoose);
     var reviewModel = require("./project/server/model/review.model.js")(db,mongoose);
     require("./project/server/services/review.service.server.js")(app,reviewModel);
+    require("./project/server/services/admin.service.server.js")(app,projuserModel);
     require("./project/server/services/recipe.service.server.js")(app, recipeModel);
     require("./project/server/services/user.recipe.service.server.js")(app, recipeModel);
     var followerModel = require("./project/server/model/follower.model.js")(db,mongoose);

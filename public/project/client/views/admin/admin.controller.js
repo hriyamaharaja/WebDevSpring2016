@@ -3,17 +3,15 @@
  */
 "use strict";
 
-(function()
-{
+(function () {
     angular
         .module("RecipeWorld")
         .controller("AdminController", AdminController);
 
-    function AdminController($scope, AdminService)
-    {
+    function AdminController($scope, AdminService, ReviewService, FollowerService, RecipeService) {
         $scope.remove = remove;
         $scope.update = update;
-        $scope.add    = add;
+        $scope.add = add;
         $scope.select = select;
         $scope.reverse = false;
         $scope.predicate = 'username';
@@ -21,36 +19,41 @@
         $scope.disable = true;
 
         function init() {
-            UseAdminServicerService
+            AdminService
                 .findAllUsers()
                 .then(handleSuccess, handleError);
         }
+
         init();
 
-        function remove(user)
-        {
+        function remove(index) {
+            var userId = $scope.users[index]._id;
             AdminService
-                .deleteUserById(user._id)
+                .deleteUserById(userId)
+                .then(function (reponse) {
+
+                    FollowerService.deleteFriendById(userId)
+                        .then(init());
+                });
+
+
+        }
+
+        function update(user) {
+            AdminService
+                .updateUser($scope.selectedUserId, user)
                 .then(init());
         }
 
-        function update(user)
-        {
-            AdminService
-                .updateUser(user._id, user)
-                .then(init());
-        }
-
-        function add(user)
-        {
+        function add(user) {
             AdminService
                 .createUser(user)
                 .then(init());
         }
 
-        function select(user)
-        {
-            $scope.user = angular.copy(user);
+        function select(index) {
+            $scope.selectedUserId = $scope.users[index]._id;
+            $scope.user = angular.copy($scope.users[index]);
         }
 
         function handleSuccess(response) {
@@ -61,7 +64,7 @@
             $scope.error = error;
         }
 
-        $scope.sort = function(predicate) {
+        $scope.sort = function (predicate) {
             $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
             $scope.predicate = predicate;
         };

@@ -57,11 +57,10 @@
     <script src="services/followers.service.client.js"></script>
 
 
-
-
         
     <script src="views/main/main.controller.js"></script>
-     <script src="views/admin/admin.controller.js"></script>
+     
+    <script src="views/admin/admin.controller.js"></script>
     <script src="views/footer/footer.controller.js"></script>
     <script src="views/header/header.controller.js"></script>
     <script src="views/home/home.controller.js"></script>
@@ -83,16 +82,8 @@
 </head>
 <body ng-controller="MainController">
 <div class="wrap">
-<div class="container" ng-view></div>
-<div class="container" ng-include="'views/header/header.view.html'"></div>
+    <div class="container" ng-view></div>
+    <div class="container" ng-include="'views/header/header.view.html'"></div>
 </div>
 </body>
-<!--
-<footer class="footer text-center">
-    <div class="container">
-        <p class="text-muted">(c)2016 | Contact Us | About</p>
-    </div>
-</footer>
--->
-
 </html>

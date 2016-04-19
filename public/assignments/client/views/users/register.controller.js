@@ -27,12 +27,11 @@
 
             UserService.register(newuser).then(
                 function (response) {
+                    UserService.login({username:$scope.user.username,password:$scope.user.password}).then(function (response) {
+                        $rootScope.user = response.data;
+                        $location.path("/profile");
 
-                            $rootScope.user = response.data;
-                            $location.path("/profile");
-
-
-
+                    })
                 });
 
 

@@ -10,7 +10,7 @@
                     <thead>
                     <tr>
                         <th><i class="glyphicon glyphicon-triangle-bottom"></i>Username</th>
-                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>Password</th>
+                        <th><i class="glyphicon glyphicon-triangle-bottom"></i>Email</th>
                         <th><i class="glyphicon glyphicon-triangle-bottom"></i>Role</th>
                         <th>Action</th>
                     </tr>
@@ -18,19 +18,20 @@
                     <tbody>
 
                     <tr>
-                        <td><input ng-model="username" type="text" placeholder="username"></td>
-                        <td><input ng-model="password" type="text" placeholder="password"></td>
-                        <td><input ng-model="roles" type="text" placeholder="roles"></td>
-                        <td><i ng-click="addUser()" class="glyphicon glyphicon-plus"></i> <i ng-click="updateUser()" class="glyphicon glyphicon-ok"></i></td>
+                        <td><input ng-model="user.username" type="text" placeholder="username"></td>
+                        <td><input ng-model="user.email" type="text" placeholder="email"></td>
+                        <td><input ng-model="user.roles" ng-list="," type="text" placeholder="roles"></td>
+                        <td><i ng-click="add(user)" class="glyphicon glyphicon-plus"></i> <i ng-click="update(user)" class="glyphicon glyphicon-ok"></i></td>
 
                     </tr>
 
                     <tr ng-repeat="user in users">
+
                          <td>{{user.username}}</td>
-                        <td>{{user.password}}</td>
+                        <td>{{user.email}}</td>
                         <td>{{user.roles}}</td>
-                        <td><i ng-click="deleteUser($index)" class="glyphicon glyphicon-remove"></i>
-                            <i ng-click="selectUser($index)" class="glyphicon glyphicon-pencil"></i></td>
+                        <td><i ng-click="remove($index)" class="glyphicon glyphicon-remove"></i>
+                            <i ng-click="select($index)" class="glyphicon glyphicon-pencil"></i></td>
 
                     </tr>
 

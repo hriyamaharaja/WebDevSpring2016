@@ -13,7 +13,7 @@
 
     </fieldset>
 
-
+    <div>&nbsp;</div>
 
     <h3 ng-if="users">Search Results</h3>
 
@@ -28,7 +28,7 @@
         <tbody>
         <tr ng-repeat="user in users">
 
-            <td>{{user.username}}</td>
+            <td><a href="#/follow/{{user.username}}">{{user.username}}</a></td>
             <td><button ng-click="follow($index)" class="btn btn-primary">Follow</button></td>
         </tr>
         </tbody>

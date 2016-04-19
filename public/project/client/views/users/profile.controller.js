@@ -12,20 +12,20 @@
         $scope.firstName = $scope.user.firstName;
         $scope.lastName = $scope.user.lastName;
         $scope.password = $scope.user.password;
-        $scope.email = $scope.user.emails;
+        $scope.email = $scope.user.email;
 
         $scope.update = function(){
 
             var user = {};
-            user._id = this.user._id;
+            //user._id = this.user._id;
             user.username = this.username;
             user.firstName = this.firstName;
             user.lastName = this.lastName;
-            user.password = this.password;
+            //user.password = this.password;
             user.emails = this.email;
-            user.roles = this.user.roles;
+            //user.roles = this.user.roles;
 
-            UserService.updateUser(user._id,user).then(function(response){
+            UserService.updateUser($scope.user._id,user).then(function(response){
 
             });
 

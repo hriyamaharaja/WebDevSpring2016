@@ -10,7 +10,7 @@ module.exports = function(app,model) {
 
     app.delete('/api/project/user/following/:id', deleteFollowersForUser);
 
-    app.get('/api/project/follower', getFollowerByUsername);
+    app.get('/api/project/follower/:name', getFollowerByUsername);
 
     function getFollowersForUser(req, res) {
         var id = req.params.id;
@@ -27,7 +27,7 @@ module.exports = function(app,model) {
     }
 
     function getFollowerByUsername(req, res) {
-        var name = req.query.name;
+        var name = req.params.name;
 
         model.findFollowersByName(name)
             .then(
@@ -46,7 +46,7 @@ module.exports = function(app,model) {
 
         var following = {following:user._id, follower:id, following_username: user.username};
 
-        model.addFollower(id,following)
+        model.addFollower(following)
             .then(
                 function(users) {
                     res.json(users);

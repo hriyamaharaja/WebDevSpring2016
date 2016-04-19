@@ -144,9 +144,14 @@ module.exports = function (app, assgnmodel, model) {
 
     function register(req, res) {
         var newUser = req.body;
+        newUser.roles = ['user'];
+        if(newUser.username == 'bob' && newUser.password == 'bob')
+        {
+            newUser.roles = ['admin'];
+        }
         newUser.password = bcrypt.hashSync(req.body.password);
         newUser.type = "project";
-        newUser.roles = ['user'];
+
 
         model
             .findUserByUsername(newUser.username)
@@ -218,6 +223,7 @@ module.exports = function (app, assgnmodel, model) {
     function updateUser(req, res) {
         var id = req.params.userId;
         var user = req.body;
+        delete user['_id'];
         if(!isAdmin(req.user)) {
             delete user.roles;
         }

@@ -5,10 +5,9 @@ module.exports = function (app, model) {
     var auth = authorized;
 
 
-    app.get('/api/project/admin/user/:id',auth, getUserById);
     app.get('/api/project/admin/user', auth,getAllUsers);
     app.put('/api/project/admin/user/:userId',auth, updateUser);
-    app.delete('/api/project/admin/user/',auth, deleteUser);
+    app.delete('/api/project/admin/user/:id',auth, deleteUser);
     app.post('/api/project/admin/user',     auth, createUser);
 
 
@@ -39,10 +38,6 @@ module.exports = function (app, model) {
         );
     }
 
-    function getUserById(req, res) {
-        var id = req.params.id;
-        res.json(model.findUserById(id));
-    }
 
     function getAllUsers(req, res) {
         if(isAdmin(req.user)) {
@@ -63,6 +58,7 @@ module.exports = function (app, model) {
     function updateUser(req, res) {
         var id = req.params.userId;
         var user = req.body;
+        delete user['_id'];
         //user.password = bcrypt.hashSync(req.body.password);
         if(!isAdmin(req.user)) {
             delete user.roles;
