@@ -1,6 +1,7 @@
 /**
  * Created by hriya on 3/15/16.
  */
+/*
 module.exports = function (app,db,mongoose) {
     var userModel = require("./models/user.model.js")(db,mongoose);
     var userService = require("./services/user.service.server.js")(app, userModel);
@@ -9,3 +10,4 @@ module.exports = function (app,db,mongoose) {
     var formService = require("./services/form.service.server.js")(app, formModel);
     var fieldService = require("./services/field.service.server.js")(app, fieldModel);
 };
+    */

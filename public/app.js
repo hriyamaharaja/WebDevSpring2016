@@ -3,21 +3,23 @@
  */
 module.exports = function (app,db,mongoose) {
 
-    var assgnUserModel = require("./models/user.model.js")(db,mongoose);
-    require("./services/user.service.server.js")(app, assgnUserModel);
-    var formModel = require("./models/form.model.js")(db,mongoose);
-    var fieldModel = require("./models/fields.model.js")(db,mongoose);
-    require("./services/form.service.server.js")(app, formModel);
-    require("./services/field.service.server.js")(app, fieldModel);
+    //assignment
+    var assgnUserModel = require("./assignments/server/models/user.model.js")(db,mongoose);
+    var projuserModel = require("./project/server/model/user.model.js")(db,mongoose);
+    require("./assignments/server/services/user.service.server.js")(app, assgnUserModel,projuserModel);
+    var formModel = require("./assignments/server/models/form.model.js")(db,mongoose);
+    var fieldModel = require("./assignments/server/models/fields.model.js")(db,mongoose);
+    require("./assignments/server/services/form.service.server.js")(app, formModel);
+    require("./assignments/server/services/field.service.server.js")(app, fieldModel);
 
-    var userModel = require("./model/user.model.js")(db,mongoose);
-    require("./services/user.service.server.js")(app, userModel);
-    var recipeModel = require("./model/recipe.model.js")(db,mongoose);
-    var reviewModel = require("./model/review.model.js")(db,mongoose);
-    require("./services/review.service.server.js")(app,reviewModel);
-    require("./services/recipe.service.server.js")(app, recipeModel);
-    require("./services/user.recipe.service.server.js")(app, recipeModel);
-    var followerModel = require("./model/follower.model.js")(db,mongoose);
+
+    //proj
+    var recipeModel = require("./project/server/model/recipe.model.js")(db,mongoose);
+    var reviewModel = require("./project/server/model/review.model.js")(db,mongoose);
+    require("./project/server/services/review.service.server.js")(app,reviewModel);
+    require("./project/server/services/recipe.service.server.js")(app, recipeModel);
+    require("./project/server/services/user.recipe.service.server.js")(app, recipeModel);
+    var followerModel = require("./project/server/model/follower.model.js")(db,mongoose);
     require("./services/follower.service.server.js")(app,followerModel);
 
 };

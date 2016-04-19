@@ -1,6 +1,7 @@
 /**
  * Created by hriya on 3/19/16.
  */
+/*
 module.exports = function (app,db,mongoose) {
 
     var userModel = require("./model/user.model.js")(db,mongoose);
@@ -14,3 +15,4 @@ module.exports = function (app,db,mongoose) {
     var followerService = require("./services/follower.service.server.js")(app,followerModel);
 
 };
+    */
