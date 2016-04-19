@@ -27,7 +27,7 @@
 
             UserService.register(newuser).then(
                 function (response) {
-                    UserService.login({username:$scope.user.username,password:$scope.user.password}).then(function (response) {
+                    UserService.login({username:newuser.username,password:newuser.password}).then(function (response) {
                         $rootScope.user = response.data;
                         $location.path("/profile");
 
