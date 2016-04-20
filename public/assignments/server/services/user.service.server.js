@@ -87,6 +87,8 @@ module.exports = function (app, model) {
 
         var newUser = req.body;
         newUser.roles = ['user'];
+        newUser.type = "assignment";
+
         newUser.password = bcrypt.hashSync(req.body.password);
 
         model
@@ -126,6 +128,8 @@ module.exports = function (app, model) {
     function createUser(req, res) {
         var newUser = req.body;
         delete newUser['_id'];
+        newUser.type = "assignment";
+
         newUser.password = bcrypt.hashSync(req.body.password);
         if (newUser.roles && newUser.roles.length > 1) {
             newUser.roles = newUser.roles.split(",");
